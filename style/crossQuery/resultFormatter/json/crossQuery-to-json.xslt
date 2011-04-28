@@ -82,8 +82,8 @@
       <xsl:text></xsl:text>
     </xsl:if>
     <xsl:variable name="reference-count" select="count($result/reference-image)"/>
-    <xsl:if test="$reference-count &gt; 400">
-      <xsl:text>"reference":</xsl:text>
+    <xsl:if test="$reference-count &gt; 0">
+      <xsl:text>,"reference":</xsl:text>
       <xsl:choose>
         <xsl:when test="$reference-count = 1">
           <xsl:apply-templates select="$result/reference-image"/>
@@ -91,7 +91,7 @@
         <xsl:otherwise>
           <xsl:text>[</xsl:text>
           <xsl:apply-templates select="$result/reference-image"/>
-          <xsl:text>],</xsl:text>
+          <xsl:text>]</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
@@ -274,6 +274,9 @@
       <xsl:value-of select="@Y"/>
     </xsl:if>
     <xsl:text>}</xsl:text>
+    <xsl:if test="following-sibling::thumbnail">
+       <xsl:text>,</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="reference-image">
@@ -284,6 +287,9 @@
     <xsl:text>,"y":</xsl:text>
     <xsl:value-of select="@Y"/>
     <xsl:text>}</xsl:text>
+    <xsl:if test="following-sibling::reference-image">
+       <xsl:text>,</xsl:text>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
