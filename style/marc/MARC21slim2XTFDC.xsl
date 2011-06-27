@@ -95,94 +95,67 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
   </sql:connect>
 </xsl:variable>
 
+<xsl:variable name="cdlpath">
+  <xsl:for-each select="marc:datafield[@tag=941][1]">
+    <xsl:call-template name="subfieldSelect">
+      <xsl:with-param name="codes">a</xsl:with-param>
+    </xsl:call-template>
+  </xsl:for-each>
+</xsl:variable>
 
-                      <xsl:variable name="code">
-<xsl:for-each select="marc:datafield[@tag=852][1]">
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">a</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">b</xsl:with-param>
-        </xsl:call-template>
-</xsl:for-each>
-                        </xsl:variable>
+<xsl:variable name="cdlpath">
+  <xsl:for-each select="marc:datafield[@tag=941][1]">
+    <xsl:call-template name="subfieldSelect">
+      <xsl:with-param name="codes">a</xsl:with-param>
+    </xsl:call-template>
+  </xsl:for-each>
+</xsl:variable>
 
-<!-- a handful of hardcoded exceptions -->
 
-<xsl:variable name="exceptional_institution_res">
+<!--  select parent_institution_id, name from oac_institution where cdlpath = 'berkeley/bancroft'; -->
+
+<xsl:variable name="cdlpath_query">
+  <sql:query
+        connection="$connection"
+        table="oac_institution"
+        column="name, parent_institution_id"
+        where="cdlpath = '{$cdlpath}'"
+        row-tag="r" column-tag="c"
+  />
+</xsl:variable>
+
+<xsl:variable name="primary_loc_display_text">
+  <xsl:value-of select="$cdlpath_query/r/c[1]"/>
+</xsl:variable>
+
+<xsl:variable name="parent_institution_id">
+  <xsl:value-of select="$cdlpath_query/r/c[2]"/>
+</xsl:variable>
+
+<!-- select name from oac_institution where id = 25; -->
+
+<xsl:variable name="parent_query">
 <sql:query
         connection="$connection"
-        table="oac_locationoverridedisplay"
-        column="campus_name, primary_loc_display"
-        where="mai_code_location = '{$code}'"
+        table="oac_institution"
+        column="name"
+        where="id = '{$parent_institution_id}'"
         row-tag="r" column-tag="c"
         />
 </xsl:variable>
 
-<xsl:variable name="exceptional_institution">
-	<xsl:choose>
-		<xsl:when test="$exceptional_institution_res/r/c[2] 
-				and $exceptional_institution_res/r/c[2] != ''
-		">
-			<xsl:value-of select="$exceptional_institution_res/r/c[1]"/>
-			<xsl:text>::</xsl:text>
-			<xsl:value-of select="$exceptional_institution_res/r/c[2]"/>
-		</xsl:when>
-		<xsl:when test="$exceptional_institution_res/r/c[1] 
-				and $exceptional_institution_res/r/c[1] != ''
-		">
-			<xsl:value-of select="$exceptional_institution_res/r/c[1]"/>
-		</xsl:when>
-		<xsl:otherwise/>
-	</xsl:choose>
+<xsl:variable name="campus_name_text">
+  <xsl:value-of select="$parent_query/r/c[1]"/>
 </xsl:variable>
 
-<!-- look up the fisrt part in the location table from Melvyl -->
-
-                        <xsl:variable name="campus_name">
-<sql:query
-        connection="$connection"
-        table="oac_location"
-        column="campus_name"
-        where="mai_code_location = '{$code}'"
-        row-tag="r" column-tag="c"
-        />
-                        </xsl:variable>
-
-                        <xsl:variable name="primary_name">
-<sql:query
-        connection="$connection"
-        table="oac_location"
-        column="primary_name, notes, prefix"
-        where="mai_code_location = '{$code}'"
-        row-tag="r" column-tag="c"
-        />
-                        </xsl:variable>
-                        <xsl:variable name="primary_loc_display">
-<sql:query
-        connection="$connection"
-        table="oac_marcprimarynamedisplay"
-        column="primary_loc_display, flag"
-        where="campus_name = '{$campus_name/r/c[1]}' and primary_loc = '{$primary_name/r/c[1]}'"
-        row-tag="r" column-tag="c"
-        />
-                        </xsl:variable>
-        <sql:close connection="$connection"/>
+<sql:close connection="$connection"/>
 
 <xsl:variable name="onDouble">
 	<xsl:choose>
-		<xsl:when test="
-				$campus_name and $campus_name != '' 
-				and not($primary_loc_display/r/c[2] = 'r')
-				and ( 
-					( $primary_loc_display and $primary_loc_display/r/c[1] != '' )
-					or
-					( contains($exceptional_institution,'::'))
-				    )
-		">
+		<xsl:when test="$campus_name_text and $campus_name_text != '' ">
 			<xsl:text>two</xsl:text>
 		</xsl:when>
-		<xsl:when test="($campus_name and $campus_name != '') or $exceptional_institution">
+		<xsl:when test="not ($campus_name_text and $campus_name_text != '') ">
 			<xsl:text>one</xsl:text>
 		</xsl:when>
 		<xsl:otherwise>
@@ -191,58 +164,29 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 	</xsl:choose>
 </xsl:variable>
 
-<xsl:variable name="campus_name_text">
-	<xsl:value-of select="	if ($exceptional_institution = '') 
-				then replace(normalize-space($campus_name/r/c[1]),'^UC Los Angeles$','UCLA')
-				else if (not(contains($exceptional_institution,'::'))) then $exceptional_institution
-				else substring-before($exceptional_institution,'::') "/>
-</xsl:variable>
-
 <xsl:variable name="primary_name_note">
-	<xsl:value-of select="$primary_name/r/c[2]"/>
 </xsl:variable>
 
 <xsl:variable name="primary_name_prefix">
-	<xsl:value-of select="$primary_name/r/c[3]"/>
 </xsl:variable>
 
-<xsl:variable name="primary_loc_display_text">
-	<xsl:value-of select="	if ($exceptional_institution = '')
-				then normalize-space(replace($primary_loc_display/r/c[1],' &amp; ',' and '))
-				else substring-after($exceptional_institution,'::') "/>
-</xsl:variable>
-<xsl:variable name="primary_loc_display_flag">
-	<xsl:value-of select="$primary_loc_display/r/c[2]"/>
-</xsl:variable>
-
-<!-- whee, done with all the sql -->
-<!-- xsl:if test="$primary_loc_display/r/c[2] = 'r'">
-<xsl:message>
-	<xsl:copy-of select="$primary_loc_display"/>
-	<xsl:for-each select="marc:datafield[@tag=852][1]">
-
- <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">a</xsl:with-param>
-        </xsl:call-template>
-<xsl:text>::</xsl:text>        
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">b</xsl:with-param>
-        </xsl:call-template>
-</xsl:for-each>
-
-</xsl:message>
-</xsl:if -->
-
-	<xsl:if test="($primary_loc_display_flag != 'r') and ( $campus_name_text != 'So. Regional Library Facility')">
 	<xtf:meta>
 		<xsl:variable name="leader" select="marc:leader"/>
 		<xsl:variable name="leader6" select="substring($leader,7,1)"/>
 		<xsl:variable name="leader7" select="substring($leader,8,1)"/>
 		<xsl:variable name="controlField008" select="marc:controlfield[@tag=008]"/>
+		<xsl:variable name="controlField001" select="marc:controlfield[@tag=001]"/>
 
 		<!-- fake ID -->
 		<xsl:variable name="fakeID" as="xs:string">
+                  <xsl:choose>
+                    <xsl:when test="$controlField001 != ''">
+                             <xsl:value-of select="$controlField001"/>
+                    </xsl:when>
+                    <xsl:otherwise>
                              <xsl:value-of select="Md5Hash:md5Hash(/)"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
 		</xsl:variable>
                 <id source="852" xtf:meta="true" xtf:tokenize="true">
                                <xsl:value-of select="$fakeID"/>
@@ -260,10 +204,10 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 		<xsl:value-of select="$primary_loc_display_text"/>
 	</xsl:when>
 	<xsl:when test="$onDouble = 'one'">
-		<xsl:value-of select="$campus_name_text"/>
+		<xsl:value-of select="$primary_loc_display_text"/>
 	</xsl:when>
 	<xsl:otherwise>
-		<xsl:value-of select="$code"/>
+		<xsl:value-of select="$cdlpath"/>
 	</xsl:otherwise>
 </xsl:choose>
 </facet-institution>
@@ -320,9 +264,9 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 		<xsl:value-of select="$primary_loc_display_text"/>
 	</xsl:when>
 	<xsl:when test="$onDouble = 'one'">
-		<xsl:value-of select="substring(($campus_name_text),1,1)"/>
+		<xsl:value-of select="substring(($primary_loc_display_text),1,1)"/>
 		<xsl:text>::</xsl:text>
-		<xsl:value-of select="$campus_name_text"/>
+		<xsl:value-of select="$primary_loc_display_text"/>
 	</xsl:when>
 </xsl:choose>
 </institution-doublelist>
@@ -684,15 +628,6 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 		</xsl:for-each>
 
 		<xsl:for-each select="marc:datafield[@tag='852']">
-
-    <xsl:if test="marc:subfield[@code='h' or @code='i' or @code='j']">
-	<!-- location xtf:meta="true">
-				<xsl:text>Call Number: </xsl:text>
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">ehij</xsl:with-param>
-        </xsl:call-template>
-	</location -->
-    </xsl:if>   
     <xsl:if test="marc:subfield[@code='a' or @code='b']">
 
 			<xsl:variable name="a">
@@ -779,7 +714,6 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 		<!-- pull in mods -->
 		<xsl:apply-templates select="." mode="m2m"/>
 	</xtf:meta>
-	</xsl:if>
 	</xsl:template>
 
 
