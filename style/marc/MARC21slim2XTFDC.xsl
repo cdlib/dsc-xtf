@@ -103,14 +103,6 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
   </xsl:for-each>
 </xsl:variable>
 
-<xsl:variable name="cdlpath">
-  <xsl:for-each select="marc:datafield[@tag=941][1]">
-    <xsl:call-template name="subfieldSelect">
-      <xsl:with-param name="codes">a</xsl:with-param>
-    </xsl:call-template>
-  </xsl:for-each>
-</xsl:variable>
-
 
 <!--  select parent_institution_id, name from oac_institution where cdlpath = 'berkeley/bancroft'; -->
 
