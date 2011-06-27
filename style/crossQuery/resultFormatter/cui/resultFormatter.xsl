@@ -62,6 +62,8 @@
   <!-- ====================================================================== -->
   
   <xsl:param name="xtfURL" select="'/'"/>
+  <xsl:param name="group" select="'image'"/>
+  <xsl:param name="slideshow.on"/>
   
   <!-- ====================================================================== -->
   <!-- Root Template                                                          -->
@@ -233,6 +235,9 @@
                                 </xsl:choose>
                               </xsl:with-param>
                             </xsl:call-template>
+                            <xsl:if test="$group='image' and $slideshow.on='on'">
+                              <div id="slideshowHook"/>
+                            </xsl:if>
                           </div>
                           <div class="pagination">
                             <xsl:call-template name="pages"/>
