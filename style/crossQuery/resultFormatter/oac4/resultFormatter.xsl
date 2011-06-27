@@ -14,6 +14,7 @@
 <xsl:import href="../common/editURL.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="../../../common/online-items-graphic-element.xsl"/>
+<xsl:include href="../../../common/google-tracking.xsl"/>
 
   <xsl:output method="xhtml"
     indent="yes"
@@ -1097,6 +1098,11 @@ encodeURI('/js/facet-iframe.html?<xsl:value-of select="replace(replace($queryStr
 </xsl:comment>
 	</script>
 </xsl:if>
+
+<xsl:call-template name="insert-google-tracking">
+  <xsl:with-param name="brand" select="'oac'"/>
+</xsl:call-template>
+
 </xsl:template>
 
 <xsl:template match="spelling" mode="spelling">

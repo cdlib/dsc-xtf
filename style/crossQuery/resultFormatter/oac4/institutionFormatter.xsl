@@ -18,6 +18,7 @@
 <xsl:include href="azBrowseResults.xsl"/>
 
 <xsl:include href="autocomplete-js.xsl"/>
+<xsl:include href="../../../common/google-tracking.xsl"/>
 
   <xsl:output method="xhtml"
     indent="yes"
