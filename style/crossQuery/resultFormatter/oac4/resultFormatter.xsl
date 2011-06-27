@@ -1100,7 +1100,7 @@ encodeURI('/js/facet-iframe.html?<xsl:value-of select="replace(replace($queryStr
 </xsl:if>
 
 <xsl:call-template name="insert-google-tracking">
-  <xsl:with-param name="brand" select="'oac'"/>
+  <xsl:with-param name="brand" select="'oac4'"/>
 </xsl:call-template>
 
 </xsl:template>

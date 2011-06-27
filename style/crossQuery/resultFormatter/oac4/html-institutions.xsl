@@ -10,7 +10,6 @@
 	exclude-result-prefixes="#all">
 
 <xsl:import href="institutions.xsl"/>
-<xsl:include href="../../../common/google-tracking.xsl"/>
 
   <xsl:output method="xhtml"
     indent="yes"
@@ -33,9 +32,6 @@
 <xsl:template match="body">
   <xsl:copy copy-namespaces="no">
     <xsl:apply-templates/>
-    <xsl:call-template name="insert-google-tracking">
-      <xsl:with-param name="brand" select="'oac'"/>
-    </xsl:call-template>
   </xsl:copy>
 </xsl:template>
 

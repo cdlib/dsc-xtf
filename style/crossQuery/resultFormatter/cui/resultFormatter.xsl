@@ -41,6 +41,7 @@
   <!-- ====================================================================== -->
 
   <xsl:import href="common/resultFormatterCommon.xsl"/>
+  <xsl:import href="../../../common/google-tracking.xsl"/>
   <xsl:import href="grid/resultFormatter.xsl"/>
   <xsl:import href="list/resultFormatter.xsl"/>
   <xsl:import href="browse/resultFormatter.xsl"/>
@@ -414,6 +415,11 @@ did not find any matches.</p>
         <xsl:if test="session:isEnabled()">
           <xsl:value-of select="session:setData('queryURL', concat($xtfURL, $crossqueryPath, '?', $queryString, '&amp;startDoc=', $startDoc))"/>
         </xsl:if>
+<xsl:call-template name="insert-google-tracking">
+  <xsl:with-param name="brand" select="$brand"/>
+  <xsl:with-param name="onContent" select="'onContent'"/>
+</xsl:call-template>
+
       </body>
     </html>
   </xsl:template>

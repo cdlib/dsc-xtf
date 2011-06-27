@@ -102,10 +102,6 @@ function queryformcheck(form){
 
 </script>
 </xsl:copy>
-  
-  <xsl:call-template name="insert-google-tracking">
-    <xsl:with-param name="brand" select="'oac'"/>
-  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

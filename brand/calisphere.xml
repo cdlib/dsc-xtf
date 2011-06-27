@@ -58,13 +58,12 @@
 <div class="footer-nav"><a href="http://www.calisphere.universityofcalifornia.edu/" target="_top">Home</a> <span class="pipe">|</span> <a href="http://www.calisphere.universityofcalifornia.edu/themed_collections/" target="_top">Themed Collections</a> <span class="pipe">|</span> <a href="http://www.calisphere.universityofcalifornia.edu/calcultures/" target="_top">California Cultures</a> <span class="pipe">|</span>  <a href="http://www.calisphere.universityofcalifornia.edu/jarda/" target="_top">JARDA</a> <span class="pipe">|</span> <a href="http://www.calisphere.universityofcalifornia.edu/copyright-cs.html" target="_top">Terms of Use</a> | <a href="http://www.calisphere.universityofcalifornia.edu/privacy.html">Privacy Policy</a> <span class="pipe">|</span> <a href="http://www.calisphere.universityofcalifornia.edu/site-map.html" target="_top">Site Map</a></div>
 
 <div class="footer-sentence1">Calisphere is a service of the <a href="http://libraries.universityofcalifornia.edu" target="_top">UC Libraries</a>, powered by the <a href="http://www.cdlib.org/" target="_top">California Digital Library</a>.</div> 
-<div class="footer-sentence2">Copyright &#169; 2010 The Regents of The University of California.</div>
+<div class="footer-sentence2">Copyright &#169; 2011 The Regents of The University of California.</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script> 
-<script>
+<script type="text/javascript">
 (function() {
     var href = window.location.href;
-    objid = objid || "";
     $("#slideshowHook").html('<a href="' + href + '" onclick="return(CDL.DSC.SlideshowLink(this))">view as slideshow</a>');
     if ($('#moreLike')) {
       $('#moreLike').load('/search?identifier=' +  objid + ';style=moreLike');

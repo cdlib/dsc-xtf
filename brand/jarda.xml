@@ -10,6 +10,7 @@ width="520" height="32" alt="JARDA: Japanese American Relocation Digital Archive
  <link rel="shortcut icon" href="http://www.calisphere.universityofcalifornia.edu/favicon.ico" />
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://www.calisphere.universityofcalifornia.edu/css/jarda-entry.css" type="text/css" media="screen"/>
  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://www.calisphere.universityofcalifornia.edu/css/print.css" type="text/css" media="print"/>
+<link type="text/css" href="http://cdn.calisphere.org/json4lib/slideshow/css/slideshowLink-combo.css" rel="stylesheet" />
     <script src="http://www.calisphere.universityofcalifornia.edu/js/calisphere.js" xmlns="http://www.w3.org/1999/xhtml" type="text/JavaScript" />
     <script type="text/javascript" src="/default/js/nifty.js" xmlns="http://www.w3.org/1999/xhtml"/>
   </links>
@@ -66,14 +67,23 @@ ct us</a>
 <div class="footer-sentence1">Calisphere is a service of the <a href="http://libraries.universityofcalifornia.edu" target="_top">UC Libraries</a>, powered by the <a href="http://www.cdlib.org/" target="_top">California Digital Library</a>.
 </div>
 
-<div class="footer-sentence2">Copyright &#169; 2007 The Regents of The University of California.</div>
-
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
+<div class="footer-sentence2">Copyright &#169; 2011 The Regents of The University of California.</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script>
 <script type="text/javascript">
-_uacct = "UA-438369-1";
-urchinTracker();
+(function() {
+    var href = window.location.href;
+    $("#slideshowHook").html('<a href="' + href + '" onclick="return(CDL.DSC.SlideshowLink(this))">view as slideshow</a>');
+    if ($('#moreLike')) {
+      $('#moreLike').load('/search?identifier=' +  objid + ';style=moreLike');
+    }
+})();
+$("a#zoomMe").click(function () {
+  _gaq = _gaq || [];
+  _gaq.push(['cst._trackEvent', 'Image', 'Larger Image View', window.title ]);
+});
 </script>
+
 </div>
   </footer>
   <!-- END FOOTER -->
