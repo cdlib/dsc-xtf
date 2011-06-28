@@ -5,42 +5,63 @@
 <xsl:stylesheet version="2.0" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:session="java:org.cdlib.xtf.xslt.Session"
-	xmlns:editURL="http://cdlib.org/xtf/editURL" 
-	xmlns:tmpl="xslt://template"
-	exclude-result-prefixes="#all">
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:editURL="http://cdlib.org/xtf/editURL"
+	exclude-result-prefixes="#all"
+	xmlns:tmpl="xslt://template">
 
-<xsl:import href="institutions.xsl"/>
+<!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" -->
+<xsl:import href="../common/editURL.xsl"/>
+<xsl:include href="../../../common/SSI.xsl"/>
+<xsl:include href="../../../common/online-items-graphic-element.xsl"/>
+<xsl:include href="../../../common/scaleImage.xsl"/>
 
   <xsl:output method="xhtml"
     indent="yes"
-    encoding="utf-8"
-        media-type="text/html; charset=UTF-8"
+	      encoding="UTF-8" media-type="text/html; charset=UTF-8" 
         omit-xml-declaration="yes"
               doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
               doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <xsl:template match="/">
-
-    <xsl:apply-templates select="($layout)//*[local-name()='html']"/>
-
+<html>
+  <xsl:apply-templates select="crossQueryResult/docHit"/>
         <xsl:comment>
-        url: <xsl:value-of select="$http.URL"/>
         xslt: <xsl:value-of select="static-base-uri()"/>
         </xsl:comment>
+</html>
 </xsl:template>
 
-<xsl:template match="body">
-  <xsl:copy copy-namespaces="no">
-    <xsl:apply-templates/>
-  </xsl:copy>
-</xsl:template>
+  <xsl:template match="docHit">
+    <xsl:variable name="fullark" select="meta/identifier[1]"/>
+    <xsl:variable name="xy">
+      <xsl:call-template name="scale-max">
+        <xsl:with-param name="max" select="50"/>
+        <xsl:with-param name="x" select="meta/thumbnail/@X"/>
+        <xsl:with-param name="y" select="meta/thumbnail/@Y"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="height" select="$xy/xy/@height"/>
+    <xsl:variable name="width" select="$xy/xy/@width"/>
 
+    <div>
+      <a href="{replace(meta/identifier[1],'http://ark.cdlib.org','')}">
+      <img src="{replace($fullark,'http://ark.cdlib.org','')}/thumbnail" height="{$height}" width="{$width}"/>
+         <xsl:value-of select="meta/title[1]"/>
+      </a>
+    </div>
+  </xsl:template>
 
+  <!-- default match identity transform -->
+  <xsl:template match="@*|node()">
+    <xsl:copy copy-namespaces="no">
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>
-
 <!--
-   Copyright (c) 2008, Regents of the University of California
+   Copyright (c) 2005, Regents of the University of California
    All rights reserved.
  
    Redistribution and use in source and binary forms, with or without 

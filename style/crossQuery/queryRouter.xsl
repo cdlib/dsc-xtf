@@ -59,6 +59,9 @@
         <xsl:when test="matches($style,'default')">
           <queryParser path="style/crossQuery/queryParser/default/queryParser.xsl"/>
         </xsl:when>
+        <xsl:when test="matches($style,'moreLike')">
+          <queryParser path="style/crossQuery/queryParser/moreLike/queryParser.xsl"/>
+        </xsl:when>
         <xsl:otherwise>
           <queryParser path="style/crossQuery/queryParser/oac4/queryParser.xsl"/>
         </xsl:otherwise>

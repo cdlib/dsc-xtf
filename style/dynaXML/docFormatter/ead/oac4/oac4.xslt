@@ -33,6 +33,7 @@
   <xsl:include href="../../../../common/SSI.xsl"/>
   <xsl:include href="../../../../common/scaleImage.xsl"/>
   <xsl:include href="../../../../common/online-items-graphic-element.xsl"/>
+  <xsl:include href="../../../../common/google-tracking.xsl"/>
   <xsl:include href="supplied-labels-headings.xsl"/>
   
   <xsl:key name="hit-num-dynamic" match="xtf:hit" use="@hitNum"/>
@@ -1283,6 +1284,10 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	<script src="/yui/build/connection/connection-min.js" type="text/javascript"/>
 	<script src="/js/online-items.js" type="text/javascript"/>
 </xsl:if>
+
+<xsl:call-template name="insert-google-tracking">
+  <xsl:with-param name="brand" select="'oac4'"/>
+</xsl:call-template>
 
 </xsl:template>
 
