@@ -479,14 +479,14 @@
       <!-- Individual Paging -->
       <xsl:if test="($pageNum = 1) and ($pageStart != $start)">
         <xsl:variable name="prevPage" as="xs:integer" select="$start - $perPage"/>
-        <a href="{$xtfURL}{$crossqueryPath}?{$pageQueryString}&amp;{$startName}={$prevPage}">Prev</a>
+        <a href="/search?{$pageQueryString}&amp;{$startName}={$prevPage}">Prev</a>
         <xsl:text>&#160;&#160;</xsl:text>
       </xsl:if>
       
       <!-- Paging by Blocks -->
       <xsl:variable name="prevBlock" as="xs:integer" select="(($blockStart - $blockSize) * $perPage) - ($perPage - 1)"/>
       <xsl:if test="($pageNum = 1) and ($prevBlock &gt;= 1)">
-        <a href="{$xtfURL}{$crossqueryPath}?{$pageQueryString}&amp;{$startName}={$prevBlock}">...</a>
+        <a href="/search?{$pageQueryString}&amp;{$startName}={$prevBlock}">...</a>
         <xsl:text>&#160;&#160;</xsl:text>
       </xsl:if>
                 
@@ -496,7 +496,7 @@
         <xsl:choose>
           <!-- Make a hyperlink if it's not the page we're currently on. -->
           <xsl:when test="($pageStart != $start)">
-            <a href="{$xtfURL}{$crossqueryPath}?{$pageQueryString}&amp;{$startName}={$pageStart}">
+            <a href="/search?{$pageQueryString}&amp;{$startName}={$pageStart}">
               <xsl:value-of select="$pageNum"/>
             </a>
             <xsl:if test="$pageNum &lt; $showPages">
@@ -516,14 +516,14 @@
       <xsl:variable name="nextBlock" as="xs:integer" select="(($blockStart + $blockSize) * $perPage) - ($perPage - 1)"/>
       <xsl:if test="($pageNum = $showPages) and (($showPages * $perPage) &gt; $nextBlock)">
         <xsl:text>&#160;&#160;</xsl:text>
-        <a href="{$xtfURL}{$crossqueryPath}?{$pageQueryString}&amp;{$startName}={$nextBlock}">...</a>
+        <a href="/search?{$pageQueryString}&amp;{$startName}={$nextBlock}">...</a>
       </xsl:if>
 
       <!-- Individual Paging -->      
       <xsl:if test="($pageNum = $showPages) and ($pageStart != $start)">
         <xsl:variable name="nextPage" as="xs:integer" select="$start + $perPage"/>
         <xsl:text>&#160;&#160;</xsl:text>
-        <a href="{$xtfURL}{$crossqueryPath}?{$pageQueryString}&amp;{$startName}={$nextPage}">Next</a>
+        <a href="/search?{$pageQueryString}&amp;{$startName}={$nextPage}">Next</a>
       </xsl:if>
 
     </xsl:for-each>
