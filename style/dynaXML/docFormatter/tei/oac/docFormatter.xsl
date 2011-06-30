@@ -46,6 +46,7 @@
 <!-- ====================================================================== -->
 
 <xsl:import href="../../common/cdlDocFormatterCommon.xsl"/>
+<xsl:import href="../../../../common/google-tracking.xsl"/>
 
 <!-- ====================================================================== -->
 <!-- Output Format                                                          -->
@@ -612,6 +613,10 @@ cause the queryURL to be set to the referer -->
                   </div>
                 </div>
               </div>-->
+              <xsl:call-template name="insert-google-tracking">
+                <xsl:with-param name="onContent" select="'onContent'"/>
+                <xsl:with-param name="brand" select="$brand"/>
+              </xsl:call-template>
               <xsl:copy-of select="$brand.footer"/>
             </xsl:when>
             <xsl:otherwise>
@@ -636,6 +641,10 @@ cause the queryURL to be set to the referer -->
                         </div>
                       </xsl:otherwise>
                     </xsl:choose>
+              <xsl:call-template name="insert-google-tracking">
+                <xsl:with-param name="onContent" select="'onContent'"/>
+                <xsl:with-param name="brand" select="$brand"/>
+              </xsl:call-template>
                     <xsl:copy-of select="$brand.footer"/>
                   </td>
                 </tr>
@@ -744,24 +753,39 @@ cause the queryURL to be set to the referer -->
                 <xsl:if test="$DC//publisher">
                   <span class="heading">Contributing Institution:</span>&#160;<xsl:value-of select="$DC//publisher[1]"/><!-- BT needs to supply this --><br/>
                 </xsl:if>
-                <span class="heading">Copyright Note:</span>&#160;Copyright status unknown. Some materials in these collections may be
-                protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, the
-                reproduction, and/or commercial use, of some materials may be restricted
-                by gift or purchase agreements, donor restrictions, privacy and
-                publicity rights, licensing agreements, and/or trademark rights.
-                Distribution or reproduction of materials protected by copyright beyond
-                that allowed by fair use requires the written permission of the
-                copyright owners. To the extent that restrictions other than copyright
-                apply, permission for distribution or reproduction from the applicable
-                rights holder is also required. Responsibility for obtaining
-                permissions, and for any use rests exclusively with the user.
+                <span class="heading">Copyright Note:</span>
+                <xsl:choose>
+                  <xsl:when test="$DC//rights">
+                    <xsl:apply-templates select="$DC//rights" mode="dc"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+Copyright status unknown. Some materials in these collections may be
+-                protected by the U.S. Copyright Law (Title 17, U.S.C.). In addition, the
+-                reproduction, and/or commercial use, of some materials may be restricted
+-                by gift or purchase agreements, donor restrictions, privacy and
+-                publicity rights, licensing agreements, and/or trademark rights.
+-                Distribution or reproduction of materials protected by copyright beyond
+-                that allowed by fair use requires the written permission of the
+-                copyright owners. To the extent that restrictions other than copyright
+-                apply, permission for distribution or reproduction from the applicable
+-                rights holder is also required. Responsibility for obtaining
+-                permissions, and for any use rests exclusively with the user.
+                  </xsl:otherwise>
+                </xsl:choose>
               </div>
+              <xsl:call-template name="insert-google-tracking">
+                <xsl:with-param name="onContent" select="'onContent'"/>
+                <xsl:with-param name="brand" select="$brand"/>
+              </xsl:call-template>
               <xsl:copy-of select="$brand.footer"/>
             </div>
           </div>
         </div>
       </body>
     </html>
+  </xsl:template>
+  <xsl:template match="rights" mode="dc">
+    <p><xsl:value-of select="."/></p>
   </xsl:template>
 
 <!-- ====================================================================== -->
