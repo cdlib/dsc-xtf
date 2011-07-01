@@ -158,11 +158,11 @@ Added Log Comment
 
 		<xsl:for-each select="marc:datafield[@tag=246]">
 			<titleInfo type="alternative">
-				<!-- xsl:for-each select="marc:subfield[@code='i']">
+				<xsl:for-each select="marc:subfield[@code='i']">
 					<xsl:attribute name="displayLabel">
-						<xsl:value-of select="text()"/>
+<xsl:value-of select="replace(normalize-space(.),'&amp;','﹠')"/>
 					</xsl:attribute>
-				</xsl:for-each -->
+				</xsl:for-each>
 				<title>
 					<xsl:call-template name="chopPunctuation">
 						<xsl:with-param name="chopString">
@@ -2534,16 +2534,17 @@ Added Log Comment
 	</xsl:template>
 
 	<xsl:template name="displayLabel">
+             <xsl:variable name="dl">
 		<xsl:if test="marc:subfield[@code='i']">
-			<xsl:attribute name="displayLabel">
 				<xsl:value-of select="marc:subfield[@code='i']"/>
-			</xsl:attribute>
 		</xsl:if>
-		<!-- xsl:if test="marc:subfield[@code='3']">
+		<xsl:if test="marc:subfield[@code='3']">
+				<xsl:value-of select="marc:subfield[@code='3']"/>
+		</xsl:if>
+             </xsl:variable>
 			<xsl:attribute name="displayLabel">
-				<xsl:value-of select="replace(marc:subfield[@code='3'],'&amp;','and')"/>
+<xsl:value-of select="replace(normalize-space($dl),'&amp;','﹠')"/>
 			</xsl:attribute>
-		</xsl:if -->
 	</xsl:template>
 
 	<xsl:template name="isInvalid">
