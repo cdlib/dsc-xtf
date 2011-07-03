@@ -32,7 +32,10 @@
 </html>
 </xsl:template>
 
-  <xsl:template match="docHit">
+
+  <xsl:template match="docHit[not(contains(meta/type[1],'image'))]"/>
+
+  <xsl:template match="docHit[contains(lower-case(meta/type[1]),'image')]">
     <xsl:variable name="fullark" select="meta/identifier[1]"/>
     <xsl:variable name="xy">
       <xsl:call-template name="scale-max">
