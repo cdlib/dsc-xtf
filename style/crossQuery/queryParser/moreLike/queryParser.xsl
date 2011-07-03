@@ -158,7 +158,7 @@
   <xsl:template match="/">
     
     <query indexPath="index" termLimit="1000" workLimit="20000000" style="style/crossQuery/resultFormatter/moreLike/resultFormatter.xsl" startDoc="{$startDoc}" maxDocs="{$maxDocs}">
-      <moreLike fields="title, subject">
+      <moreLike fields="title, format, relation-from">
         <!-- process query -->
         <xsl:apply-templates/>
       </moreLike>
