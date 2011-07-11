@@ -21,6 +21,7 @@
   
   <xsl:param name="style"/>
   <xsl:param name="http.URL"/>
+  <xsl:param name="url"/><!-- triggers oembed -->
  
   <xsl:template match="/">
 
@@ -61,6 +62,9 @@
         </xsl:when>
         <xsl:when test="matches($style,'moreLike')">
           <queryParser path="style/crossQuery/queryParser/moreLike/queryParser.xsl"/>
+        </xsl:when>
+        <xsl:when test="$url!=''">
+          <queryParser path="style/crossQuery/queryParser/oembed/queryParser.xsl"/>
         </xsl:when>
         <xsl:otherwise>
           <queryParser path="style/crossQuery/queryParser/oac4/queryParser.xsl"/>

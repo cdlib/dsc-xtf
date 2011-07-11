@@ -71,18 +71,20 @@ z</a>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script>
 <script type="text/javascript">
-(function() {
-    var href = window.location.href;
-    $("#slideshowHook").html('<a href="' + href + '" onclick="return(CDL.DSC.SlideshowLink(this))">view as slideshow</a>');
-    if ($('#moreLike')) {
-      $('#moreLike').load('/search?identifier=' +  objid + ';style=moreLike');
-    }
-})();
 $("a#zoomMe").click(function () {
   _gaq = _gaq || [];
   _gaq.push(['cst._trackEvent', 'Image', 'Larger Image View', window.title ]);
 });
-
+(function() {
+  var href = window.location.href;
+  var onclick = "_gaq.push(['cst._trackEvent', 'slideshow', 'click', window.title ]); return(CDL.DSC.SlideshowLink(this));";
+  $("#slideshowHook").html('<a href="' + href + '" onclick="' + onclick + '">view as slideshow</a>');
+  if (typeof objid != 'undefined') {
+    if ($('#moreLike') ){
+      $('#moreLike').load('/search?identifier=' +  objid + ';style=moreLike');
+    }
+  }
+})();
 </script>
 
 </div>
