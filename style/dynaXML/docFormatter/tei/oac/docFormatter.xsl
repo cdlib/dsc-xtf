@@ -641,11 +641,11 @@ cause the queryURL to be set to the referer -->
                         </div>
                       </xsl:otherwise>
                     </xsl:choose>
+                    <xsl:copy-of select="$brand.footer"/>
               <xsl:call-template name="insert-google-tracking">
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
               </xsl:call-template>
-                    <xsl:copy-of select="$brand.footer"/>
                   </td>
                 </tr>
               </table>
@@ -773,11 +773,11 @@ Copyright status unknown. Some materials in these collections may be
                   </xsl:otherwise>
                 </xsl:choose>
               </div>
+              <xsl:copy-of select="$brand.footer"/>
               <xsl:call-template name="insert-google-tracking">
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
               </xsl:call-template>
-              <xsl:copy-of select="$brand.footer"/>
             </div>
           </div>
         </div>
