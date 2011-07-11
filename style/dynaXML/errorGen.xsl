@@ -132,7 +132,13 @@
 </xsl:variable>
 
 <xsl:template match="/">
-
+  <xsl:choose>
+    <xsl:when test="InvalidDocument">
+      <redirect:sendHttpError code="404" message="Document Not Found" 
+        xmlns:redirect="java:/org.cdlib.xtf.saxonExt.Redirect" 
+        xsl:extension-element-prefixes="redirect"/>
+    </xsl:when>
+    <xsl:otherwise>
   <html>
     <head>
       <title><xsl:value-of select="$reason"/></title>
@@ -158,6 +164,8 @@
 
      </body>
   </html>
+    </xsl:otherwise>
+  </xsl:choose>
 
 </xsl:template>
 
