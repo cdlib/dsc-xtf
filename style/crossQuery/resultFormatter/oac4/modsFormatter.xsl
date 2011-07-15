@@ -248,11 +248,19 @@ Brief record only
 </xsl:template>
 
 <xsl:template match="insert-brand-footer">
-<xsl:comment>insert-brand-footer</xsl:comment>
- <xsl:copy-of select="$brand.footer"/>
+<xsl:comment>insert-brand-footer; use SSI footer instead...</xsl:comment>
+	<xsl:variable name="ssi-html">
+		<xsl:value-of select="$layoutBase"/>
+		<xsl:text>/includes/footer.html</xsl:text>
+	</xsl:variable>
+<xsl:comment><xsl:value-of select="$ssi-html"/></xsl:comment>
+<xsl:apply-templates select="document($ssi-html)" mode="ssi-identity"/>
+
+
 </xsl:template>
 
-<xsl:template match="insert-multi-use| insert-sitesearch| insert-LaunchPad| insert-print-links"/>
+<xsl:template match="insert-multi-use| insert-sitesearch| insert-LaunchPad| insert-print-links|
+insert-moreLike| *:a2a"/>
 
 <xsl:template match="insert-metadataPortion">
                  <xsl:variable name="fixNameSpace">
@@ -279,11 +287,9 @@ Brief record only
                         <xsl:value-of select="$location"/>
                 </a>
         </span>
-
-
-
 </div>
 </xsl:template>
+
 
 
 </xsl:stylesheet>

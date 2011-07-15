@@ -609,7 +609,7 @@ else (param[@name='relation']/@value)"/>
 			</xsl:choose>
 		</xsl:for-each>
 		<xsl:attribute name="href">
-			<xsl:value-of select="$queryURL"/>
+			<xsl:value-of select="editURL:remove($queryURL,'page')"/>
 			<xsl:text>;idT=</xsl:text>
 			<xsl:value-of select="$docHit/meta/idT[1]"/>
 		</xsl:attribute>
