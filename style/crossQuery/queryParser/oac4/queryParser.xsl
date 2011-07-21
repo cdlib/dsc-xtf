@@ -176,6 +176,7 @@
 
     	<xsl:variable name="stylesheet" select="if ($map = 'map') then 'style/crossQuery/resultFormatter/oac4/ssi-institutions.xsl' else 'style/crossQuery/resultFormatter/oac4/institutionFormatter.xsl'"/>
        	<query indexPath="index" termLimit="1000" workLimit="20000000"
+                returnMetaFields="title,identifier,description,oac4-tab,idT"
                 style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="0" normalizeScores="false" 
 		sortDocsBy="sort-title">
 	<facet field="institution-doublelist" select="**" sortGroupsBy="value"/>
@@ -340,6 +341,7 @@
 
 
        <query indexPath="index" termLimit="1000" workLimit="20000000"
+                returnMetaFields="title,identifier,description,oac4-tab,idT"
                 style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="0" normalizeScores="false">
                 <!-- spellcheck suggestionsPerTerm="1"/ -->
                 <!-- facet field="oac4-tab" sortGroupsBy="value" includeEmptyGroups="yes" sortDocsBy="relevance"
