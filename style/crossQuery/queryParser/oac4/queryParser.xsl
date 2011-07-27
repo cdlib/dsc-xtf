@@ -381,11 +381,11 @@
 	<xsl:variable name="idQuery" select="parameters/param[@name='id' or @name='idT']"/>
     	<query indexPath="index" termLimit="1000" workLimit="20000000" 
 		style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="1" normalizeScores="false">
-		<!-- and field="id"><term><xsl:value-of select="$id"/></term></and -->
 		<and>
 			<and field="oac4-tab" maxSnippets="0"><term>*</term></and>
-			<!-- xsl:apply-templates select="$idQuery"/ -->
-			<and field="id" maxSnippets="0"><term><xsl:value-of select="replace($idQuery/@value,'\|','*')"/></term></and>
+			<and field="id" maxSnippets="0">
+			    <xsl:apply-templates select="$idQuery/token"/>
+                        </and>
 		</and>
     	</query>
   </xsl:template>
