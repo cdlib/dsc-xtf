@@ -45,12 +45,36 @@
       <xsl:value-of select="replace(replace($callback,'[^\c]',''),':','')"/>
       <xsl:text>(</xsl:text>
     </xsl:if>
-    <xsl:text>{"api":{"version":"x-001","license":"All Rights Reserved; Unauthorized use is strictly prohibited; http://www.oac.cdlib.org/terms.html"},"objset_total":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@totalDocs"/>
+    <xsl:text>{"api":{"version":"x-002","license":"All Rights Reserved; Unauthorized use is strictly prohibited; http://www.oac.cdlib.org/terms.html"},"objset_total":</xsl:text>
+    <xsl:variable name="totaldocs" select="normalize-space(//*[docHit]/@totalDocs)"/>
+    <xsl:choose>
+        <xsl:when test="$totaldocs=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$totaldocs"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset_start":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@startDoc"/>
+    <xsl:variable name="objsetstart" select="normalize-space(//*[docHit]/@startDoc)"/>
+    <xsl:choose>
+        <xsl:when test="$objsetstart=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$objsetstart"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset_end":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@endDoc"/>
+    <xsl:variable name="objsetend" select="normalize-space(//*[docHit]/@endDoc)"/>
+    <xsl:choose>
+        <xsl:when test="$objsetend=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="$objsetend"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset":[</xsl:text>
     <xsl:apply-templates select="/crossQueryResult//docHit/meta" mode="x"/>
     <xsl:text>]}</xsl:text>
@@ -62,9 +86,21 @@
   <xsl:template match="meta" mode="x">
       <!-- arbitrarily qualified dublin core 
            based on http://purl.org/dc/elements/1.1/, but designed before dcterms -->
-    <xsl:text>
-{"qdc":{</xsl:text>
       <xsl:variable name="result" select="."/>
+      <xsl:variable name="Institution" select="$result/facet-institution"/>
+      <xsl:variable name="Institution.parts" select="tokenize($Institution,'::')"/>
+      <xsl:variable name="Institution.reversed">
+        <xsl:choose>
+                <xsl:when test="$Institution.parts[1]!=$Institution.parts[2]">
+                        <xsl:value-of select="$Institution.parts[2]"/>
+                        <xsl:text>, </xsl:text>
+                        <xsl:value-of select="$Institution.parts[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                        <xsl:value-of select="$Institution.parts[1]"/>
+                </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
       <xsl:variable name="ordered-dc">
         <xsl:for-each select="
           title, creator, subject, description, publisher, contributor, date, 
@@ -72,9 +108,12 @@
             <xsl:copy-of select="."/>
         </xsl:for-each>
       </xsl:variable>
+    <xsl:text>
+{"qdc":{</xsl:text>
       <xsl:apply-templates select="$ordered-dc" mode="dc-json-element"/>
     <xsl:text>
 },
+"courtesy_of":"</xsl:text><xsl:value-of select="$Institution.reversed"/><xsl:text>",
 "files":{</xsl:text>
     <xsl:if test="$result/thumbnail">
       <xsl:text>"thumbnail":</xsl:text>
