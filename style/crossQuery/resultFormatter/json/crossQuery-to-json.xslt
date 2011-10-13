@@ -91,13 +91,13 @@
       <xsl:variable name="Institution.parts" select="tokenize($Institution,'::')"/>
       <xsl:variable name="Institution.reversed">
         <xsl:choose>
-                <xsl:when test="$Institution.parts[2]">
+                <xsl:when test="$Institution.parts[1]!=$Institution.parts[2]">
                         <xsl:value-of select="$Institution.parts[2]"/>
                         <xsl:text>, </xsl:text>
                         <xsl:value-of select="$Institution.parts[1]"/>
                 </xsl:when>
                 <xsl:otherwise>
-                        <xsl:value-of select="$Institution"/>
+                        <xsl:value-of select="$Institution.parts[1]"/>
                 </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
