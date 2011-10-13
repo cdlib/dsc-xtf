@@ -46,11 +46,35 @@
       <xsl:text>(</xsl:text>
     </xsl:if>
     <xsl:text>{"api":{"version":"x-001","license":"All Rights Reserved; Unauthorized use is strictly prohibited; http://www.oac.cdlib.org/terms.html"},"objset_total":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@totalDocs"/>
+    <xsl:variable name="totaldocs" select="normalize-space(//*[docHit]/@totalDocs)"/>
+    <xsl:choose>
+        <xsl:when test="$totaldocs=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="//*[docHit]/@totalDocs"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset_start":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@startDoc"/>
+    <xsl:variable name="objsetstart" select="normalize-space(//*[docHit]/@startDoc)"/>
+    <xsl:choose>
+        <xsl:when test="$objsetstart=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="//*[docHit]/@startDoc"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset_end":</xsl:text>
-    <xsl:value-of select="//*[docHit]/@endDoc"/>
+    <xsl:variable name="objsetend" select="normalize-space(//*[docHit]/@endDoc)"/>
+    <xsl:choose>
+        <xsl:when test="$objsetend=''">
+            <xsl:text>0</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:value-of select="//*[docHit]/@endDoc"/>
+        </xsl:otherwise>
+    </xsl:choose>
     <xsl:text>,"objset":[</xsl:text>
     <xsl:apply-templates select="/crossQueryResult//docHit/meta" mode="x"/>
     <xsl:text>]}</xsl:text>
