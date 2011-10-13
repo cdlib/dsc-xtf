@@ -52,7 +52,7 @@
             <xsl:text>0</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:value-of select="//*[docHit]/@totalDocs"/>
+            <xsl:value-of select="$totaldocs"/>
         </xsl:otherwise>
     </xsl:choose>
     <xsl:text>,"objset_start":</xsl:text>
@@ -62,7 +62,7 @@
             <xsl:text>0</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:value-of select="//*[docHit]/@startDoc"/>
+            <xsl:value-of select="$objsetstart"/>
         </xsl:otherwise>
     </xsl:choose>
     <xsl:text>,"objset_end":</xsl:text>
@@ -72,7 +72,7 @@
             <xsl:text>0</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-            <xsl:value-of select="//*[docHit]/@endDoc"/>
+            <xsl:value-of select="$objsetend"/>
         </xsl:otherwise>
     </xsl:choose>
     <xsl:text>,"objset":[</xsl:text>
