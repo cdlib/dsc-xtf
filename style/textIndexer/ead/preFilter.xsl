@@ -49,7 +49,6 @@
 
   <xsl:import href="../common/preFilterCommon.xsl"/>
   <xsl:import href="../calisphere/preFilter.xsl"/>
-	<!-- xsl:import href="http://voro.cdlib.org:8081/xslt/institution-ark2url.xsl"/ -->
 
 <xsl:output indent="yes"/>
 
