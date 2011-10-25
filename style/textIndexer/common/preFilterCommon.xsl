@@ -467,8 +467,12 @@
 
 
 <xsl:variable name="HOME" select="System:getenv('HOME')" xmlns:System="java:java.lang.System"/>
+<xsl:variable name="DSC_DATABASE" select="System:getenv('DSC_DATABASE')" xmlns:System="java:java.lang.System"/>
 <xsl:variable name="databases" select="document(concat($HOME,'/.databases.xml'))"/>
-<xsl:variable name="db" select="$databases/databases/database[@name='default-ro']"/>
+<xsl:variable name="db" select="$databases/databases/database[@name=concat($DSC_DATABASE,'-ro')]"/>
+<xsl:message>
+  <xsl:copy-of select="db"/>
+</xsl:message>
 <xsl:variable name="sqlConnect.database">
   <xsl:text>jdbc:mysql://</xsl:text>
   <xsl:value-of select="$db/host"/>
@@ -518,7 +522,7 @@
 	<!-- info about parent to display at collection level -->
 	<xsl:variable name="parentRepodata">
 		<sql:query connection="$connection" table="oac_institution"
-			column="name, address1, address2, zip4, url" where="ark = '{$parent_ark}'"
+			column="name, address1, address2, zip4, url, google_analytics_tracking_code" where="ark = '{$parent_ark}'"
 			row-tag="parent" column-tag="div"
 		/>
 	</xsl:variable>
@@ -541,6 +545,9 @@
 	<institution-url xtf:meta="true" xtf:tokenize="false">
 		<xsl:value-of select="($parentRepodata)/parent/div[5]"/>
 	</institution-url>	
+	<google_analytics_tracking_code xtf:meta="true" xtf:tokenize="false">
+		<xsl:value-of select="($parentRepodata)/parent/div[6]"/>
+	</google_analytics_tracking_code>	
 	<xsl:choose> <!-- main choice is 2 listings or 1 listing -->
 		<xsl:when test="($grandparentARK)/g/a != ''"> <!-- there are 2 -->
 			<!-- list parent first -->

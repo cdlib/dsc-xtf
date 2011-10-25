@@ -336,7 +336,7 @@
 
   <xsl:template name="reference-image">
   <xsl:apply-templates select="/m:mets/m:structMap/m:div/m:div[
-    @LABEL='med-res' or @LABEL='hi-res' or starts-with(@TYPE,'reference')
+    @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
                                              ][m:fptr/@cdl:X]" mode="reference-image"/>
   </xsl:template>
 
