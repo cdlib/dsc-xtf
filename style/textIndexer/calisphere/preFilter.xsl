@@ -222,6 +222,12 @@
                                 <xsl:text>::</xsl:text>
                                 <xsl:value-of select="($daoinfo)/daoinfo/inst"/>
                         </facet-institution>
+                        <institution-url xtf:meta="true" xtf:tokenize="false">
+                                <xsl:value-of select="($daoinfo)/daoinfo/inst/@href"/>
+			</institution-url>
+                        <google_analytics_tracking_code xtf:meta="true" xtf:tokenize="false">
+                                <xsl:value-of select="($daoinfo)/daoinfo/google_analytics_tracking_code"/>
+			</google_analytics_tracking_code>
                 </xsl:when>
                 <xsl:otherwise>
                         <institution-doublelist xtf:meta="true" xtf:tokenize="false">

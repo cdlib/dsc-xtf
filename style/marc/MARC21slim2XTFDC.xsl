@@ -32,8 +32,9 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
    	
 -->
 <xsl:variable name="HOME" select="System:getenv('HOME')" xmlns:System="java:java.lang.System"/>
+<xsl:variable name="DSC_DATABASE" select="System:getenv('DSC_DATABASE')" xmlns:System="java:java.lang.System"/>
 <xsl:variable name="databases" select="document(concat($HOME,'/.databases.xml'))"/>
-<xsl:variable name="db" select="$databases/databases/database[@name='default-ro']"/>
+<xsl:variable name="db" select="$databases/databases/database[@name=concat($DSC_DATABASE,'-ro')]"/>
 <xsl:param name="sqlConnect.database">
   <xsl:text>jdbc:mysql://</xsl:text>
   <xsl:value-of select="$db/host"/>
@@ -110,7 +111,7 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
   <sql:query
         connection="$connection"
         table="oac_institution"
-        column="name, parent_institution_id"
+        column="name, parent_institution_id, google_analytics_tracking_code, url"
         where="cdlpath = '{$cdlpath}'"
         row-tag="r" column-tag="c"
   />
@@ -203,6 +204,13 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 	</xsl:otherwise>
 </xsl:choose>
 </facet-institution>
+
+       <google_analytics_tracking_code xtf:meta="true" xtf:tokenize="false">
+               <xsl:value-of select="$cdlpath_query/r/c[3]"/>
+       </google_analytics_tracking_code>
+       <institution-url xtf:meta="true" xtf:tokenize="false">
+               <xsl:value-of select="$cdlpath_query/r/c[4]"/>
+       </institution-url>
 
         <identifier q="call" xtf:meta="true">
                                 <xsl:text>Collection Number: </xsl:text>
