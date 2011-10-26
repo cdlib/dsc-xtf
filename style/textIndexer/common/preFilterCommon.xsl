@@ -470,9 +470,6 @@
 <xsl:variable name="DSC_DATABASE" select="System:getenv('DSC_DATABASE')" xmlns:System="java:java.lang.System"/>
 <xsl:variable name="databases" select="document(concat($HOME,'/.databases.xml'))"/>
 <xsl:variable name="db" select="$databases/databases/database[@name=concat($DSC_DATABASE,'-ro')]"/>
-<xsl:message>
-  <xsl:copy-of select="db"/>
-</xsl:message>
 <xsl:variable name="sqlConnect.database">
   <xsl:text>jdbc:mysql://</xsl:text>
   <xsl:value-of select="$db/host"/>
