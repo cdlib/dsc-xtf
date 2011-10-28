@@ -105,7 +105,7 @@
 	
   <xsl:variable name="strQuery" select="replace(lower-case(/parameters/param[@name='query']/@value),'(.*\w)-(\w.*)','$1 $2')"/>
 
-  <xsl:variable name="azReturnMetaFields" select="'title,identifier,description,oac4-tab,idT,facet-onlineItems'"/>
+  <xsl:variable name="azReturnMetaFields" select="'title,identifier,description,oac4-tab,idT,facet-onlineItems,google_analytics_tracking_code'"/>
 
   
 <!-- ====================================================================== -->

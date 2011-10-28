@@ -616,6 +616,7 @@ cause the queryURL to be set to the referer -->
               <xsl:call-template name="insert-google-tracking">
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
+                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
               </xsl:call-template>
               <xsl:copy-of select="$brand.footer"/>
             </xsl:when>
@@ -645,6 +646,7 @@ cause the queryURL to be set to the referer -->
               <xsl:call-template name="insert-google-tracking">
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
+                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
               </xsl:call-template>
                   </td>
                 </tr>
@@ -777,6 +779,7 @@ Copyright status unknown. Some materials in these collections may be
               <xsl:call-template name="insert-google-tracking">
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
+                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
               </xsl:call-template>
             </div>
           </div>
