@@ -12,6 +12,7 @@
 
 <xsl:import href="../../../common/MODS-view.xsl"/>
 <xsl:import href="../../../common/brandCommon.xsl"/>
+<xsl:import  href="../../../common/google-tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 
   <xsl:output method="xhtml"

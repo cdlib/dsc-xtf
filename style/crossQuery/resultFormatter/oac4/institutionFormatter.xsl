@@ -7,6 +7,7 @@
 	xmlns:session="java:org.cdlib.xtf.xslt.Session"
 	xmlns:editURL="http://cdlib.org/xtf/editURL" 
 	xmlns:sql="java:/net.sf.saxon.sql.SQLElementFactory"
+        xmlns:xtf="http://cdlib.org/xtf"
 	exclude-result-prefixes="#all"
 	xmlns:lookup="xslt://org.cdlib.dsc.util.InstitutionToArk"
 	extension-element-prefixes="sql"
@@ -14,6 +15,7 @@
 
 
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import  href="../../../common/google-tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="azBrowseResults.xsl"/>
 
@@ -549,6 +551,14 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 	<xsl:text>, </xsl:text>
 	<xsl:apply-templates/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='google-tracking-code']">
+  <xsl:call-template name="insert-google-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+    <xsl:with-param name="google_analytics_tracking_code" 
+      select="$page/crossQueryResult/facet/group/docHit[1]/meta/google_analytics_tracking_code"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

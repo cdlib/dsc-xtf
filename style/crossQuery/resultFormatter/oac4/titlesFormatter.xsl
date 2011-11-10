@@ -12,6 +12,7 @@
 
 <!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" -->
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import  href="../../../common/google-tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="azBrowseResults.xsl"/>
 <xsl:include href="autocomplete-js.xsl"/>
@@ -189,6 +190,13 @@
 	<xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
+
+<xsl:template match="*[@tmpl:insert='google-tracking-code']">
+  <xsl:call-template name="insert-google-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+  </xsl:call-template>
+</xsl:template>
+
 
 </xsl:stylesheet>
 <!--

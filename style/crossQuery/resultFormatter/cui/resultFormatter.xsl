@@ -65,6 +65,7 @@
   <xsl:param name="xtfURL" select="'/'"/>
   <xsl:param name="group" select="'image'"/>
   <xsl:param name="slideshow.on"/>
+  <xsl:param name="page" select="/"/>
   
   <!-- ====================================================================== -->
   <!-- Root Template                                                          -->
