@@ -12,6 +12,7 @@
 
 <!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" -->
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import  href="../../../common/google-tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="../../../common/online-items-graphic-element.xsl"/>
 
