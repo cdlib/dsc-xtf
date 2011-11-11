@@ -13,6 +13,7 @@ width="520" height="32" alt="California Cultures" title="California Cultures" />
 <link type="text/css" href="http://cdn.calisphere.org/json4lib/slideshow/css/slideshowLink-combo.css" rel="stylesheet" />
     <script src="http://www.calisphere.universityofcalifornia.edu/js/calisphere.js" xmlns="http://www.w3.org/1999/xhtml" type="text/JavaScript" />
     <script type="text/javascript" src="/default/js/nifty.js" xmlns="http://www.w3.org/1999/xhtml"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
   </links>
   
 <!-- HEADER -->
@@ -68,7 +69,6 @@ z</a>
 </div>
 
 <div class="footer-sentence2">Copyright &#169; 2011 The Regents of The University of California.</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script>
 <script type="text/javascript">
 $("a#zoomMe").click(function () {
