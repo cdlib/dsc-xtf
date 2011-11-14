@@ -1139,6 +1139,12 @@ encodeURI('/js/facet-iframe.html?<xsl:value-of select="replace(replace($queryStr
     </xsl:copy>
   </xsl:template>
 
+<xsl:template match="*[@tmpl:insert='google-tracking-code']">
+  <xsl:call-template name="insert-google-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+  </xsl:call-template>
+</xsl:template>
+
   <xsl:function name="editURL:spellingFix">
 	<xsl:param name="query"/>
 	<xsl:param name="suggestion"/>
