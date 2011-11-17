@@ -65,6 +65,7 @@
   <xsl:param name="xtfURL" select="'/'"/>
   <xsl:param name="group" select="'image'"/>
   <xsl:param name="slideshow.on"/>
+  <xsl:param name="popUpSurvey.on"/>
   <xsl:param name="page" select="/"/>
   
   <!-- ====================================================================== -->
@@ -411,6 +412,10 @@ did not find any matches.</p>
           <xsl:comment>END DISPLAY RESULTS</xsl:comment>
           <xsl:copy-of select="$brand.footer"/>
           <xsl:comment>END PAGE ID</xsl:comment>
+<xsl:if test="$popUpSurvey.on='on'">
+         <script xmlns="" src="http://cdn-dev.calisphere.org/json4lib/survey/jfc/src/swfstore.js"></script>
+         <script xmlns="" src="http://cdn-dev.calisphere.org/json4lib/survey/pop-up-survey.js"></script>
+</xsl:if> 
         </div>
         <!-- Store search -->
         <xsl:if test="session:isEnabled()">
