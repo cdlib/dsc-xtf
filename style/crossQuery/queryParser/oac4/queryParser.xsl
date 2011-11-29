@@ -592,7 +592,7 @@
     
     <!-- Find the meta-data queries, if any -->
 
-    <xsl:variable name="metaParams" select="$queryParams[not(matches(@name, 'text*|query*|ff|style|decade|institution|view|view5|viewAll|onlineItems|developer|page|smode|rmode|brand|sort|startDoc|docsPerPage|sectionType|facet|group|sortGroupsBy|sortDocsBy|^x$|^y$|.*-ignore'))]"/>
+    <xsl:variable name="metaParams" select="$queryParams[not(matches(@name, 'text*|query*|ff|style|decade|institution|view|view5|viewAll|onlineItems|developer|page|smode|rmode|brand|sort|startDoc|docsPerPage|sectionType|facet|group|sortGroupsBy|sortDocsBy|^x$|^y$|.*-ignore|^__ut.*'))]"/>
     
     <and>
       <!-- Process the meta-data queries, if any -->

@@ -273,6 +273,7 @@
                                                                    and not(matches(@name, '.*-max')) 
                                                                    and not(matches(@name, '.*-add')) 
                                                                    and not(matches(@name, '.*-ignore'))
+                                                                   and not(matches(@name, '^__ut.*'))
                                                                    and not(@name='callback') ]"/>
 
     <!-- Find the full-text query, if any -->

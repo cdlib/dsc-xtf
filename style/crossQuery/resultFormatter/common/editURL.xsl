@@ -82,7 +82,7 @@
       <!-- Get rid of leading and trailing ';' -->
       <xsl:variable name="v4" select="replace($v3, '^;|;$', '')"/>
       <!-- All done. -->
-      <xsl:value-of select="$v4"/>
+      <xsl:value-of select="replace($v4,'&amp;__utm.*$','')"/>
    </xsl:function>
    
    <!-- Function to calculate an unused name for the next facet parameter -->
