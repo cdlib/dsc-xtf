@@ -426,6 +426,19 @@ did not find any matches.</p>
   <xsl:with-param name="onContent" select="'onContent'"/>
 </xsl:call-template>
 
+<script><xsl:comment>
+   for(var i = 0; i &lt; document.links.length; i++) {
+      if (
+           (document.links[i].pathname.indexOf('/ark:/') == 0 &amp;&amp; domainName==".universityofcalifornia.edu")
+           ||
+           (document.links[i].hostname.indexOf('.cdlib.org') &gt; 1 &amp;&amp; domainName==".universityofcalifornia.edu")
+           ||
+           (document.links[i].hostname.indexOf('.universityofcalifornia.edu') &gt; 1 &amp;&amp; domainName==".cdlib.org")
+         ) {
+        document.links[i].setAttribute('onclick',"_gaq.push(['cst._link', this.href]); return false;");
+      }
+    }
+</xsl:comment></script>
       </body>
     </html>
   </xsl:template>
