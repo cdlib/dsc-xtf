@@ -429,7 +429,7 @@ did not find any matches.</p>
 <script><xsl:comment>
    for(var i = 0; i &lt; document.links.length; i++) {
       if (
-           (document.links[i].pathname.indexOf('/ark:/') == 0 &amp;&amp; domainName==".universityofcalifornia.edu")
+           (document.links[i].pathname.replace(/^\//,'').indexOf('ark:/') == 0 &amp;&amp; domainName==".universityofcalifornia.edu")
            ||
            (document.links[i].hostname.indexOf('.cdlib.org') &gt; 1 &amp;&amp; domainName==".universityofcalifornia.edu")
            ||
