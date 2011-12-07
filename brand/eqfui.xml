@@ -7,6 +7,10 @@
 	<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://calisphere.universityofcalifornia.edu/eqf/css/eqf-entry.css" type="text/css" media="screen" />
 	<script type="text/javascript" src="http://www.calisphere.universityofcalifornia.edu/eqf/js/eqf.js" xmlns="http://www.w3.org/1999/xhtml" />
 	<script type="text/javascript" src="/default/js/nifty.js" xmlns="http://www.w3.org/1999/xhtml" />
+          <link rel="stylesheet"
+                        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                        type="text/css"
+                        media="screen"></link>
   </links>
 
 <!-- HEADER -->

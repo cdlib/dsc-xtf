@@ -14,6 +14,11 @@
     <!-- Additional styles -->
     <link rel="stylesheet" href="http://asian.library.ucsf.edu/styles/more_styles.css" type="text/css" media="screen" charset="utf-8" xmlns="http://www.w3.org/1999/xhtml" />
 
+          <link rel="stylesheet"
+                        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+                        type="text/css"
+                        media="screen"></link>
+
     <!-- link to the .js files -->
     <script src="http://content.cdlib.org/default/js/nifty.js" type="text/javascript" xmlns="http://www.w3.org/1999/xhtml" />
     <!-- CHANGE THE LINK TO YOUR PROJECT'S .js FILE -->
