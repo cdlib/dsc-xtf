@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<brand owner="gordon.lai@library.ucsf.edu" href="woodblock.xml" multi-use="default-breadcrumb">
+<brand owner="leslie.kleinberg@ucsf.edu" href="woodblock.xml" multi-use="default-breadcrumb">
   <links>
     <!-- link to the entry .css file; CHANGE THIS TO YOUR PROJECT'S ENTRY .css FILE, which includes the default.css -->
     <link rel="stylesheet" href="http://asian.library.ucsf.edu/styles/woodblock-entry.css" type="text/css" xmlns="http://www.w3.org/1999/xhtml" />
@@ -28,15 +28,34 @@
   </links>
   
   <header>
+    <span xmlns="http://www.w3.org/1999/xhtml">
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+      _gaq.push(
+      ['_setAccount', 'UA-552286-6'],
+      ['_trackPageview'],
+      ['t2._setAccount', 'UA-552286-27'],
+      ['t2._setDomainName', '.library.ucsf.edu'],
+      ['t2._trackPageview']
+      );
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
     <map name="ucsf" id="ucsf">
       <area shape="rect" alt="UCSF home page" coords="83,8,282,21" href="http://www.ucsf.edu/" />
-      <area shape="rect" alt="About UCSF" coords="297,9,363,22" href="http://www.ucsf.edu/about_ucsf/" />
+      <area shape="rect" alt="About UCSF" coords="297,9,363,22" href="http://www.ucsf.edu/about/" />
       <area shape="rect" alt="UCSF home page" coords="26,0,76,28" href="http://www.ucsf.edu/" />
-      <area shape="rect" alt="Search UCSF" coords="374,9,445,22" href="http://www.ucsf.edu/search/" />
+      <area shape="rect" alt="Search UCSF" coords="374,9,445,22" href="http://www.ucsf.edu/ucsf/search/" />
 
       <area shape="rect" alt="UCSF Medical Center" coords="462,9,577,22" href="http://www.ucsfhealth.org/" />
     </map>
-    <img src="http://asian.library.ucsf.edu/images/top_banner.jpg" alt="UCSF navigation bar" width="800" height="31" border="0" usemap="#ucsf" /><a href="http://asian.library.ucsf.edu"><img src="http://asian.library.ucsf.edu/images/header.jpg" border="0" height="88" /></a><div id="navcontainer">
+    <img src="http://asian.library.ucsf.edu/images/top_banner.jpg" alt="UCSF navigation bar" width="800" height="31" border="0" usemap="#ucsf" class="block" /><a href="http://asian.library.ucsf.edu"><img src="http://asian.library.ucsf.edu/images/header.jpg" border="0" height="88" class="block"/></a><div id="navcontainer">
+    
 
     <ul id="main_nav">
 
@@ -74,6 +93,8 @@
     </ul>
     </div>
     <div class="clear"></div>
+
+    </span>
   </header>
   
   <footer>
@@ -82,7 +103,7 @@
     <div id="footercontent">
     &#169;2007 The Regents of the University of California
     </div>
-    <div id="footerlinks"><a href="http://asian.library.ucsf.edu/terms.html"><span class="style3">Terms of Use</span></a> | <a href="http://asian.library.ucsf.edu/contact.cgi"><span class="style3">Contact Us</span></a></div>
+    <div id="footerlinks"><a href="http://asian.library.ucsf.edu/terms.html"><span class="style3">Terms of Use</span></a> | <a href="http://www.library.ucsf.edu/collections/archives/contact"><span class="style3">Contact Us</span></a></div>
     <div id="footerlogo"><a href="http://www.library.ucsf.edu/" target="_top"><img src="http://asian.library.ucsf.edu/images/library_logo.jpg" border="0" /></a></div>
     </div>
   </footer>
