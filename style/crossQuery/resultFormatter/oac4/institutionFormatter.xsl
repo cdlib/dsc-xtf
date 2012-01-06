@@ -90,6 +90,9 @@
 <xsl:when test="$page/crossQueryResult/facet[@field='facet-institution']/group[starts-with($Institution,@value)]/@totalSubGroups &lt;= 1">
 		<xsl:text>Collections</xsl:text>
 	</xsl:when>
+        <xsl:when test="$page/crossQueryResult/@totalDocs = 0">
+		<xsl:text>404</xsl:text>
+	</xsl:when>
 	<xsl:otherwise>
 		<xsl:text>Locations</xsl:text>
 	</xsl:otherwise>
@@ -129,7 +132,16 @@
 </xsl:variable>
 
 <xsl:template match="/">
-<xsl:apply-templates select="($layout)//*[local-name()='html']"/>
+  <xsl:choose>
+    <xsl:when test="$pageType='404'">
+<redirect:sendHttpError code="404" message="Institution not found"
+xmlns:redirect="java:/org.cdlib.xtf.saxonExt.Redirect"
+xsl:extension-element-prefixes="redirect"/> 
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="($layout)//*[local-name()='html']"/>
+    </xsl:otherwise>
+  </xsl:choose>
         <xsl:comment>
 	url: <xsl:value-of select="$http.URL"/>
         xslt: <xsl:value-of select="static-base-uri()"/>
