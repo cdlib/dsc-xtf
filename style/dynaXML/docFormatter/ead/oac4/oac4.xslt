@@ -292,19 +292,13 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 
 	<img height="15" width="15" src="/images/icons/web-page-icon.gif" class="bullet-icon"/>
 	<xsl:variable name="link">
-		<xsl:text>/view?docId=</xsl:text>
-		<xsl:value-of select="$docId"/>
-		<xsl:if test="$developer != 'local'">
-		  <xsl:text>;developer=</xsl:text>
-		  <xsl:value-of select="$developer"/>
-		</xsl:if>
-		<xsl:text>;query=</xsl:text>
-		<xsl:value-of select="$query"/>
-		<xsl:text>;style=oac4;doc.view=entire_text</xsl:text>
+          <xsl:text>/findaid/ark:/13030/</xsl:text>
+          <xsl:value-of select="$docId"/>
+          <xsl:text>/entire_text/</xsl:text>
 	</xsl:variable>
-	<a href="{$link}">HTML</a>
+	<a href="{$link}{if ($query) then concat('?query=', $query) else ''}">HTML</a>
 	<xsl:if test="($page)/ead/archdesc/@xtf:hitCount | ($page)/ead/frontmatter/@xtf:hitCount "><!-- need to check the correct sections to add up hits; find first hit/ -->
-		<span class="subhit"><a href="{$link}#hitNum{
+		<span class="subhit"><a href="{$link}{if ($query) then concat('?query=', $query) else ''}#hitNum{
 							if (($page)/ead/frontmatter/@xtf:firstHit)
 							then ($page)/ead/frontmatter/@xtf:firstHit
 							else ($page)/ead/archdesc/@xtf:firstHit
@@ -692,7 +686,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 
 <xsl:template match="*[@id]" mode="contents-overview">
  <li>
-<a href="/view?docId={$docId};query={$query};style=oac4;view=admin#{@id}">
+<a href="/findaid/ark:/13030/{$docId}/admin/{if ($query) then concat('?query=', $query) else ''}#{@id}">
 <xsl:value-of select="if (head) then head else if (@label) then @label else (oac:supply-label-heading(.))"/></a>
 </li>
 </xsl:template>
@@ -957,7 +951,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 		<xsl:value-of select="if ($page/ead/archdesc/@xtf:hitCount = 1) then '' else 's'"/>
 	</div>
 	<div class="clear-search-hits">
-		<a href="/view?{editURL:remove(editURL:clean(substring-after($http.URL,'?')),'query')}">
+		<a href="/findaid/ark:/13030/{$docId}/">
 		<xsl:text>Clear search hit</xsl:text>
 	<xsl:value-of select="if ($page/ead/archdesc/@xtf:hitCount = 1) then '' else 's'"/>
 		</a>
@@ -999,7 +993,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <xsl:template match="*[@tmpl:insert='CollectionContents']">
 <ul>
 <li>
-	<a href="/view?docId={$docId};query={$query};style=oac4">
+	<a href="/findaid/ark:/13030/{$docId}/{if ($query) then concat('?query=', $query) else ''}">
 		<xsl:if test="not($view='dsc') and not($view='admin') and not($doc.view='items')">
 			<xsl:attribute name="class" select="'on'"/>
 		</xsl:if>
@@ -1007,7 +1001,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</a>
 </li>
 <li>
-	<a href="/view?docId={$docId};query={$query};style=oac4;view=admin">
+	<a href="/findaid/ark:/13030/{$docId}/admin/{if ($query) then concat('?query=', $query) else ''}">
 		<xsl:if test="$view='admin'">
 			<xsl:attribute name="class" select="'on'"/>
 		</xsl:if>
@@ -1022,16 +1016,11 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	<xsl:choose>
 		<xsl:when test="$view='admin'"/>
 		<xsl:otherwise>
-	<!-- /view?docId={$docId};developer={$developer};query={$query};style=oac4;view=admin" -->
-		<xsl:text>/view?docId=</xsl:text>
-		<xsl:value-of select="$docId"/>
-		<xsl:if test="$developer != 'local'">
-		<xsl:text>;developer=</xsl:text>
-		<xsl:value-of select="$developer"/>
-		</xsl:if>
-		<xsl:text>;query=</xsl:text>
-		<xsl:value-of select="$query"/>
-		<xsl:text>;style=oac4;view=admin</xsl:text>
+	          <!-- /view?docId={$docId};developer={$developer};query={$query};style=oac4;view=admin" -->
+		  <xsl:text>/findaid/ark:/13030/</xsl:text>
+		  <xsl:value-of select="$docId"/>
+		  <xsl:text>/admin/?query=</xsl:text>
+		  <xsl:value-of select="$query"/>
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:variable>
@@ -1040,7 +1029,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <xsl:if test="$archdescHits &gt; $dscHits">
 	<xsl:variable name="firstHit" select="$page/ead/archdesc/@xtf:firstHit"/>
 	<span class="subhit">
-	   <a href="{$full-overview-hit-link}#hitNum{$firstHit}">
+	   <a href="{$full-overview-hit-link}{if ($query) then concat('?query=', $query) else ''}#hitNum{$firstHit}">
 		<xsl:text>[</xsl:text>
 		<xsl:value-of select="$archdescHits - $dscHits"/> 
 		<xsl:text> hit</xsl:text>
@@ -1139,21 +1128,13 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
                         <xsl:when test="( not($view='dsc') 
 						or number($pageStart) != number($dsc.position))
 					or ($this.hit.pageStart)">
-                                <xsl:text>/view?docId=</xsl:text>
-                                <xsl:value-of select="$docId"/>
-                                <xsl:if test="$developer != 'local'">
-                                        <xsl:text>;developer=</xsl:text>
-                                        <xsl:value-of select="$developer"/>
-                                </xsl:if>
-                                <xsl:if test="$query">
-                                        <xsl:text>;query=</xsl:text>
-                                        <xsl:value-of select="$query"/>
-                                </xsl:if>
-				<xsl:if test="$pageStart &gt; 1">
-                                        <xsl:text>;dsc.position=</xsl:text>
-					<xsl:value-of select="$pageStart"/>
-                                </xsl:if>
-                                <xsl:text>;style=oac4;view=dsc</xsl:text>
+              <xsl:text>/findaid/ark:/13030/</xsl:text>
+              <xsl:value-of select="$docId"/>
+              <xsl:text>/dsc/</xsl:text>
+              <xsl:if test="$query">
+                <xsl:text>?query=</xsl:text>
+                <xsl:value-of select="$query"/>
+              </xsl:if>
                         </xsl:when>
                         <xsl:otherwise>
                         </xsl:otherwise>
