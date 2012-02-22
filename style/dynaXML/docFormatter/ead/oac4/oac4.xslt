@@ -1092,6 +1092,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
             <xsl:call-template name="insert-google-tracking">
              <xsl:with-param name="brand" select="'oac4'"/>
              <xsl:with-param name="google_analytics_tracking_code" select="$page/ead/google_analytics_tracking_code"/>
+             <xsl:with-param name="google_analytics_institution" select="$page/ead/facet-institution"/>
            </xsl:call-template>
 </xsl:template>
 
