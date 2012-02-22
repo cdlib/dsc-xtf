@@ -617,7 +617,7 @@ cause the queryURL to be set to the referer -->
                 <xsl:with-param name="onContent" select="'onContent'"/>
                 <xsl:with-param name="brand" select="$brand"/>
                 <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
-                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/facet-institution"/>
+                <xsl:with-param name="google_analytics_institution" select="/TEI.2/xtf:meta/facet-institution"/>
               </xsl:call-template>
               <xsl:copy-of select="$brand.footer"/>
             </xsl:when>
