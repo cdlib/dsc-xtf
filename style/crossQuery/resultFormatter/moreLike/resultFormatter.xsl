@@ -25,6 +25,7 @@
 
 <xsl:template match="/">
 <html>
+  <xsl:if test="crossQueryResult/@totalDocs &gt; 0"><div>More like this</div></xsl:if>
   <xsl:apply-templates select="crossQueryResult/docHit"/>
         <xsl:comment>
         xslt: <xsl:value-of select="static-base-uri()"/>
