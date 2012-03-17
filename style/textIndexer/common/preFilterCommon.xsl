@@ -519,7 +519,7 @@
 	<!-- info about parent to display at collection level -->
 	<xsl:variable name="parentRepodata">
 		<sql:query connection="$connection" table="oac_institution"
-			column="name, address1, address2, zip4, url, google_analytics_tracking_code" where="ark = '{$parent_ark}'"
+			column="name, address1, address2, zip4, url, google_analytics_tracking_code, aeon_url" where="ark = '{$parent_ark}'"
 			row-tag="parent" column-tag="div"
 		/>
 	</xsl:variable>
@@ -545,6 +545,9 @@
 	<google_analytics_tracking_code xtf:meta="true" xtf:tokenize="false">
 		<xsl:value-of select="($parentRepodata)/parent/div[6]"/>
 	</google_analytics_tracking_code>	
+	<aeon_url xtf:meta="true" xtf:tokenize="false">
+		<xsl:value-of select="($parentRepodata)/parent/div[7]"/>
+	</aeon_url>	
 	<xsl:choose> <!-- main choice is 2 listings or 1 listing -->
 		<xsl:when test="($grandparentARK)/g/a != ''"> <!-- there are 2 -->
 			<!-- list parent first -->

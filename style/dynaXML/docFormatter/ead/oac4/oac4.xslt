@@ -773,6 +773,9 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 				<span class="no-online-items">No online items</span>
 	</xsl:otherwise>
   </xsl:choose>
+  <xsl:if test="$page/ead/aeon_url !='' and $page/ead/voroFileNameBase != ''">
+&#160;&#160;&#160;&#160;&#160;<a class="button" href="{$page/ead/aeon_url}http://voro.cdlib.org/oac-ead/prime2002/{$page/ead/voroFileNameBase}.xml">Request items</a>
+  </xsl:if>
 </xsl:element>
 </xsl:template>
 

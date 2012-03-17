@@ -410,6 +410,13 @@
 		<facet-onlineItems xtf:meta="true" xtf:facet="true">Items online</facet-onlineItems>
 		</xsl:otherwise>
 	</xsl:choose>
+        <xsl:apply-templates select="mets:metsHdr/mets:altRecordID[@TYPE='voroFileNameBase']" mode="voroFileNameBase"/>
+  </xsl:template>
+
+  <xsl:template match="mets:altRecordID[@TYPE='voroFileNameBase']" mode="voroFileNameBase">
+    <voroFileNameBase xtf:meta="true" xtf:tokenize="no">
+      <xsl:value-of select="normalize-space(.)"/>
+    </voroFileNameBase>
   </xsl:template>
 
   <!-- generate sort-title -->
