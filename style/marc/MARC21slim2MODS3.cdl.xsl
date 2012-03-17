@@ -965,7 +965,7 @@ Added Log Comment
 			<xsl:for-each select="marc:datafield[@tag=300]">
 				<extent>
 					<xsl:call-template name="subfieldSelect">
-						<xsl:with-param name="codes">abce</xsl:with-param>
+						<xsl:with-param name="codes">abcef</xsl:with-param>
 					</xsl:call-template>
 				</extent>
 			</xsl:for-each>
