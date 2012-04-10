@@ -14,11 +14,6 @@
     <!-- Additional styles -->
     <link rel="stylesheet" href="http://asian.library.ucsf.edu/styles/more_styles.css" type="text/css" media="screen" charset="utf-8" xmlns="http://www.w3.org/1999/xhtml" />
 
-          <link rel="stylesheet"
-                        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
-                        type="text/css"
-                        media="screen"></link>
-
     <!-- link to the .js files -->
     <script src="http://content.cdlib.org/default/js/nifty.js" type="text/javascript" xmlns="http://www.w3.org/1999/xhtml" />
     <!-- CHANGE THE LINK TO YOUR PROJECT'S .js FILE -->
@@ -33,11 +28,9 @@
     <script type="text/javascript">
     var _gaq = _gaq || [];
       _gaq.push(
-      ['_setAccount', 'UA-552286-6'],
-      ['_trackPageview'],
-      ['t2._setAccount', 'UA-552286-27'],
-      ['t2._setDomainName', '.library.ucsf.edu'],
-      ['t2._trackPageview']
+      ['_setAccount', 'UA-552286-27'],
+      ['_setDomainName', '.library.ucsf.edu'],
+      ['_trackPageview']
       );
     (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
