@@ -1,7 +1,7 @@
 package org.cdlib.xtf.saxonExt.pipe;
 
 /*
- * Copyright (c) 2009, Regents of the University of California
+ * Copyright (c) 2012, Regents of the University of California
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,10 +29,10 @@ package org.cdlib.xtf.saxonExt.pipe;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -83,6 +83,7 @@ import com.lowagie.text.pdf.PdfObject;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfString;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.RandomAccessFileOrArray;
 import com.lowagie.text.pdf.SimpleBookmark;
 import com.lowagie.text.pdf.PdfCopy.PageStamp;
 
@@ -208,10 +209,11 @@ public class PipeFopElement extends ElementWithContent
 
         // So that we can keep the lock on FOP short, and also so we can send an
         // accurate Content-length header to the client, we'll accumulate the FOP output
-        // in a byte buffer. We use the Apache ByteArrayOutputStream class since it
-        // doesn't constantly realloc-copy when the buffer needs to grow.
+        // in a temp file. We don't use a memory buffer since sometimes these things
+        // can be quite huge.
         //
-        ByteArrayOutputStream fopOut = new ByteArrayOutputStream();
+        File tempFile = new File(FileUtils.createTempFile(context, "xtfFop.", ".tmp"));
+        FileOutputStream fopOut = new FileOutputStream(tempFile);
         
         // According to the Apache docs, FOP may not be thread-safe. So, we need to
         // single-thread it. However, we must at all costs keep requests from backing
@@ -264,21 +266,30 @@ public class PipeFopElement extends ElementWithContent
           // Always release the FOP lock when we're done, regardless of what happened.
           if (gotLock)
             fopLock.unlock();
+          if (fopOut != null)
+            fopOut.close();
         }
         
         // Now that we've released the FOP lock, check if we need to merge a PDF or not.
         
-        ByteArrayOutputStream finalOut;
-        if (fileToMerge != null) { 
-          finalOut = new ByteArrayOutputStream(fopOut.size() + (int)fileToMerge.length());
-          mergePdf(context, fopOut.toByteArray(), fileToMerge, mergeMode, mergeAt, finalOut);
+        File finalOut;
+        if (fileToMerge != null) {
+          File tempFile2 = new File(FileUtils.createTempFile(context, "xtfFopMerge.", ".tmp"));
+          finalOut = tempFile2;
+          OutputStream mergeOut = new BufferedOutputStream(new FileOutputStream(tempFile2));
+          try {
+            mergePdf(context, tempFile, fileToMerge, mergeMode, mergeAt, mergeOut);
+          }
+          finally {
+            mergeOut.close();
+          }
         }
         else 
-          finalOut = fopOut;
+          finalOut = tempFile;
         
         // Now we know the output length, so let the client know and then send it.
-        servletResponse.setHeader("Content-length", Integer.toString(finalOut.size()));
-        servletResponse.getOutputStream().write(finalOut.toByteArray());
+        servletResponse.setHeader("Content-length", Long.toString(finalOut.length()));
+        PipeFileElement.copyFileToStream(finalOut, servletResponse.getOutputStream());
       } 
       catch (Throwable e) 
       {
@@ -376,7 +387,7 @@ public class PipeFopElement extends ElementWithContent
       fopFactories.put(fontDirs, factory);
       return factory;
     }
-
+    
     /** 
      * Do the work of joining the FOP output and a PDF together. This involves
      * several steps:
@@ -387,22 +398,33 @@ public class PipeFopElement extends ElementWithContent
      *  3. Output the pages  
      */
     private void mergePdf(XPathContext context, 
-                           byte[] origPdfData, 
+                           File origPdfData, 
                            File fileToAppend,
                            MergeMode mergeMode, 
                            MergeAt mergeAt, 
                            OutputStream outStream)
       throws IOException, DocumentException, BadPdfFormatException, XPathException
     {
+      RandomAccessFileOrArray[] randFiles = new RandomAccessFileOrArray[2];
       PdfReader[] readers = new PdfReader[2];
       HashMap<String,String>[] infos = new HashMap[2];
       int[] nInPages = new int[2];
       int[] pageOffsets = new int[2];
       int nOutPages = 0;
       
+      // For large PDFs, use a buffered random access file rather than the default
+      // memory-mapped file that iText assumes.
+      //
+      randFiles[0] = (origPdfData.length() > 1024*1024) ? 
+                     new BufferedRandomAccessFile(origPdfData.toString()) : 
+                     new RandomAccessFileOrArray(origPdfData.toString());
+      randFiles[1] = (fileToAppend.length() > 1024*1024) ? 
+                     new BufferedRandomAccessFile(fileToAppend.toString()) : 
+                     new RandomAccessFileOrArray(fileToAppend.toString());
+                     
       // Read in the PDF that FOP generated and the one we're merging
-      readers[0] = new PdfReader(origPdfData);
-      readers[1] = new PdfReader(new BufferedInputStream(new FileInputStream(fileToAppend)));
+      readers[0] = new PdfReader(randFiles[0], null);
+      readers[1] = new PdfReader(randFiles[1], null);
       
       // Perform processing that's identical for both
       for (int i=0; i<2; i++) 

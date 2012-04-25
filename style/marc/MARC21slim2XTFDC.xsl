@@ -157,12 +157,6 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 	</xsl:choose>
 </xsl:variable>
 
-<xsl:variable name="primary_name_note">
-</xsl:variable>
-
-<xsl:variable name="primary_name_prefix">
-</xsl:variable>
-
 	<xtf:meta>
 		<xsl:variable name="leader" select="marc:leader"/>
 		<xsl:variable name="leader6" select="substring($leader,7,1)"/>
@@ -214,20 +208,8 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 
         <identifier q="call" xtf:meta="true">
                                 <xsl:text>Collection Number: </xsl:text>
-
-<xsl:choose>
-	<xsl:when test="$campus_name_text = 'UC Berkeley' 
-			and $primary_loc_display_text = 'Bancroft Library'">
-
-<xsl:for-each select="marc:datafield[@tag=090][1]">
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">b</xsl:with-param>
-        </xsl:call-template>
-</xsl:for-each>
-
-</xsl:when>
-<xsl:otherwise>
-<xsl:for-each select="marc:datafield[@tag=852][1]">
+<!-- HHHHH -->
+<xsl:for-each select="marc:datafield[@tag=852][position()&lt;5]">
 	<xsl:variable name="prefik">
         	<xsl:call-template name="subfieldSelect">
           	<xsl:with-param name="codes">k</xsl:with-param>
@@ -237,20 +219,16 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 		<xsl:value-of select="$prefik"/>
 		<xsl:text> </xsl:text>
 	</xsl:if>
-	<xsl:if test="$primary_name_prefix != ''">
-		<xsl:value-of select="$primary_name_prefix"/>
-		<xsl:text> </xsl:text>
-	</xsl:if>
         <xsl:call-template name="subfieldSelect">
           <xsl:with-param name="codes">hij</xsl:with-param>
         </xsl:call-template>
+        <xsl:if test="following-sibling::marc:datafield[@tag='852']">
+                <xsl:text>; </xsl:text>
+        </xsl:if>
 </xsl:for-each>
-	<xsl:if test="$primary_name_note != ''">
-		<xsl:text> </xsl:text>
-		<xsl:value-of select="$primary_name_note"/>
-	</xsl:if>
-</xsl:otherwise>
-</xsl:choose>
+<xsl:if test="marc:datafield[@tag=852][position()=5]">
+    <xsl:text>...</xsl:text>
+</xsl:if>
         </identifier>
 
                         <!-- list parent first -->
