@@ -1135,9 +1135,15 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
               <xsl:text>/findaid/ark:/13030/</xsl:text>
               <xsl:value-of select="$docId"/>
               <xsl:text>/dsc/</xsl:text>
+              <xsl:if test="$query or $pageStart &gt; 1"><xsl:text>?</xsl:text></xsl:if>
               <xsl:if test="$query">
-                <xsl:text>?query=</xsl:text>
+                <xsl:text>query=</xsl:text>
                 <xsl:value-of select="$query"/>
+              </xsl:if>
+              <xsl:if test="$pageStart &gt; 1">
+                <xsl:if test="$query"><xsl:text>&amp;</xsl:text></xsl:if>
+                <xsl:text>dsc.position=</xsl:text>
+                <xsl:value-of select="$pageStart"/>
               </xsl:if>
                         </xsl:when>
                         <xsl:otherwise>
