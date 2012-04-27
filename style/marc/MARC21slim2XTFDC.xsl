@@ -207,25 +207,16 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
        </institution-url>
 
         <identifier q="call" xtf:meta="true">
-                                <xsl:text>Collection Number: </xsl:text>
-<!-- HHHHH -->
-<xsl:for-each select="marc:datafield[@tag=852][position()&lt;5]">
-	<xsl:variable name="prefik">
-        	<xsl:call-template name="subfieldSelect">
-          	<xsl:with-param name="codes">k</xsl:with-param>
-        	</xsl:call-template>
-	</xsl:variable>
-	<xsl:if test="$prefik !=''">
-		<xsl:value-of select="$prefik"/>
-		<xsl:text> </xsl:text>
-	</xsl:if>
-        <xsl:call-template name="subfieldSelect">
-          <xsl:with-param name="codes">hij</xsl:with-param>
-        </xsl:call-template>
-        <xsl:if test="following-sibling::marc:datafield[@tag='852']">
-                <xsl:text>; </xsl:text>
-        </xsl:if>
-</xsl:for-each>
+          <xsl:text>Collection Number: </xsl:text>
+            <!-- HHHHH -->
+            <xsl:apply-templates 
+              select="if (marc:datafield[@tag=852]) then marc:datafield[@tag=852][position()&lt;5]
+                     else if (marc:datafield[@tag=099]) then marc:datafield[@tag=099][position()&lt;5]
+                     else if (marc:datafield[@tag=090]) then marc:datafield[@tag=090][position()&lt;5]
+                     else if (marc:datafield[@tag=092]) then marc:datafield[@tag=092][position()&lt;5]
+                     else if (marc:datafield[@tag=096]) then marc:datafield[@tag=096][position()&lt;5]
+                     else marc:datafield[@tag=098][position()&lt;5]
+              " mode="id852"/>
 <xsl:if test="marc:datafield[@tag=852][position()=5]">
     <xsl:text>...</xsl:text>
 </xsl:if>
