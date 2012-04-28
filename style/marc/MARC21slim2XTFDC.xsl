@@ -685,6 +685,23 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 	</xtf:meta>
 	</xsl:template>
 
+        <xsl:template match="marc:datafield[@tag=852]" mode="id852">
+	  <xsl:variable name="prefik">
+        	<xsl:call-template name="subfieldSelect">
+          	<xsl:with-param name="codes">k</xsl:with-param>
+        	</xsl:call-template>
+	  </xsl:variable>
+	  <xsl:if test="$prefik !=''">
+		<xsl:value-of select="$prefik"/>
+		<xsl:text> </xsl:text>
+	  </xsl:if>
+          <xsl:call-template name="subfieldSelect">
+            <xsl:with-param name="codes">hij</xsl:with-param>
+          </xsl:call-template>
+          <xsl:if test="following-sibling::marc:datafield[@tag='852']">
+                <xsl:text>; </xsl:text>
+          </xsl:if>
+	</xsl:template>
 
   <!-- Function to parse normalized titles out of dc:title -->
   <xsl:function name="parse:title">
