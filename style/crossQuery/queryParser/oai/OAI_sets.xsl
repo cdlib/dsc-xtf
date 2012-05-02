@@ -61,14 +61,14 @@
           <term>Collections::ead</term>
         </and>
         <and field="institution-doublelist">
-          <term>U::UC Berkeley::Water Resources Center Archives*</term>
+          <term>U::UC Riverside::Water Resources Collections and Archives*</term>
         </and>
     </xsl:when>
     <xsl:when test="$set='cuwr:objects'">
         <and field="relation">
 	  <phrase>
             <term>http</term>
-            <term>www.lib.berkeley.edu</term>
+            <term>library.ucr.edu</term>
             <term>wrca</term>
           </phrase>
         </and>
