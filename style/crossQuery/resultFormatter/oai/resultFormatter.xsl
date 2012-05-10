@@ -56,8 +56,17 @@
    <!-- Global parameters (specified in the URL)                               -->
    <!-- ====================================================================== -->
    
+   <!-- CORRECT PUBLIC SERVER FOR OAI -->
+   <xsl:variable name="CONTENT_HOSTNAME" select="System:getenv('CONTENT_HOSTNAME')" xmlns:System="java:java.lang.System"/>
+
    <!-- entire url -->
    <xsl:param name="http.URL"/>
+
+   <!-- request URL with CONTENT_HOSTNAME subbed in -->
+   <xsl:variable name="public.http.URL">
+       <xsl:value-of select="concat('http://', $CONTENT_HOSTNAME, '/', substring-after(substring-after($http.URL, 'http://'), '/xtf/'))"/>
+   </xsl:variable>
+
    <!-- verb param -->
    <xsl:param name="verb"/>
    <!-- identifier param -->
@@ -143,7 +152,7 @@
                xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
                <responseDate><xsl:value-of select="$responseDate"/></responseDate>
                <request identifier="{$identifier}" metadataPrefix="oai_dc" verb="GetRecord">
-                  <xsl:value-of select="$http.URL"/>
+                  <xsl:value-of select="$public.http.URL"/>
                </request>
                <GetRecord>
                   <xsl:apply-templates select="crossQueryResult/docHit"/>
@@ -171,7 +180,7 @@
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
          <responseDate><xsl:value-of select="$responseDate"/></responseDate>
          <request verb="Identify">
-            <xsl:value-of select="$http.URL"/>
+            <xsl:value-of select="$public.http.URL"/>
          </request>
          <Identify>
             <repositoryName>Online Archive of California Repository</repositoryName>
@@ -200,15 +209,15 @@
                xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
                <responseDate><xsl:value-of select="$responseDate"/></responseDate>
                <request metadataPrefix="oai_dc" verb="ListIdentifiers">
-                  <xsl:value-of select="$http.URL"/>
+                  <xsl:value-of select="$public.http.URL"/>
                </request>
                <ListIdentifiers>
                   <xsl:apply-templates select="crossQueryResult/docHit" mode="idOnly"/>
                <xsl:if test="$totalDocs > $nextPage">
                   <resumptionToken completeListSize="{$totalDocs}" cursor="{$cursor}">
-                     <xsl:value-of select="concat(replace($http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'::',$nextPage)"/>
+                     <xsl:value-of select="concat(replace($public.http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'::',$nextPage)"/>
                       <!--
-                     <xsl:value-of select="concat(replace($http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'&amp;resumptionToken=',$nextPage)"/>
+                     <xsl:value-of select="concat(replace($public.http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'&amp;resumptionToken=',$nextPage)"/>
                      <xsl:value-of select="$nextPage"/>
                      -->
                   </resumptionToken>
@@ -235,7 +244,7 @@
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
          <responseDate><xsl:value-of select="$responseDate"/></responseDate>
          <request verb="ListMetadataFormats" identifier="{$identifier}">
-            <xsl:value-of select="$http.URL"/>
+            <xsl:value-of select="$public.http.URL"/>
          </request>
          <ListMetadataFormats>
             <metadataFormat>
@@ -258,15 +267,15 @@
                xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
                <responseDate><xsl:value-of select="$responseDate"/></responseDate>
                <request metadataPrefix="oai_dc" verb="ListRecords">
-                  <xsl:value-of select="$http.URL"/>
+                  <xsl:value-of select="$public.http.URL"/>
                </request>
                <ListRecords>
                   <xsl:apply-templates select="crossQueryResult/docHit"/>
                <xsl:if test="$totalDocs > $nextPage">
                   <resumptionToken completeListSize="{$totalDocs}" cursor="{$cursor}">
-                     <xsl:value-of select="concat(replace($http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'::',$nextPage)"/>
+                     <xsl:value-of select="concat(replace($public.http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'::',$nextPage)"/>
                      <!--
-                     <xsl:value-of select="concat(replace($http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'&amp;resumptionToken=',$nextPage)"/>
+                     <xsl:value-of select="concat(replace($public.http.URL,'[;&amp;]resumptionToken=[0-9]+',''),'&amp;resumptionToken=',$nextPage)"/>
                      <xsl:value-of select="$nextPage"/>
                      -->
                   </resumptionToken>
@@ -292,7 +301,7 @@
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
          <responseDate><xsl:value-of select="$responseDate"/></responseDate>
          <request verb="ListSets">
-            <xsl:value-of select="$http.URL"/>
+            <xsl:value-of select="$public.http.URL"/>
          </request>
          <ListSets>
             <xsl:call-template name="setList"/>
@@ -392,7 +401,7 @@
       
       <xsl:param name="message"/>
       
-      <xsl:variable name="request" select="$http.URL"/>
+      <xsl:variable name="request" select="$public.http.URL"/>
       <xsl:variable name="verb" select="replace($message,'(.+)::.+::.+','$1')"/>
       <xsl:variable name="code" select="replace($message,'.+::(.+)::.+','$1')"/>
       <xsl:variable name="messageText" select="replace($message,'.+::.+::(.+)','$1')"/>
