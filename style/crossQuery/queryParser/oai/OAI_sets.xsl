@@ -21,11 +21,19 @@
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>cuwr:ead</setSpec>
-    <setName>UCB Water Resources Center Archives: EAD Finding Aids</setName>
+    <setName>Water Resources Center Archives: EAD Finding Aids</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>clloy:ead</setSpec>
+    <setName>Loyola Marymount University, Department of Archives and Special Collections, William H. Hannon Library: EAD Finding Aids</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>cuwr:objects</setSpec>
-    <setName>UCB Water Resources Center Archives: Digital Objects</setName>
+    <setName>Water Resources Center Archives: Digital Objects</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>clloy</setSpec>
+    <setName>Loyola Marymount University</setName>
   </set>
 </xsl:template>
 
@@ -64,6 +72,14 @@
           <term>U::UC Riverside::Water Resources Collections and Archives*</term>
         </and>
     </xsl:when>
+    <xsl:when test="$set='clloy:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+          <term>L::Loyola Marymount University, Department of Archives and Special Collections, William H. Hannon Library*</term>
+        </and>
+    </xsl:when>
     <xsl:when test="$set='cuwr:objects'">
         <and field="relation">
 	  <phrase>
@@ -80,6 +96,12 @@
           </phrase>
           </not>
         </and>
+    </xsl:when>
+    <xsl:when test="$set='clloy:objects'">
+	<and field="relation">
+           <term>ark</term>
+           <term>13030/kt9k402381</term>
+	</and>
     </xsl:when>
     <xsl:otherwise>
       Paramter set=<xsl:value-of select="$set"/>
