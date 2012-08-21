@@ -32,7 +32,7 @@
     <setName>Water Resources Center Archives: Digital Objects</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
-    <setSpec>clloy</setSpec>
+    <setSpec>clloy:objects</setSpec>
     <setName>Loyola Marymount University</setName>
   </set>
 </xsl:template>
