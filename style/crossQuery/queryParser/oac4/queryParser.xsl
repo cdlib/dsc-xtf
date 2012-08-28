@@ -229,10 +229,7 @@
 		<term>Collections::*</term>
 		</and>
                 	<and field="institution-doublelist"><term><xsl:value-of 
-		select="concat(
-				substring($Institution,1,1),
-				'::',
-				$Institution,'*')"/></term></and>
+		select="concat( substring($Institution,1,1), '::', $Institution,'*')"/></term></and>
 		</and>
 	</query>
   </xsl:template>
@@ -244,6 +241,9 @@
 	<facet field="facet-subject" select="*"/>
 	<and maxSnippets="0">
                 <and field="oac4-tab"><term>Collections::*</term></and>
+        	<xsl:if test="$limit='online'">
+			<and field="facet-titlesAZ-limit"><term>online::*</term></and>
+        	</xsl:if>
 	</and>
 	</query>
   </xsl:template>
