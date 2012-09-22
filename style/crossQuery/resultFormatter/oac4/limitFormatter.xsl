@@ -19,9 +19,9 @@
 <xsl:param name="style"/>
 <xsl:param name="keyword"/>
 <xsl:param name="decade"/>
-<xsl:param name="institution"/>
 <xsl:param name="facet-subject"/>
 <xsl:param name="facet-coverage"/>
+<xsl:param name="institution"/>
 <xsl:param name="relation"/>
 <xsl:param name="group" select="'collection'"/>
 <xsl:variable name="beforeGroup" select="if (substring-before($group,'::')) 
@@ -39,10 +39,18 @@
 <xsl:variable name="page" select="/"/>
 
 <xsl:template match="/">
-	<xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-institution' or @field='facet-decade' or @field='facet-onlineItems']" mode="searchLimits"/>
-	<xsl:if test="$relation">
-	<xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-subject' or @field='facet-coverage']" mode="searchLimits"/>
-	</xsl:if>
+  <xsl:choose>
+    <xsl:when test="$relation">
+      <xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-institution' or @field='facet-decade' or @field='facet-onlineItems']" mode="searchLimits"/>
+      <xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-subject' or @field='facet-coverage']" mode="searchLimits"/>
+    </xsl:when>
+    <xsl:when test="$institution">
+      <xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-subject' or @field='facet-coverage' or @field='facet-decade' or @field='facet-collection-title']" mode="searchLimits"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="$page/crossQueryResult/facet[@field='facet-institution' or @field='facet-decade' or @field='facet-onlineItems']" mode="searchLimits"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
   <!-- default match identity transform -->

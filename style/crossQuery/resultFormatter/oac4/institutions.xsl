@@ -17,6 +17,7 @@
 <xsl:param name="contributing"/>
 <xsl:param name="style"/>
 <xsl:param name="keyword"/>
+<xsl:param name="limit"/>
 <xsl:param name="group" select="'collection'"/>
 <xsl:variable name="beforeGroup" select="if (substring-before($group,'::')) 
 		then substring-before($group,'::') else $group"/>
@@ -38,6 +39,8 @@
 </xsl:variable>
 
 <xsl:variable name="layout" select="document($layoutFile)"/>
+
+<xsl:variable name="instUrlBase" select="if ($limit='online') then '/institutionItems/' else '/institutions/'"/>
 
 
   <!-- default match identity transform -->
@@ -113,11 +116,11 @@
 					</xsl:choose>
 				</div>
 				<div class="institutions-right">
-				<a href="/institutions/{replace(@value,'\s','+')}::{replace(replace(../@value,',$',''),'\s','+')}">
+				<a href="{$instUrlBase}{replace(@value,'\s','+')}::{replace(replace(../@value,',$',''),'\s','+')}">
 				<xsl:value-of select="../@value"/>
 				</a>
 				<xsl:text> </xsl:text>
-				<a href="/institutions/{replace(@value,'\s','+')}">
+				<a href="{$instUrlBase}{replace(@value,'\s','+')}">
 				<xsl:value-of select="@value"/>
 				</a>
 				</div>
@@ -135,11 +138,10 @@
 					</xsl:choose>
 				</div>
 				<div class="institutions-right">
-				<a href="/institutions/{replace(@value,'\s','+')}"><xsl:value-of select="@value"/></a>
+				<a href="{$instUrlBase}{replace(@value,'\s','+')}"><xsl:value-of select="@value"/></a>
 				</div>
 			</div>
 			<xsl:apply-templates select="group[not(@value='onlineItems')]" mode="double2"/>
-
 
 		</xsl:otherwise>
 	</xsl:choose>
@@ -157,7 +159,7 @@
 			</xsl:choose>
 		</div>
 		<div class="institutions-right indent">
-		<a href="/institutions/{replace(../@value,'\s','+')}::{replace(@value,'\s','+')}"><xsl:value-of select="@value"/></a>
+		<a href="{$instUrlBase}{replace(../@value,'\s','+')}::{replace(@value,'\s','+')}"><xsl:value-of select="@value"/></a>
 		</div>
 	</div>
 </xsl:template>

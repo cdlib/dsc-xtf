@@ -185,7 +185,7 @@
 	<facet field="institution-doublelist" select="**" sortGroupsBy="value"/>
 	<facet field="facet-onlineItems" select="*"/>
 	<facet field="oac4-tab" select="**"/>
-	<!-- facet field="facet-subject" select="**"/ -->
+	<facet field="facet-subject" select="**"/>
 	<facet field="facet-institution" select="**" sortGroupsBy="value"/>
 
 	<xsl:variable name="howMany">
@@ -270,13 +270,19 @@
                 style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="0" normalizeScores="false">
 	<facet field="facet-{$facetcomplete}" select="*[1-10000]" />
 	<and maxSnippets="0">
-	<and field="oac4-tab"><term><xsl:text>*::*</xsl:text></term></and>
+	<and field="oac4-tab"><term><xsl:value-of select="concat(if ($group) then $group else '*', '::*')"/></term></and>
 		<xsl:apply-templates select="$parsed/query/*" mode="freeform"/>
+
 	<xsl:if test="$Institution != ''">
                         <and field="institution-doublelist"><term><xsl:value-of select="concat(
                                 substring($Institution,1,1),
                                 '::',
                                 $Institution,'*')"/></term></and>
+	</xsl:if>
+        <xsl:if test="$institution != ''">
+            <and field="facet-institution">
+                <term><xsl:value-of select="$institution"/></term>
+            </and>
 	</xsl:if>
 			<xsl:apply-templates select="parameters"/>
 	</and>
@@ -447,6 +453,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
       		<facet field="facet-onlineItems" select="*"/>
+      		<facet field="facet-collection-title" select="*[1-5]"/>
 		<xsl:choose>
 			<xsl:when test="$facet-subject ne ''">
 				<xsl:variable name="q1">&quot;</xsl:variable>
