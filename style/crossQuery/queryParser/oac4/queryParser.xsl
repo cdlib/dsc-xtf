@@ -401,7 +401,7 @@
     	<xsl:variable name="stylesheet" select="'style/crossQuery/resultFormatter/oac4/resultFormatter.xsl'"/>
 	<xsl:variable name="parsed" select="if ($strQuery) then freeformQuery:parse($strQuery) else parameters"/>
     	<query indexPath="index" termLimit="1000" workLimit="20000000" 
-		style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="0" normalizeScores="false">
+		style="{$stylesheet}" startDoc="{$startDoc}" maxDocs="0" normalizeScores="false" returnMetaFields="id idT facet-institution google_analytics_tracking_code institution-url identifier institution-doublelist normalTitle245 title sort-title facet-titlesAZ creator oac4-tab type publisher facet-decade date language description subject relation institution">
       		<spellcheck suggestionsPerTerm="1"/>
       		<facet field="oac4-tab" sortGroupsBy="value" includeEmptyGroups="yes" sortDocsBy="{$sortString}" 
 			select="**|{$group}#{$startDoc}-{$endDoc}"/> 
