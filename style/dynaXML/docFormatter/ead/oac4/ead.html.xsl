@@ -588,7 +588,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
         replace(replace(replace(@href,'http://.*/ark:/', concat('/' , 'ark:/') ) ,'/$',''), '\s$','')" />
 	<xsl:variable name="href">
 		   <xsl:choose>
-			<xsl:when test="@poi">
+			<xsl:when test="@poi != ''">
 				<xsl:text>/</xsl:text>
 				<xsl:value-of select="@poi"/>
 				<xsl:text>/?brand=oac4</xsl:text>
@@ -631,10 +631,9 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 	</div>  
 	</a>
 </div>      
-
 </xsl:template> 
 
-<xsl:template match="daogrp[@poi]" mode="ead-dsc ead">
+<xsl:template match="daogrp[@poi!='']" mode="ead-dsc ead">
 <xsl:param name="img_src" select="'/images/icons/sq-eye_icon.gif'"/>
 	<xsl:variable name="href">
 		<xsl:text>/</xsl:text>
