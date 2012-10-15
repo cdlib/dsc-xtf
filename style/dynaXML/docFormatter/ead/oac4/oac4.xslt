@@ -482,8 +482,12 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="dsc|dscgrp" mode="eadFlat">
-	<!-- xsl:apply-templates select="*[name()!='c01']" mode="ead"/ -->
+<xsl:template match="dsc" mode="eadFlat">
+<a name="{@id}"/>
+<h1><xsl:value-of select="head"/></h1>
+</xsl:template>
+
+<xsl:template match="dscgrp" mode="eadFlat">
 </xsl:template>
 
 <xsl:template match="c01|c02|c03|c04|c05|c06|c07|c08|c09|c10|c11|c12" mode="items">
