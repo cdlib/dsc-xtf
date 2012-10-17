@@ -135,6 +135,8 @@
   <!-- browsing parameters -->
   <xsl:param name="facet"/>
   <xsl:param name="group"/>
+  <xsl:param name="institution"/>
+  <xsl:param name="collection-title"/>
   
   <xsl:param name="endDoc" as="xs:integer" select="($startDoc + $docsPerPage)-1"/>
   <xsl:param name="docRange">
@@ -257,12 +259,27 @@
         </xsl:if>
         
       </xsl:if>
+      
+      <and>
+      <xsl:if test="$institution != ''">
+        <and field="facet-institution">
+          <term><xsl:value-of select="$institution"/></term>
+        </and>
+        <xsl:apply-templates/>
+      </xsl:if>
+      <xsl:if test="$collection-title != ''">
+        <and field="facet-collection-title">
+          <term><xsl:value-of select="$collection-title"/></term>
+        </and>
+      </xsl:if>
  
-      <!-- process query -->
-      <xsl:apply-templates/>
-
+        <!-- process query -->
+        <xsl:apply-templates/>
+      </and>
     </query>
   </xsl:template>
+  <xsl:template match="param[@name='institution']"/>
+  <xsl:template match="param[@name='collection-title']"/>
 
   <xsl:template match="parameters">
 
