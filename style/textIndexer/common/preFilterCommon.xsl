@@ -493,29 +493,6 @@
                 </sql:connect>
         </xsl:variable>
 
-<!-- CREATE TABLE institutions (
-	"id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	"ark" varchar(255) DEFAULT NULL, 
-	"institution_id" integer DEFAULT NULL, 
-	"parent_ark" varchar(255) DEFAULT NULL, 
-	"name" varchar(255) DEFAULT NULL, 
-	"mainagency" varchar(255) DEFAULT NULL, 
-	"cdlpath" varchar(255) DEFAULT NULL, 
-	"edit_group_id" integer DEFAULT NULL, 
-	"address" varchar(255) DEFAULT NULL, 
-	"city_id" integer DEFAULT NULL, 
-	"county_id" integer DEFAULT NULL, 
-	"zip4" varchar(255) DEFAULT NULL, 
-	"url" varchar(255) DEFAULT NULL, 
-	"region" varchar(255) DEFAULT NULL, 
-	"latitude" float DEFAULT NULL, 
-	"longitude" float DEFAULT NULL, 
-	"description" text DEFAULT NULL, 
-	"has_collections" boolean DEFAULT NULL, 
-	"isa_campus" boolean DEFAULT NULL, 
-	"created_at" datetime DEFAULT NULL, 
-	"updated_at" datetime DEFAULT NULL);
--->
 	<!-- info about parent to display at collection level -->
 	<xsl:variable name="parentRepodata">
 		<sql:query connection="$connection" table="oac_institution"
