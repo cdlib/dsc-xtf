@@ -1,12 +1,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xtf="http://cdlib.org/xtf"
+                xmlns:editURL="http://cdlib.org/xtf/editURL" 
                 version="2.0">
         
+    <xsl:import href="../../common/editURL.xsl"/>
+
     <xsl:param name="keyword"/>
     <xsl:param name="keyword-add"/>
     <xsl:param name="fieldList"/>    
     <xsl:param name="azBrowse"/>    
     <xsl:param name="ethBrowse"/>    
+    <xsl:param name="xtfURL"/>
     
 <!-- ====================================================================== -->
 <!-- Format Query for Display                                               -->
@@ -74,6 +78,12 @@
                 <xsl:if test="not(position() = 2)">
                     <xsl:value-of select="name(..)"/><xsl:text> </xsl:text>
                 </xsl:if>
+                <div class="cali-facet">
+                    <a style="font-size:larger;">
+                        <xsl:attribute name="href">
+                            <xsl:value-of select="editURL:remove(concat($xtfURL, $crossqueryPath, '?',  $queryString), replace(@field, 'facet-', ''))"/>
+                        </xsl:attribute>
+                            &#x24E7;</a>
                 <xsl:apply-templates mode="query"/>
                 <xsl:text> in </xsl:text>
                 <span class="search-type">
@@ -86,6 +96,7 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </span>
+            </div>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates mode="query"/>
@@ -113,6 +124,9 @@
             <xsl:text> </xsl:text>
         </xsl:if>
         <span class="search-term">
+            <!--<xsl:if test="../@field != 'text'">
+            <xsl:value-of select="../@field"/>
+            </xsl:if-->
             <xsl:value-of select="."/>
         </span>
         <xsl:text> </xsl:text>
