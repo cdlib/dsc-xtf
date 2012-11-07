@@ -13,3 +13,4 @@
 ^mets-support
 ^style/common
 ^.twill-history.*
+^test*
