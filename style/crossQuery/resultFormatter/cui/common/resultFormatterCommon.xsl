@@ -180,6 +180,9 @@
   <!-- Structural Search -->
   <xsl:param name="sectionType"/>
 
+  <xsl:param name="institution"/>
+  <xsl:param name="collection-title"/>
+
   <!-- Search and Result Behavior URL Parameters -->
   <xsl:param name="style"/>
   <xsl:param name="smode" select="'simple'"/>
@@ -228,6 +231,7 @@
   </xsl:param>
   <xsl:param name="brand.hotdog.img" select="$brand.file//hotdog.img"/>
   <xsl:param name="brand.breadcrumb.base" select="$brand.file//breadcrumb.base/*"/>
+  <xsl:param name="brand.url.base" select="$brand.file//url.base/text()"/>
 
   <!-- Paging Parameters-->  
   <xsl:param name="startDoc" as="xs:integer" select="1"/>

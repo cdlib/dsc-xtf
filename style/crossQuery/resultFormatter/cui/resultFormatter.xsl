@@ -157,6 +157,12 @@
               <xsl:comment>BEGIN BREADCRUMBS</xsl:comment>
               <div id="breadcrumbs">
                 <xsl:copy-of select="$brand.breadcrumb.base"/>
+                <xsl:if test="$institution">
+                    &gt; <a>
+                        <xsl:attribute name="href"><xsl:value-of select="$brand.url.base"/><xsl:text>/institutions/</xsl:text><xsl:value-of select="$institution"/>
+                        </xsl:attribute>
+                            <xsl:value-of select="$institution"/></a>
+                </xsl:if>
                 <xsl:text> &gt; Search Results</xsl:text>
               </div>
               <xsl:comment>END BREADCRUMBS</xsl:comment>
@@ -250,7 +256,7 @@
                         <div class="disp-form">
                           <div class="display">display:</div>
                           <div class="display-form">
-                            <form name="display-form" action="{$xtfURL}{$crossqueryPath}" method="GET">
+                              <form name="display-form" action="{$xtfURL}{$crossqueryPath}?{$queryString}" method="GET">
                               <xsl:call-template name="page.options"/>
                               <input type="hidden" name="facet" value="{$facet}"/>
                               <input type="hidden" name="group" value="{$group}"/>
@@ -288,6 +294,12 @@
                               <xsl:if test="$publisher">
                                 <input type="hidden" name="publisher" value="{$publisher}"/>
                                 <input type="hidden" name="publisher-join" value="{$publisher-join}"/>
+                              </xsl:if>
+                              <xsl:if test="$institution">
+                                <input type="hidden" name="institution" value="{$institution}"/>
+                              </xsl:if>
+                              <xsl:if test="$collection-title">
+                                <input type="hidden" name="collection-title" value="{$collection-title}"/>
                               </xsl:if>
                               <xsl:if test="$relation">
                                 <input type="hidden" name="relation" value="{$relation}"/>
@@ -339,6 +351,12 @@
                                   <input type="hidden" name="jardaBrowse" value="{$jardaBrowse}"/>
                                   <input type="hidden" name="jardaBrowse-join" value="{$jardaBrowse-join}"/>
                                 </xsl:if>
+                              <xsl:if test="$institution">
+                                <input type="hidden" name="institution" value="{$institution}"/>
+                              </xsl:if>
+                              <xsl:if test="$collection-title">
+                                <input type="hidden" name="collection-title" value="{$collection-title}"/>
+                              </xsl:if>
                                 <input type="hidden" name="style" value="{$style}"/>
                                 <input type="hidden" name="sortDocsBy" value="{$sortDocsBy}"/>
 

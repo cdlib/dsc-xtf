@@ -116,6 +116,8 @@ $("a#zoomMe").click(function () {
     <a href="http://www.calisphere.universityofcalifornia.edu/">Calisphere</a>
   </breadcrumb.base>
 
+  <url.base>http://www.calisphere.universityofcalifornia.edu/</url.base>
+
   <search.img>
 <input src="/default/images/search-grn_wht_bg.gif" class="search-button" alt="Search" title="Search" type="image"/>
   </search.img>
