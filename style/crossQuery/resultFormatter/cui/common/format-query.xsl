@@ -47,6 +47,7 @@
                     <xsl:text> </xsl:text>
                     <xsl:value-of select="$keyword-add"/>
                 </xsl:if>
+                <xsl:apply-templates select="query" mode="query"/>
             </xsl:when>
             <xsl:when test="$keyword">
                 <xsl:value-of select="$keyword"/>
@@ -119,10 +120,11 @@
     </xsl:template>
     
     <xsl:template match="term" mode="query">
-        <xsl:if test="preceding-sibling::term and (. != $keyword)">
+        <xsl:if test="preceding-sibling::term and (. != $keyword) and (. != $keyword-add)">
             <xsl:value-of select="name(..)"/>
             <xsl:text> </xsl:text>
         </xsl:if>
+        <xsl:if test="(. != $keyword) and (. != $keyword-add)">
         <span class="search-term">
             <!--<xsl:if test="../@field != 'text'">
             <xsl:value-of select="../@field"/>
@@ -130,6 +132,7 @@
             <xsl:value-of select="."/>
         </span>
         <xsl:text> </xsl:text>
+    </xsl:if>
     </xsl:template>
     
     <xsl:template match="phrase" mode="query">
