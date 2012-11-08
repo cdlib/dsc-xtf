@@ -159,8 +159,12 @@
                 <xsl:copy-of select="$brand.breadcrumb.base"/>
                 <xsl:if test="$institution">
                     &gt; <a>
-                        <xsl:attribute name="href"><xsl:value-of select="$brand.url.base"/><xsl:text>/institutions/</xsl:text><xsl:value-of select="$institution"/>
+                        <xsl:attribute name="href">
+                            <xsl:text>http://</xsl:text><xsl:value-of select="System:getenv('PUBLICDL_HOSTNAME')" xmlns:System="java:java.lang.System"/><xsl:text>/institutions/</xsl:text><xsl:value-of select="$institution"/>
+                            <xsl:text>/</xsl:text>
                         </xsl:attribute>
+
+                        
                             <xsl:value-of select="$institution"/></a>
                 </xsl:if>
                 <xsl:text> &gt; Search Results</xsl:text>
