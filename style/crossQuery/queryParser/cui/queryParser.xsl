@@ -320,7 +320,9 @@
       </xsl:for-each>
       <!-- If there are no meta, text queries, or unary nots, output a dummy -->
       <xsl:if test="count($metaParams) = 0 and count($textParam) = 0 and not(param[matches(@name, '.*-exclude')])">
-        <term field="text">$!@$$@!$</term>
+        <and field="relation">
+          <term>calisphere.universityofcalifornia.edu</term>
+        </and>
       </xsl:if>
     </and>
     
