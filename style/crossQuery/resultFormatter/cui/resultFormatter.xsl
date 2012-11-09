@@ -163,8 +163,6 @@
                             <xsl:text>http://</xsl:text><xsl:value-of select="System:getenv('PUBLICDL_HOSTNAME')" xmlns:System="java:java.lang.System"/><xsl:text>/institutions/</xsl:text><xsl:value-of select="$institution"/>
                             <xsl:text>/</xsl:text>
                         </xsl:attribute>
-
-                        
                             <xsl:value-of select="$institution"/></a>
                 </xsl:if>
                 <xsl:text> &gt; Search Results</xsl:text>
@@ -421,9 +419,9 @@
 <div class="nifty1">
 <div class="box1">
 
-<p>Sorry, your search for 
+<div>Sorry, your search for 
 <xsl:call-template name="format-query"/> 
-did not find any matches.</p>
+did not find any matches.</div>
 
 </div>
 </div>

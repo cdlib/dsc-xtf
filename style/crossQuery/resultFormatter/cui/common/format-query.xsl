@@ -77,26 +77,26 @@
             <xsl:when test="matches(@field, 'relation')"/>    
             <xsl:when test="@field">    
                 <xsl:if test="not(position() = 2)">
-                    <xsl:value-of select="name(..)"/><xsl:text> </xsl:text>
+                    <!--<xsl:value-of select="name(..)"/><xsl:text> </xsl:text>-->
                 </xsl:if>
                 <div class="cali-facet">
-                    <a style="font-size:larger;">
+                    <a>
                         <xsl:attribute name="href">
-                            <xsl:value-of select="editURL:remove(concat($xtfURL, $crossqueryPath, '?',  $queryString), replace(@field, 'facet-', ''))"/>
+                            <xsl:value-of select="editURL:remove(replace(concat($xtfURL, $crossqueryPath, '?',  $queryString), '&amp;', ';'), replace(@field, 'facet-', ''))"/>
                         </xsl:attribute>
                             &#x24E7;</a>
                 <xsl:apply-templates mode="query"/>
-                <xsl:text> in </xsl:text>
-                <span class="search-type">
                     <xsl:choose>
                         <xsl:when test="@field = 'text'">
+                            <xsl:text> in </xsl:text>
+                            <span class="search-type">
                             <xsl:text> the full text </xsl:text>
+                            </span>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="@field"/>
+                            <!--<xsl:value-of select="@field"/> -->
                         </xsl:otherwise>
                     </xsl:choose>
-                </span>
             </div>
             </xsl:when>
             <xsl:otherwise>
