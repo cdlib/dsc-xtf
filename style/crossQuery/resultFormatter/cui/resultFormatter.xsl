@@ -441,9 +441,14 @@ did not find any matches.</div>
         <xsl:if test="session:isEnabled()">
           <xsl:value-of select="session:setData('queryURL', concat($xtfURL, $crossqueryPath, '?', $queryString, '&amp;startDoc=', $startDoc))"/>
         </xsl:if>
+
 <xsl:call-template name="insert-google-tracking">
   <xsl:with-param name="brand" select="$brand"/>
   <xsl:with-param name="onContent" select="'onContent'"/>
+  <xsl:with-param name="google_analytics_tracking_code" 
+      select="(facet/group//docHit[1]/meta/google_analytics_tracking_code)[1]"/>
+  <xsl:with-param name="google_analytics_institution" 
+      select="$institution"/>
 </xsl:call-template>
 
 <script><xsl:comment>
