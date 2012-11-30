@@ -34,12 +34,14 @@
 
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                               xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                              xmlns:editURL="http://cdlib.org/xtf/editURL" 
                               xmlns:session="java:org.cdlib.xtf.xslt.Session">
   
   <!-- ====================================================================== -->
   <!-- Import Common Templates                                                -->
   <!-- ====================================================================== -->
 
+  <xsl:import href="../common/editURL.xsl"/>
   <xsl:import href="common/resultFormatterCommon.xsl"/>
   <xsl:import href="../../../common/google-tracking.xsl"/>
   <xsl:import href="grid/resultFormatter.xsl"/>
@@ -420,8 +422,23 @@
 <div class="box1">
 
 <div>Sorry, your search for 
-<xsl:call-template name="format-query"/> 
-did not find any matches.</div>
+<xsl:call-template name="format-query"> 
+    <xsl:with-param name="nomatches" select="'True'"/>
+</xsl:call-template>
+did not find any matches.
+    <xsl:if test="//*[@field='facet-institution']">
+<div>
+<a>
+    <xsl:attribute name="href">
+        <xsl:value-of select="editURL:remove(replace(concat($xtfURL, $crossqueryPath, '?',  $queryString), '&amp;', ';'), 'institution')"/><!--, replace(@field, 'facet-', ''))"/>
+    -->
+    </xsl:attribute>
+Try searching all Calisphere collections.
+</a>
+</div>
+</xsl:if>
+
+</div>
 
 </div>
 </div>
