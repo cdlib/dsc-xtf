@@ -84,7 +84,7 @@
             <xsl:when test="@field">    
                 <xsl:choose>
                     <xsl:when test="$nomatches">
-                        in items contributed by 
+                        in 
                     <xsl:apply-templates mode="query">
                         <xsl:with-param name="nomatches" select="$nomatches"/>
                     </xsl:apply-templates>
