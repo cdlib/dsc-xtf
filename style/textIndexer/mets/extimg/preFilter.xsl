@@ -214,7 +214,7 @@
     <!-- xsl:apply-templates select="publisher[@q='repository']" mode="repository"/ -->
     <!-- create facet fields -->
     <xsl:apply-templates select="type" mode="facet"/>
-    <xsl:apply-templates select="subject" mode="facet"/>
+    <xsl:apply-templates select="subject[not(@q)]" mode="facet"/> 
     <xsl:apply-templates select="coverage" mode="facet"/>
 
     <!-- xsl:apply-templates select="title" mode="facet"/>
