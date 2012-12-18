@@ -43,6 +43,14 @@
     <setSpec>scu:objects</setSpec>
     <setName>Santa Clara University: Digital Objects</setName>
   </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>css:ead</setSpec>
+    <setName>California State University, Sacramento Library</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>css:objects</setSpec>
+    <setName>California State University, Sacramento Library</setName>
+  </set>
 </xsl:template>
 
 <xsl:template name="setQuery">
@@ -110,6 +118,16 @@
            <term>ark</term>
            <term>13030/kt9k402381</term>
 	</and>
+    <and>
+        <or>
+            <and field="oac4-tab">
+                <term>Items::image</term>
+            </and>
+            <and field="oac4-tab">
+                <term>Items::text</term>
+            </and>
+        </or>
+    </and>
     </xsl:when>
     <xsl:when test="$set='scu:ead'">
         <and field="oac4-tab">
@@ -124,6 +142,40 @@
            <term>ark</term>
            <term>13030/tf9v19p891</term>
 	</and>
+    <and>
+        <or>
+            <and field="oac4-tab">
+                <term>Items::image</term>
+            </and>
+            <and field="oac4-tab">
+                <term>Items::text</term>
+            </and>
+        </or>
+    </and>
+    </xsl:when>
+    <xsl:when test="$set='css:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+            <term>C::California State University, Sacramento Library</term>
+        </and>
+    </xsl:when>
+    <xsl:when test="$set='css:objects'">
+	<and field="relation">
+           <term>ark</term>
+           <term>13030/kt796nc8ds</term>
+	</and>
+    <and>
+        <or>
+            <and field="oac4-tab">
+                <term>Items::image</term>
+            </and>
+            <and field="oac4-tab">
+                <term>Items::text</term>
+            </and>
+        </or>
+    </and>
     </xsl:when>
     <xsl:otherwise>
       Paramter set=<xsl:value-of select="$set"/>
