@@ -330,7 +330,16 @@
 		</xsl:if>
     <!-- test for pdf -->
     <xsl:if test="$page/m:mets/m:fileSec//m:fileGrp[contains(@USE,'application')]/m:file[@MIMETYPE='application/pdf']">
+    <xsl:variable name="pdf" select="tokenize(
+        $page/m:mets/m:fileSec//m:fileGrp[contains(@USE,'application')]/m:file[@MIMETYPE='application/pdf']/m:FLocat[1]/@*:href,
+        '/')[position()=last()]
+     "/>
+    <xsl:variable name="pdftxt" select="substring($pdf, 1, string-length($pdf)-3)"/>
+    <xsl:variable name="pdftxtpath" select="concat(replace($base,'/[^/]*$','/'), 'files/', $pdftxt, 'txt' )"/>
 			<format q="x" xtf:meta="true">pdf</format>
+			<text xtf:index="true">
+				<xsl:copy-of select="unparsed-text($pdftxtpath)"/>
+			</text>
 		</xsl:if>
   </xsl:template>
 
