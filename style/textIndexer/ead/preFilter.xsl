@@ -108,6 +108,7 @@
       <xsl:apply-templates select="@*"/>
       <xsl:call-template name="get-meta"/>
       <xsl:apply-templates select="*" mode="fu"/>
+      <xsl:call-template name="suppfiles"/>
       <heads><xsl:apply-templates select="archdesc/dsc" mode="dsc-headers"/></heads>
     </ead>
   </xsl:template>
@@ -472,5 +473,36 @@
     <xsl:copy-of select="parse:year($date, $pos)"/>
     
   </xsl:template>
+
+<!-- ====================================================================== -->
+<!-- Supplemental File Indexing                                             -->
+<!-- ====================================================================== -->
+<xsl:template name="suppfiles">
+<xsl:apply-templates select="//otherfindaid/list" mode="suppfiles"/>
+</xsl:template>
+
+<xsl:template match="item/extref" mode="suppfiles">
+    <xsl:variable name="pdf_file_name">
+        <xsl:for-each select="tokenize(@href, '/')">
+            <xsl:if test="position() eq last()">
+                <xsl:value-of select="."/>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="root_file_name">
+        <xsl:value-of select="substring-before($pdf_file_name, '.pdf')"/>
+    </xsl:variable>
+    <xsl:variable name="pdf_txtFile">
+        <xsl:value-of select="replace($base,'(.*/)[^/].*$','$1')"/>
+        <xsl:text>files/</xsl:text>
+        <xsl:value-of select="$root_file_name"/>
+        <xsl:text>.txt</xsl:text>
+    </xsl:variable>
+
+    <format q="x" xtf:meta="true">pdf</format>
+    <text xtf:index="true">
+        <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
+    </text>
+</xsl:template>
 
 </xsl:stylesheet>
