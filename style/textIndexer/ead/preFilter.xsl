@@ -108,7 +108,6 @@
       <xsl:apply-templates select="@*"/>
       <xsl:call-template name="get-meta"/>
       <xsl:apply-templates select="*" mode="fu"/>
-      <xsl:call-template name="suppfiles"/>
       <heads><xsl:apply-templates select="archdesc/dsc" mode="dsc-headers"/></heads>
     </ead>
   </xsl:template>
@@ -477,11 +476,22 @@
 <!-- ====================================================================== -->
 <!-- Supplemental File Indexing                                             -->
 <!-- ====================================================================== -->
-<xsl:template name="suppfiles">
-<xsl:apply-templates select="//otherfindaid/list" mode="suppfiles"/>
+<xsl:template match="otherfindaid">
+    <otherfindaid>
+      <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates/>
+</otherfindaid>
 </xsl:template>
 
-<xsl:template match="item/extref" mode="suppfiles">
+<xsl:template match="item/extref">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+    <xsl:call-template name="suppfiles"/>
+</xsl:template>
+
+<xsl:template name="suppfiles"> 
     <xsl:variable name="pdf_file_name">
         <xsl:for-each select="tokenize(@href, '/')">
             <xsl:if test="position() eq last()">
@@ -498,6 +508,13 @@
         <xsl:value-of select="$root_file_name"/>
         <xsl:text>.txt</xsl:text>
     </xsl:variable>
+
+    <xsl:message>Indexing <xsl:value-of select="$pdf_txtFile"/></xsl:message>
+    <!--
+    <xsl:message>Text:
+        <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
+    </xsl:message>
+    -->
 
     <format q="x" xtf:meta="true">pdf</format>
     <text xtf:index="true">
