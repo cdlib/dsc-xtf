@@ -735,4 +735,7 @@ able"
 <xsl:apply-templates select="dsc" mode="eadStart"/>
 </xsl:template>
 
+<xsl:template match="text" mode="ead">
+    <xsl:apply-templates select="xtf:hit" mode="ead"/>
+</xsl:template>
 </xsl:stylesheet>

@@ -516,7 +516,6 @@
     </xsl:message>
     -->
 
-    <format q="x" xtf:meta="true">pdf</format>
     <text xtf:index="true">
         <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
     </text>
