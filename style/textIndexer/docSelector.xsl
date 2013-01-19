@@ -168,6 +168,7 @@
                           ends-with(@fileName, '.xhtml')">
             <xsl:call-template name="HTML"/>
           </xsl:when>          
+          <xsl:when test="ends-with(@fileName, '.checkm')"/>
           <!-- Error -->
           <xsl:otherwise>
             <xsl:message select="concat('WARNING: Unknown filetype: ', @fileName)"/>
