@@ -29,8 +29,8 @@
 <xsl:param name="style" select="'oac4'"/>
 <!--	xmlns:editURL="http://cdlib.org/xtf/editURL" -->
 <xsl:param name="http.URL"/>
-<xsl:param name="queryString" select="editURL:remove(editURL:remove(editURL:remove(
-				substring-after($http.URL,'?'),'page'),'x'),'y')"/>
+<xsl:param name="queryString" select="translate(editURL:remove(editURL:remove(editURL:remove(
+				substring-after($http.URL,'?'),'page'),'x'),'y'), ' ', '+')"/>
 
 <!-- xsl:param name="queryString" select="editURL:remove(editURL:set(substring-after($http.URL,'?'),'style','oac4'),'page')"/ -->
 <xsl:variable name="queryURL">
@@ -632,7 +632,7 @@ else (param[@name='relation']/@value)"/>
 			<xsl:text>/findaid/ark:/13030/</xsl:text>
 			<xsl:value-of select="replace($docHit/meta/identifier[1],'http://ark.cdlib.org/ark:/13030/','')"/>
 			<xsl:text>?query=</xsl:text>
-			<xsl:value-of select="$query"/>
+			<xsl:value-of select="translate($query, ' ', '+')"/>
 		</xsl:attribute>
 		<xsl:value-of select="$docHit/meta/title[1]" />
                 <xsl:text> </xsl:text>
@@ -802,7 +802,7 @@ else (param[@name='relation']/@value)"/>
                         <xsl:text>/findaid/ark:/13030/</xsl:text>
                         <xsl:value-of select="replace($docHit/meta/identifier[1],'http://ark.cdlib.org/ark:/13030/','')"/>
                         <xsl:text>?query=</xsl:text>
-                        <xsl:value-of select="$query"/>
+                        <xsl:value-of select="translate($query, ' ', '+')"/>
                         <xsl:text>;doc.view=items</xsl:text>
         </xsl:variable>
 
@@ -854,7 +854,7 @@ else (param[@name='relation']/@value)"/>
                         <xsl:text>;developer=</xsl:text>
                         <xsl:value-of select="$developer"/>
                         <xsl:text>;query=</xsl:text>
-                        <xsl:value-of select="$query"/>
+                        <xsl:value-of select="translate($query, ' ', '+')"/>
                         <xsl:text>;style=oac4</xsl:text>
 		</xsl:variable>
 
