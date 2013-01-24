@@ -1036,7 +1036,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <xsl:if test="$archdescHits &gt; $dscHits">
 	<xsl:variable name="firstHit" select="$page/ead/archdesc/@xtf:firstHit"/>
 	<span class="subhit">
-	   <a href="{$full-overview-hit-link}{if ($query) then concat('?query=', $query) else ''}#hitNum{$firstHit}">
+	   <a href="{$full-overview-hit-link}#hitNum{$firstHit}">
 		<xsl:text>[</xsl:text>
 		<xsl:value-of select="$archdescHits - $dscHits"/> 
 		<xsl:text> hit</xsl:text>
