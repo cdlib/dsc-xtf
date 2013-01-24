@@ -115,6 +115,9 @@
             <xsl:when test="matches(.,'text','i')">
               <xsl:value-of select="'text'"/>
             </xsl:when>
+            <xsl:when test="matches(.,'sound','i')">
+              <xsl:value-of select="'text'"/>
+            </xsl:when>
             <xsl:when test="matches(.,'website','i')">
               <xsl:value-of select="'website'"/>
             </xsl:when>

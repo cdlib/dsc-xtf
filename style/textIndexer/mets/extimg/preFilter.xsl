@@ -328,6 +328,12 @@
 		<xsl:if test="$page/m:mets/m:dmdSec/m:mdWrap/m:xmlData/*[local-name()='mods']">
 			<format q="x" xtf:meta="true">mods</format>
 		</xsl:if>
+		<xsl:if test="$page/m:mets/@PROFILE='pamela://year1' and lower-case($page/m:mets/@TYPE)='movingimage'">
+			<format q="x" xtf:meta="true">mp4</format>
+		</xsl:if>
+		<xsl:if test="$page/m:mets/@PROFILE='pamela://year1' and lower-case($page/m:mets/@TYPE)='sound'">
+			<format q="x" xtf:meta="true">mp3</format>
+		</xsl:if>
     <!-- test for pdf -->
     <xsl:if test="$page/m:mets/m:fileSec//m:fileGrp[contains(@USE,'application')]/m:file[@MIMETYPE='application/pdf']">
     <xsl:variable name="pdf" select="tokenize(
