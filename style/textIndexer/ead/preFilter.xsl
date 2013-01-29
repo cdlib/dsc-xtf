@@ -488,16 +488,15 @@
       <xsl:apply-templates select="@*"/>
       <xsl:apply-templates/>
     </xsl:copy>
-    <xsl:call-template name="suppfiles"/>
+    <!-- most of the time the extref is going to be a URL, record express supplimental files start with a "/" -->
+    <xsl:if test="starts-with(@href,'/')">
+      <xsl:call-template name="suppfiles"/>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template name="suppfiles"> 
     <xsl:variable name="pdf_file_name">
-        <xsl:for-each select="tokenize(@href, '/')">
-            <xsl:if test="position() eq last()">
-                <xsl:value-of select="."/>
-            </xsl:if>
-        </xsl:for-each>
+        <xsl:value-of select="tokenize(@href, '/')[position() = last()]"/>
     </xsl:variable>
     <xsl:variable name="root_file_name">
         <xsl:value-of select="substring-before($pdf_file_name, '.pdf')"/>
@@ -515,10 +514,11 @@
         <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
     </xsl:message>
     -->
-
-    <text xtf:index="true">
-        <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
-    </text>
+    <xsl:if xmlns:FileUtils="java:org.cdlib.xtf.xslt.FileUtils" test="FileUtils:exists($pdf_txtFile)">
+        <text xtf:index="true">
+            <xsl:copy-of select="unparsed-text($pdf_txtFile, 'UTF-8')"/>
+        </text>
+    </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
