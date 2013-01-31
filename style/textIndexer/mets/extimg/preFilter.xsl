@@ -347,6 +347,9 @@
 				<xsl:copy-of select="unparsed-text($pdftxtpath)"/>
 			</text>
 		</xsl:if>
+		<xsl:if test="$page/m:mets/m:fileSec/m:fileGrp[contains(lower-case(@USE),'data')]">
+			<format q="x" xtf:meta="true">data</format>
+		</xsl:if>
   </xsl:template>
 
   <xsl:template name="reference-image">
