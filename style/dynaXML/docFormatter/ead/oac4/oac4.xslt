@@ -503,13 +503,17 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 
 <!-- xsl:variable name="href" select="if (dao[1]/@href) then dao[1]/@href else (daogrp/@poi)"/ -->
 
-<xsl:variable name="hackedLink" select="if (dao[1]/@href) then
+<xsl:variable name="hackedLinkPre" select="if (dao[1]/@href) then
         replace(replace(replace(dao[1]/@href,'http://.*/ark:/', concat($baseURL , 'ark:/') ) ,'/$','') ,'\s$','')
 	else (concat('/', daogrp/@poi )) "/>
 
+<xsl:variable name="hackedLink" select="if (starts-with($hackedLinkPre,'ark:/')) then concat('/',$hackedLinkPre) else $hackedLinkPre"/>
+
 <xsl:variable name="brandMe">
         <xsl:if test="starts-with(dao[1]/@href,'http://ark.cdlib.org/ark:/')
-                     or starts-with(dao[1]/@href,'/ark:/13030/')">
+                     or starts-with(dao[1]/@href,'/ark:/')
+                     or starts-with(dao[1]/@href,'ark:/')
+        ">
 		<xsl:text>yes</xsl:text>
 	</xsl:if>
 </xsl:variable>

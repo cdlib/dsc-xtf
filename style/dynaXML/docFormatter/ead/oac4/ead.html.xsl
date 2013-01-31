@@ -9,7 +9,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   exclude-result-prefixes="#all"
   version="2.0">
-  
+
   <xsl:include href="../../../../common/langcodes.xsl"/>
   <xsl:include href="../../../../common/geocodes.xsl"/>
   <xsl:strip-space elements="*"/>
@@ -591,6 +591,11 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 			<xsl:when test="@poi != ''">
 				<xsl:text>/</xsl:text>
 				<xsl:value-of select="@poi"/>
+				<xsl:text>/?brand=oac4</xsl:text>
+			</xsl:when>
+                        <xsl:when test="@href and starts-with(@href,'ark:/')">
+				<xsl:text>/</xsl:text>
+				<xsl:value-of select="$hackedLink"/>
 				<xsl:text>/?brand=oac4</xsl:text>
 			</xsl:when>
 			<xsl:when test="@href
