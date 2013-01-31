@@ -248,7 +248,7 @@
                                 </xsl:choose>
                               </xsl:with-param>
                             </xsl:call-template>
-                            <xsl:if test="$group='image' and $slideshow.on='on'">
+                            <xsl:if test="facet/group[@value='image']/docHit and not(matches($group,'text|website')) and $slideshow.on='on'">
                               <div id="slideshowHook"/>
                             </xsl:if>
                           </div>
