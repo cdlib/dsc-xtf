@@ -209,15 +209,23 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
         <identifier q="call" xtf:meta="true">
           <xsl:text>Collection Number: </xsl:text>
             <!-- HHHHH -->
+            <xsl:variable name="call852" select="marc:datafield
+                                                   [@tag=852]
+                                                   [marc:subfield/@code='h' 
+                                                     or marc:subfield/@code='i' 
+                                                     or marc:subfield/@code='j'
+                                                     or marc:subfield/@code='k'
+                                                   ]
+            "/>
             <xsl:apply-templates 
-              select="if (marc:datafield[@tag=852]) then marc:datafield[@tag=852][position()&lt;5]
+              select="if ($call852) then ($call852)[position()&lt;5]
                      else if (marc:datafield[@tag=099]) then marc:datafield[@tag=099][position()&lt;5]
                      else if (marc:datafield[@tag=090]) then marc:datafield[@tag=090][position()&lt;5]
                      else if (marc:datafield[@tag=092]) then marc:datafield[@tag=092][position()&lt;5]
                      else if (marc:datafield[@tag=096]) then marc:datafield[@tag=096][position()&lt;5]
                      else marc:datafield[@tag=098][position()&lt;5]
               " mode="id852"/>
-<xsl:if test="marc:datafield[@tag=852][position()=5]">
+<xsl:if test="($call852)[position()=5]">
     <xsl:text>...</xsl:text>
 </xsl:if>
         </identifier>
