@@ -29,8 +29,8 @@
 <xsl:param name="style" select="'oac4'"/>
 <!--	xmlns:editURL="http://cdlib.org/xtf/editURL" -->
 <xsl:param name="http.URL"/>
-<xsl:param name="queryString" select="translate(editURL:remove(editURL:remove(editURL:remove(
-				substring-after($http.URL,'?'),'page'),'x'),'y'), ' ', '+')"/>
+<xsl:param name="queryString" select="editURL:remove(editURL:remove(editURL:remove(
+				substring-after($http.URL,'?'),'page'),'x'),'y')"/>
 
 <!-- xsl:param name="queryString" select="editURL:remove(editURL:set(substring-after($http.URL,'?'),'style','oac4'),'page')"/ -->
 <xsl:variable name="queryURL">
