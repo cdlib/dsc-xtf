@@ -686,18 +686,21 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:element>
 </xsl:template>
 
-<xsl:template match="dsc" mode="contents-overview">
+
+<xsl:template match="dsc[head]" mode="contents-overview">
  <div>
 <a href="/view?docId={$docId};query={$query};style=oac4;view=dsc#{@id}">
 <xsl:value-of select="head"/></a></div>
 </xsl:template>
 
-<xsl:template match="*[@id]" mode="contents-overview">
+<xsl:template match="*[@id][head]" mode="contents-overview">
  <li>
 <a href="/findaid/ark:/13030/{$docId}/admin/{if ($query) then concat('?query=', $query) else ''}#{@id}">
 <xsl:value-of select="if (head) then head else if (@label) then @label else (oac:supply-label-heading(.))"/></a>
 </li>
 </xsl:template>
+
+<xsl:template match="*[@id][not(head)]" mode="contents-overview"/>
 
   <xsl:template match="head">
     <xsl:copy copy-namespaces="no">
