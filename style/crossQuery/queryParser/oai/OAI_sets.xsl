@@ -51,6 +51,16 @@
     <setSpec>css:objects</setSpec>
     <setName>California State University, Sacramento Library</setName>
   </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>calavc:ead</setSpec>
+    <setName>Visual Communications Archives and Media Resource Library</setName>
+  </set>
+  <!--
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>calavc:objects</setSpec>
+    <setName>Visual Communications Archives and Media Resource Library</setName>
+  </set>
+  -->
 </xsl:template>
 
 <xsl:template name="setQuery">
@@ -177,6 +187,32 @@
         </or>
     </and>
     </xsl:when>
+    <xsl:when test="$set='calavc:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+            <term>V::Visual Communications Archives and Media Resource Library</term>
+        </and>
+    </xsl:when>
+    <!--
+    <xsl:when test="$set='calavc:objects'">
+	<and field="relation">
+           <term>ark</term>
+           <term>13030/kt8w10405k</term>
+	</and>
+    <and>
+        <or>
+            <and field="oac4-tab">
+                <term>Items::image</term>
+            </and>
+            <and field="oac4-tab">
+                <term>Items::text</term>
+            </and>
+        </or>
+    </and>
+    </xsl:when>
+    -->
     <xsl:otherwise>
       Paramter set=<xsl:value-of select="$set"/>
     </xsl:otherwise>
