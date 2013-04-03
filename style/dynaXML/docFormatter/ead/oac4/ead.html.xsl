@@ -741,11 +741,13 @@ able"
 </xsl:template>
 
 <xsl:template match="text" mode="ead">
+    <xsl:if test="number(@xtf:hitCount) &gt; 0">
     <span class="subhit">
         <a>
             <xsl:attribute name="href" select="../extref/@href"/>
             [ <xsl:value-of select="@xtf:hitCount"/> hits]
         </a>
     </span>
+    </xsl:if>
 </xsl:template>
 </xsl:stylesheet>
