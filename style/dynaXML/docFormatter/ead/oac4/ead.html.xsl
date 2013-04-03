@@ -741,6 +741,11 @@ able"
 </xsl:template>
 
 <xsl:template match="text" mode="ead">
-    <xsl:apply-templates select="xtf:hit" mode="ead"/>
+    <span class="subhit">
+        <a>
+            <xsl:attribute name="href" select="../extref/@href"/>
+            [ <xsl:value-of select="@xtf:hitCount"/> hits]
+        </a>
+    </span>
 </xsl:template>
 </xsl:stylesheet>
