@@ -531,7 +531,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <img src="/{dao/@poi}/thumbnail"/>
                 </a>
         </xsl:when>
-        <xsl:when test="contains(dao[1]/@href,'/ark:/')">
+        <xsl:when test="contains(dao[1]/@href,'/ark:/') and not(contains(dao[1]/@href,'ucsd.edu'))">
                 <xsl:variable name="poi" select="replace(dao[1]/@href,'^.*ark:/(\d+)/([a-z0-9]+).*$','ark:/$1/$2')"/>
                 <a href="/{dao[1]/$poi}/?brand=oac4">
                         <img title="thumbnail" alt="thumbnail" src="/{dao/$poi}/thumbnail"/>
