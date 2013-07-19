@@ -117,6 +117,8 @@
         url: <xsl:value-of select="$http.URL"/>
         xslt: <xsl:value-of select="static-base-uri()"/>
         layoutFile: <xsl:value-of select="$layoutFile"/>
+        EAD: http://voro.cdlib.org/oac-ead/prime2002/<xsl:value-of select="$page/ead/voroFileNameBase"/>.xml
+	dateStamp: <xsl:value-of select="$page/ead/dateStamp"/>
         </xsl:comment>
 </xsl:template>
 
@@ -279,10 +281,8 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	<span class="guide-download">
 <xsl:choose>
 	<xsl:when test="$page/ead/pdf-size">
-<xsl:variable name="ark" select="($page)/ead/eadheader/eadid/@identifier"/>
-<xsl:variable name="part" select="replace($ark,'ark:/13030/','')"/>
-<xsl:variable name="dir" select="substring($part,(string-length($part) - 1),2)"/>
-<a href="/data/13030/{$dir}/{$part}/files/{$part}.pdf">PDF</a> (<xsl:value-of select="$page/ead/pdf-size"/>)
+
+<a href="http://pdf.oac.cdlib.org/pdf/{$page/ead/voroFileNameBase}.pdf">PDF</a> (<xsl:value-of select="$page/ead/pdf-size"/>)
 	</xsl:when>
 	<xsl:otherwise>
 	no PDF 
