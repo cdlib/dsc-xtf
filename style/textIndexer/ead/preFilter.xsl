@@ -408,9 +408,6 @@
       <xsl:value-of select="normalize-space(.)"/>
     </voroFileNameBase>
 <xsl:variable name="pdfshadow" select="concat('/dsc/data/pdfshadow/pdf-shadow/pdf/', normalize-space(.))"/>
-<xsl:message>
-  <xsl:value-of select="$pdfshadow"/>
-</xsl:message>
 <xsl:if test="FileUtils:exists($pdfshadow)">
 	<pdf-size xtf:meta="true"><xsl:value-of select="HumanFileSize:humanFileSize(unparsed-text($pdfshadow))"/></pdf-size>
 </xsl:if>
