@@ -925,7 +925,8 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 </xsl:template>
 
 <xsl:template match="*[@tmpl:process='overview-availability']">
-        <xsl:if test="($page/ead/archdesc/*[not(local-name(.)='dsc')]/accessrestrict)">
+        <xsl:if test="($page/ead/archdesc/*[not(local-name(.)='dsc')]/accessrestrict) |
+                       ($page/ead/archdesc/accessrestrict)">
                 <xsl:element name="{name()}">
         <xsl:call-template name="copy-attributes">
                 <xsl:with-param name="element" select="."/>
@@ -939,7 +940,9 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	<xsl:variable name="restrict" 
 		select="(
 			$page/ead/archdesc/*[not(local-name(.)='dsc')]/accessrestrict[not(p)] |
-			$page/ead/archdesc/*[not(local-name(.)='dsc')]/accessrestrict/p 
+			$page/ead/archdesc/*[not(local-name(.)='dsc')]/accessrestrict/p |
+			$page/ead/archdesc/accessrestrict[not(p)] |
+			$page/ead/archdesc/accessrestrict/p 
 	)[1]"/>
 	<xsl:if test="$restrict">
 		<xsl:element name="{name()}">
