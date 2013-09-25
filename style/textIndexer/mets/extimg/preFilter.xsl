@@ -85,7 +85,7 @@
   <xsl:template match="/*" mode="mets">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
-      <xsl:if test="m:fileSec//m:file[contains(@MIMETYPE,'mrsid')]">
+      <xsl:if test="m:fileSec//m:file[contains(@MIMETYPE,'mrsid')] and @PROFILE='http://www.loc.gov/standards/mets/profiles/00000002.xml'">
       	<xsl:attribute name="mrSidHack" select="'needIt'"/>
       </xsl:if>
 			<xsl:comment>get-meta</xsl:comment>
