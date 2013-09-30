@@ -483,9 +483,18 @@
       <xsl:apply-templates/>
     </xsl:copy>
     <!-- most of the time the extref is going to be a URL, record express supplimental files start with a "/" -->
-    <xsl:if test="starts-with(@href,'/')">
+    <xsl:if test="starts-with(@href,'/') or @role='http://oac.cdlib.org/arcrole/supplemental'">
       <xsl:call-template name="suppfiles"/>
     </xsl:if>
+</xsl:template>
+
+<xsl:template match="@href[../@role='http://oac.cdlib.org/arcrole/supplemental']">
+  <xsl:attribute name="href">
+    <xsl:text>/data/13030/</xsl:text>
+    <xsl:value-of select="substring-after(replace($base,'(.*)/[^/].*$','$1'),'/data/13030/')"/>
+    <xsl:text>/files/</xsl:text>
+    <xsl:value-of select="."/>
+  </xsl:attribute>
 </xsl:template>
 
 <xsl:template name="suppfiles"> 
