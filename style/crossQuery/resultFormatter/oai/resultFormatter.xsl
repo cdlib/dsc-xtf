@@ -198,7 +198,7 @@
             <baseURL>http://content.cdlib.org/oai</baseURL>
             <protocolVersion>2.0</protocolVersion>
             <!-- CHANGE -->
-            <adminEmail>mark.redar@ucop.edu</adminEmail>
+            <adminEmail>oacops@cdlib.org</adminEmail>
             <earliestDatestamp>
                <xsl:value-of select="$earliestDateStamp"/>
             </earliestDatestamp>
