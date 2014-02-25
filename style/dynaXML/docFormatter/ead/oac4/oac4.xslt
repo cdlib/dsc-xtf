@@ -504,13 +504,14 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <!-- xsl:variable name="href" select="if (dao[1]/@href) then dao[1]/@href else (daogrp/@poi)"/ -->
 
 <xsl:variable name="hackedLinkPre" select="if (dao[1]/@href) then
-        replace(replace(replace(dao[1]/@href,'http://.*/ark:/', concat($baseURL , 'ark:/') ) ,'/$','') ,'\s$','')
+        replace(replace(replace(replace(dao[1]/@href,'ark%3A/','ark:/'),'http://.*/ark:/', concat($baseURL , 'ark:/') ) ,'/$','') ,'\s$','')
 	else (concat('/', daogrp/@poi )) "/>
 
 <xsl:variable name="hackedLink" select="if (starts-with($hackedLinkPre,'ark:/')) then concat('/',$hackedLinkPre) else $hackedLinkPre"/>
 
 <xsl:variable name="brandMe">
         <xsl:if test="starts-with(dao[1]/@href,'http://ark.cdlib.org/ark:/')
+                     or starts-with(dao[1]/@href,'http://ark.cdlib.org/ark%3A')
                      or starts-with(dao[1]/@href,'/ark:/')
                      or starts-with(dao[1]/@href,'ark:/')
         ">
@@ -540,6 +541,8 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
         <xsl:when test="dao/@href
                         and
                         dao[1][starts-with(@role,'http://oac.cdlib.org/arcrole/link')]
+                        and
+                        not ( starts-with(dao[1]/@href,'http://ark.cdlib.org/ark%3A') )
                         and
                         not ( starts-with(dao[1]/@href,'http://ark.cdlib.org/ark:') )
                         and

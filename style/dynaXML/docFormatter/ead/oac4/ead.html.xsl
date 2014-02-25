@@ -634,7 +634,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 	</div>
 	<div class="right">
 		<span class="online-items">
-		<a href="{$href}">view online item</a>
+		<a href="{replace($href,'http://ark.cdlib.org/','/')}">view online item</a>
 		</span>
 	</div>  
 	</a>
