@@ -470,14 +470,7 @@
 <!-- ====================================================================== -->
 <!-- Supplemental File Indexing                                             -->
 <!-- ====================================================================== -->
-<xsl:template match="otherfindaid">
-    <otherfindaid>
-      <xsl:apply-templates select="@*"/>
-    <xsl:apply-templates/>
-</otherfindaid>
-</xsl:template>
-
-<xsl:template match="item/extref">
+<xsl:template match="extref">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
       <xsl:apply-templates/>
