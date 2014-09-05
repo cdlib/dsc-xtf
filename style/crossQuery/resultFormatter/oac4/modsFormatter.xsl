@@ -132,6 +132,20 @@ Brief record only
                 <xsl:with-param name="element" select="."/>
         </xsl:call-template>
 	<xsl:apply-templates/>
+  <xsl:variable name="meta"         select="$page/crossQueryResult/docHit/meta"/>
+  <xsl:variable name="aeon_url"     select="$meta/aeon_url"/>
+  <xsl:variable name="creator"      select="$meta/mods/name[1]/namePart[1][not(contains(.,'Online Archive of California'))]"/>
+  <xsl:variable name="title"        select="$meta/mods/titleInfo[1]/title[1]"/>
+  <xsl:variable name="identifier"   select="$meta/mods/identifier[@type='099'][1]"/>
+  <xsl:variable name="restrictions" select="$meta/mods/note[@type='restrictions'][1]"/>
+  <xsl:variable name="extent"       select="$meta/mods/physicalDescription[1]/extent[1]"/>
+<!-- https://researchspecial.library.ucsb.edu/aeon/aeon.dll?Action=10&Form=30&Creator=Acheson,%20Alexander%20Wilson&Title=Alexander%20 Wilson%20Acheson%20Letter,%201886&Identifier=Wyles%20SC%201&Restrictions=Use%20of%2Cthe%20collection%20is%20unrestricted&Extent=.01%20linear%20feet --> 
+<!-- Creator=Online%20Archive%20of%20California&Identifier=Wyles%20SC%20620&Restrictions=Consult%20repository%20for%20details.&Extent=0.015%20linear%20feet -->
+
+  <xsl:if test="$page/crossQueryResult/docHit/meta/aeon_url !='' ">
+&#160;&#160;&#160;&#160;&#160;<a class="button" target="_new" title="link opens in new window" 
+  href="{$aeon_url}&amp;Title={$title}&amp;Creator={$creator}&amp;Identifier={$identifier}&amp;Restrictions={$restrictions}&amp;Extent={$extent}">Request items ↗</a>
+  </xsl:if>
         </xsl:element>
 </xsl:template>
 

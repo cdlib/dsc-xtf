@@ -111,7 +111,7 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
   <sql:query
         connection="$connection"
         table="oac_institution"
-        column="name, parent_institution_id, google_analytics_tracking_code, url"
+        column="name, parent_institution_id, google_analytics_tracking_code, url, aeon_marc_url"
         where="cdlpath = '{$cdlpath}'"
         row-tag="r" column-tag="c"
   />
@@ -205,6 +205,9 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
        <institution-url xtf:meta="true" xtf:tokenize="false">
                <xsl:value-of select="$cdlpath_query/r/c[4]"/>
        </institution-url>
+       <aeon_url xtf:meta="true" xtf:tokenize="false">
+               <xsl:value-of select="$cdlpath_query/r/c[5]"/>
+       </aeon_url>
 
         <identifier q="call" xtf:meta="true">
           <xsl:text>Collection Number: </xsl:text>
