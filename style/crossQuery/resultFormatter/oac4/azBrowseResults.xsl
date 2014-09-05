@@ -54,7 +54,7 @@
 		</xsl:choose>
 	</div>
 	<div class="institutions-right">
-		<a href="/findaid/{replace(meta/identifier[1],'.*(ark:/.*)','$1')}/">
+		<a href="/findaid/{replace(replace(meta/identifier[1],'.*(ark:/.*)','$1'),'(/)+$','')}/">
 			<xsl:value-of select="meta/title[1]"/>
 		</a>
 	</div>
