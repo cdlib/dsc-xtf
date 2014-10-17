@@ -1,6 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" >
 
-    <xsl:variable name="OAI_page_size" select="'2000'"/>
+    <xsl:variable name="OAI_page_size" select="'100'"/>
 
 <xsl:template name="setList">
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
@@ -54,6 +54,10 @@
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>calavc:ead</setSpec>
     <setName>Visual Communications Archives and Media Resource Library</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>bancroft:objects</setSpec>
+    <setName>Bancroft Library Digital Objects</setName>
   </set>
   <!--
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
@@ -194,6 +198,21 @@
         <and field="institution-doublelist">
             <term>V::Visual Communications Archives and Media Resource Library</term>
         </and>
+    </xsl:when>
+    <xsl:when test="$set='bancroft:objects'">
+	<and field="facet-institution">
+           <term>UC Berkeley::Bancroft Library</term>
+	</and>
+    <and>
+        <or>
+            <and field="oac4-tab">
+                <term>Items::image</term>
+            </and>
+            <and field="oac4-tab">
+                <term>Items::text</term>
+            </and>
+        </or>
+    </and>
     </xsl:when>
     <!--
     <xsl:when test="$set='calavc:objects'">
