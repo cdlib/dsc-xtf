@@ -1,6 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" >
 
-    <xsl:variable name="OAI_page_size" select="'100'"/>
+    <xsl:variable name="OAI_page_size" select="'2000'"/>
 
 <xsl:template name="setList">
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
