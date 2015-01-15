@@ -788,7 +788,21 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:otherwise>
   </xsl:choose>
   <xsl:if test="$page/ead/aeon_url !='' and $page/ead/voroFileNameBase != ''">
-&#160;&#160;&#160;&#160;&#160;<a class="button" target="_new" title="link opens in new window" href="{$page/ead/aeon_url}http://voro.cdlib.org/oac-ead/prime2002/{$page/ead/voroFileNameBase}.xml">Request items ↗</a>
+    <xsl:variable name="aeon_data_parameter">
+      <xsl:choose>
+        <xsl:when test="$page/ead/aeon_data_parameter = 'ARK'">
+          <xsl:text>ark:/13030/</xsl:text>
+          <xsl:value-of select="$docId"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>http://voro.cdlib.org/oac-ead/prime2002/</xsl:text>
+          <xsl:value-of select="$page/ead/voroFileNameBase"/>
+          <xsl:text>.xml</xsl:text>
+        </xsl:otherwise> 
+      </xsl:choose>
+    </xsl:variable>
+&#160;&#160;&#160;&#160;&#160;
+<a class="button" target="_new" title="link opens in new window" href="{$page/ead/aeon_url}{$aeon_data_parameter}">Request items ↗</a>
   </xsl:if>
 </xsl:element>
 </xsl:template>

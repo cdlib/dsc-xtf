@@ -111,7 +111,7 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
   <sql:query
         connection="$connection"
         table="oac_institution"
-        column="name, parent_institution_id, google_analytics_tracking_code, url, aeon_marc_url"
+        column="name, parent_institution_id, google_analytics_tracking_code, url, aeon_marc_by_metadata_url"
         where="cdlpath = '{$cdlpath}'"
         row-tag="r" column-tag="c"
   />
