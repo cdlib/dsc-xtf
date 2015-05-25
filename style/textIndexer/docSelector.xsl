@@ -296,7 +296,7 @@
       <xsl:when test="$profile = 'ead-oac'">
         <indexFile fileName="{@fileName}" 
           preFilter="style/textIndexer/ead/preFilter.xsl" 
-          displayStyle="style/dynaXML/docFormatter/ead/oac/docFormatter.xsl"/>
+          displayStyle="style/dynaXML/docFormatter/ead/oac4/oac4.xslt"/>
         <!--<xsl:message select="'Profile: xml-ead-oac'"/>-->
       </xsl:when>
       <xsl:when test="$profile = 'tei-eschol'">
