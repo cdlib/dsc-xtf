@@ -353,9 +353,15 @@
   </xsl:template>
 
   <xsl:template name="reference-image">
+  <xsl:variable name="max-X">
+   <xsl:value-of select="/m:mets/m:structMap/m:div/m:div[contains(@TYPE,'archive')][1]/m:fptr[1]/@cdl:X"/>
+  </xsl:variable>
   <xsl:apply-templates select="/m:mets/m:structMap/m:div/m:div[
     @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
-                                             ][m:fptr/@cdl:X]" mode="reference-image"/>
+                                             ][m:fptr/@cdl:X][ number(m:fptr/@cdl:X) &lt; number($max-X)]" mode="reference-image"/>
+    <reference-image-count xtf:meta="true">
+      <xsl:value-of select="count(/m:mets/m:structMap//m:div[@ORDER or @LABEL])"/>
+    </reference-image-count>
   </xsl:template>
 
   <xsl:template match="m:div" mode="reference-image">
