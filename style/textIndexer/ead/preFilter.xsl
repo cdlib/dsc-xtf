@@ -359,7 +359,7 @@
       </xsl:element>
     </xsl:for-each>
     
-    <xsl:apply-templates select="title[0]" mode="sort"/>
+    <xsl:apply-templates select="title[1]" mode="sort"/>
     <xsl:apply-templates select="creator" mode="sort"/>
     <xsl:apply-templates select="date[text()]" mode="facet"/>
     

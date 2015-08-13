@@ -44,7 +44,7 @@
   <!-- ====================================================================== -->
 
   <xsl:import href="../ead/oacDocHit.xsl"/>
-<xsl:include href="http://voro.cdlib.org:8081/xslt/institution-ark2url.xsl"/>
+<xsl:include href="http://voro.cdlib.org/xslt/institution-ark2url.xsl"/>
   <xsl:param name="brand" select="'oac'"/>
 <xsl:param name="browse-ignore" select="'no'"/>
 <xsl:param name="this-ignore"/>
