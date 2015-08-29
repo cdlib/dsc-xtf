@@ -83,14 +83,19 @@
 <!-- ====================================================================== -->
 
   <xsl:template match="/*" mode="mets">
+    <xsl:variable
+      name="mrSidHack"
+      select="boolean(m:fileSec//m:file[contains(@MIMETYPE,'mrsid')]
+                      and @PROFILE='http://www.loc.gov/standards/mets/profiles/00000002.xml')"/>
     <xsl:copy>
       <xsl:copy-of select="@*"/>
-      <xsl:if test="m:fileSec//m:file[contains(@MIMETYPE,'mrsid')] and @PROFILE='http://www.loc.gov/standards/mets/profiles/00000002.xml'">
+      <xsl:if test="$mrSidHack">
       	<xsl:attribute name="mrSidHack" select="'needIt'"/>
       </xsl:if>
-			<xsl:comment>get-meta</xsl:comment>
       <xsl:call-template name="get-meta"/>
-      <xsl:call-template name="reference-image"/>
+      <xsl:call-template name="reference-image">
+        <xsl:with-param name="mrSidHack" select="$mrSidHack"/>
+      </xsl:call-template>
       <xsl:comment>zoom</xsl:comment>
       <xsl:call-template name="zoom"/>
       <xsl:comment>mets</xsl:comment>
@@ -353,12 +358,25 @@
   </xsl:template>
 
   <xsl:template name="reference-image">
-  <xsl:variable name="max-X">
-   <xsl:value-of select="/m:mets/m:structMap/m:div/m:div[contains(@TYPE,'archive')][1]/m:fptr[1]/@cdl:X"/>
-  </xsl:variable>
-  <xsl:apply-templates select="/m:mets/m:structMap/m:div/m:div[
-    @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
-                                             ][m:fptr/@cdl:X][ number(m:fptr/@cdl:X) &lt; number($max-X)]" mode="reference-image"/>
+    <xsl:param name="mrSidHack"/>
+    <xsl:choose>
+      <xsl:when test="$mrSidHack">
+        <xsl:variable name="max-X">
+          <xsl:value-of select="/m:mets/m:structMap/m:div/m:div[contains(@TYPE,'archive')][1]/m:fptr[1]/@cdl:X"/>
+        </xsl:variable>
+        <xsl:apply-templates
+          select="/m:mets/m:structMap/m:div/m:div[ @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
+                                                 ][m:fptr/@cdl:X][
+                        number(m:fptr/@cdl:X) &lt; number($max-X)]"
+          mode="reference-image"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates
+          select="/m:mets/m:structMap/m:div/m:div[ @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
+                                                 ][m:fptr/@cdl:X]"
+          mode="reference-image"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <reference-image-count xtf:meta="true">
       <xsl:value-of select="count(/m:mets/m:structMap//m:div[@ORDER or @LABEL])"/>
     </reference-image-count>
