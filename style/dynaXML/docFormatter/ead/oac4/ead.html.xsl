@@ -601,7 +601,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 			<xsl:when test="@href
                         		and ( not ( contains(@href,'/ark:/') ) 
                                             or
-                                              contains(@href,'oac.cdlib.org/items/ark:/')
+                                              matches(@href,'cdlib.org/items?/ark:/')
                                             )
 			">
 				<xsl:value-of select="@href"/>

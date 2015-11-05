@@ -504,10 +504,19 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <!-- xsl:variable name="href" select="if (dao[1]/@href) then dao[1]/@href else (daogrp/@poi)"/ -->
 
 <xsl:variable name="hackedLinkPre" select="if (dao[1]/@href) then
-        replace(replace(replace(replace(dao[1]/@href,'ark%3A/','ark:/'),'http://.*/ark:/', concat($baseURL , 'ark:/') ) ,'/$','') ,'\s$','')
-	else (concat('/', daogrp/@poi )) "/>
+            replace(replace(replace(replace(dao[1]/@href,'ark%3A/','ark:/'),'http://.*/ark:/', concat($baseURL , 'ark:/') ) ,'/$','') ,'\s$','')
+	    else (concat('/', daogrp/@poi )) "/>
 
-<xsl:variable name="hackedLink" select="if (starts-with($hackedLinkPre,'ark:/')) then concat('/',$hackedLinkPre) else $hackedLinkPre"/>
+<xsl:variable name="hackedLink">
+  <xsl:choose>
+    <xsl:when test="starts-with(dao[1]/@href,'http://calisphere.cdlib.org/')">
+      <xsl:value-of select="dao[1]/@href"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="if (starts-with($hackedLinkPre,'ark:/')) then concat('/',$hackedLinkPre) else $hackedLinkPre"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
 
 <xsl:variable name="brandMe">
         <xsl:if test="starts-with(dao[1]/@href,'http://ark.cdlib.org/ark:/')
@@ -532,7 +541,9 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 <img src="/{dao/@poi}/thumbnail"/>
                 </a>
         </xsl:when>
-        <xsl:when test="contains(dao[1]/@href,'/ark:/') and not(contains(dao[1]/@href,'ucsd.edu'))">
+        <xsl:when test="contains(dao[1]/@href,'/ark:/')
+                        and not(contains(dao[1]/@href,'ucsd.edu'))
+                        and not(contains(dao[1]/@href,'calisphere.cdlib.org/item'))">
                 <xsl:variable name="poi" select="replace(dao[1]/@href,'^.*ark:/(\d+)/([a-z0-9]+).*$','ark:/$1/$2')"/>
                 <a href="/{dao[1]/$poi}/?brand=oac4">
                         <img title="thumbnail" alt="thumbnail" src="/{dao/$poi}/thumbnail"/>
