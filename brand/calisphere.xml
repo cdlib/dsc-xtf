@@ -62,6 +62,7 @@
 <div class="footer-sentence1">Calisphere is a service of the <a href="http://libraries.universityofcalifornia.edu" target="_top">UC Libraries</a>, powered by the <a href="http://www.cdlib.org/" target="_top">California Digital Library</a>.</div> 
 <div class="footer-sentence2">Copyright &#169; 2011 The Regents of The University of California.</div>
 <script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script> 
+<script type="text/javascript" src="http://cdn.calisphere.org/json4lib/calisphereBanner.js"></script> 
 <script type="text/javascript">
 $("a#zoomMe").click(function () {
   _gaq = _gaq || [];

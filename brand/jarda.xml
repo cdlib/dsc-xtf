@@ -11,6 +11,7 @@ width="520" height="32" alt="JARDA: Japanese American Relocation Digital Archive
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://www.calisphere.universityofcalifornia.edu/css/jarda-entry.css" type="text/css" media="screen"/>
  <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="http://www.calisphere.universityofcalifornia.edu/css/print.css" type="text/css" media="print"/>
 <link type="text/css" href="http://cdn.calisphere.org/json4lib/slideshow/css/slideshowLink-combo.css" rel="stylesheet" />
+<script type="text/javascript" src="http://cdn.calisphere.org/json4lib/calisphereBanner.js"></script>
     <script src="http://www.calisphere.universityofcalifornia.edu/js/calisphere.js" xmlns="http://www.w3.org/1999/xhtml" type="text/JavaScript" />
     <script type="text/javascript" src="/default/js/nifty.js" xmlns="http://www.w3.org/1999/xhtml"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>

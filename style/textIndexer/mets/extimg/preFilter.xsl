@@ -372,13 +372,20 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates
-          select="/m:mets/m:structMap/m:div/m:div[ @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
+          select="/m:mets/m:structMap//m:div[ @LABEL='med-res' or @LABEL='hi-res' or contains(@TYPE,'reference')
                                                  ][m:fptr/@cdl:X]"
           mode="reference-image"/>
       </xsl:otherwise>
     </xsl:choose>
     <reference-image-count xtf:meta="true">
-      <xsl:value-of select="count(/m:mets/m:structMap//m:div[@ORDER or @LABEL])"/>
+      <xsl:choose>
+        <xsl:when test="/m:mets/@PROFILE='SobekCM'">
+          <xsl:text>1</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="count(/m:mets/m:structMap//m:div[@ORDER or @LABEL])"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </reference-image-count>
   </xsl:template>
 

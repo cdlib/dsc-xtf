@@ -450,9 +450,8 @@ Try searching all Calisphere collections.
           <xsl:copy-of select="$brand.footer"/>
           <xsl:comment>END PAGE ID</xsl:comment>
 <xsl:if test="$popUpSurvey.on='on'">
-         <script xmlns="" src="http://cdn.calisphere.org/json4lib/survey/jfc/src/swfstore.js"></script>
-         <script xmlns="" src="http://cdn.calisphere.org/json4lib/survey/pop-up-survey.js"></script>
 </xsl:if> 
+         <script xmlns="" src="http://cdn.calisphere.org/json4lib/calisphereBanner.js"></script>
         </div>
         <!-- Store search -->
         <xsl:if test="session:isEnabled()">
