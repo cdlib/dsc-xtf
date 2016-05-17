@@ -467,26 +467,6 @@ Try searching all Calisphere collections.
       select="$institution"/>
 </xsl:call-template>
 
-<script><xsl:comment>
-   for(var i = 0; i &lt; document.links.length; i++) {
-      if (
-           (document.links[i].pathname.replace(/^\//,'').indexOf('ark:/') == 0 &amp;&amp; domainName==".universityofcalifornia.edu")
-           ||
-           (document.links[i].hostname.indexOf('.cdlib.org') &gt; 1 &amp;&amp; domainName==".universityofcalifornia.edu")
-           ||
-           (document.links[i].hostname.indexOf('.universityofcalifornia.edu') &gt; 1 &amp;&amp; domainName==".cdlib.org")
-         ) {
-        document.links[i].setAttribute('onclick',"_gaq.push(['cst._link', this.href]); return false;");
-      }
-    }
-    if (domainName==".universityofcalifornia.edu") {
-      for(var i = 0; i &lt; document.forms.length; i++) {
-        if(document.forms[i].getAttribute('class') =="search-form") {
-          document.forms[i].setAttribute('onsubmit',"_gaq.push(['cst._linkByPost', this]);");
-        }
-      }
-    }
-</xsl:comment></script>
       </body>
     </html>
   </xsl:template>
