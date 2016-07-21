@@ -29,10 +29,7 @@
     var _gaq = _gaq || [];
       _gaq.push(
       ['_setAccount', 'UA-552286-6'],
-      ['_trackPageview'],
-      ['t2._setAccount', 'UA-552286-27'],
-      ['t2._setDomainName', '.library.ucsf.edu'],
-      ['t2._trackPageview']
+      ['_trackPageview']
       );
     (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
