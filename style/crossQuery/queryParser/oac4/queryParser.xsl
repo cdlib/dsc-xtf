@@ -88,7 +88,9 @@
   <xsl:param name="fI-ignore" select="'value'"/>
   <xsl:param name="fD-ignore" select="'value'"/>
   
-  <xsl:param name="endDoc" as="xs:integer" select="($startDoc + $docsPerPage)-1"/>
+  <xsl:param name="endDoc-ignore" as="xs:integer" select="($startDoc + $docsPerPage)-1"/>
+  <xsl:param name="endDoc" as="xs:integer" select="$endDoc-ignore"/>
+
   <xsl:param name="docRange">
     <xsl:if test="$docsPerPage > 0">
        <xsl:value-of select="concat('#',$startDoc,'-',$endDoc)"/>  
