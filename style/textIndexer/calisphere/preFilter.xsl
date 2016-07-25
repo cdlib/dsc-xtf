@@ -196,6 +196,10 @@
 
     <!-- in theory the same object can be in many collections, so we need to know the order in 
 	the particular collection -->
+
+    <xsl:if test="$parent_ark=''">
+      <orphan xtf:meta="true">true</orphan>
+    </xsl:if>
     <facet-collection-order xtf:meta="true" xtf:tokenize="false">
 	<xsl:value-of select="$parent_ark"/>
 	<xsl:text>::</xsl:text>
