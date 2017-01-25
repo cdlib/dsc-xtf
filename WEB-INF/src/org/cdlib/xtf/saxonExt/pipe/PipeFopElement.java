@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,11 +59,9 @@ import org.cdlib.xtf.servletBase.TextServlet;
 import org.cdlib.xtf.util.Trace;
 import org.cdlib.xtf.xslt.FileUtils;
 import org.xml.sax.SAXException;
-
 import org.apache.avalon.framework.configuration.Configuration;
 import org.apache.avalon.framework.configuration.ConfigurationException;
 import org.apache.avalon.framework.configuration.DefaultConfigurationBuilder;
-
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.FOUserAgent;
@@ -74,6 +73,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Image;
 import com.lowagie.text.pdf.BadPdfFormatException;
+import com.lowagie.text.pdf.PRStream;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfCopy;
 import com.lowagie.text.pdf.PdfDictionary;
@@ -469,6 +469,23 @@ public class PipeFopElement extends ElementWithContent
         PdfCopy pdfWriter = new PdfCopy(pdfDocument, outStream);
         pdfDocument.open();
         
+        // If one of the documents has XMP metadata, retain it. If both do, we will prefer
+        // the second one.
+        boolean override = getAttribBool("overrideMetadata", context, false);
+        byte[] xmpMetadata = null;
+        for (int i=0; i<2; i++) {  
+          PdfDictionary catalog = readers[i].getCatalog();
+          PdfObject xmpo = PdfReader.getPdfObject(catalog.get(PdfName.METADATA));
+          if (xmpo != null && xmpo.isStream()) {
+            if (xmpMetadata != null && override)
+              continue;
+            xmpMetadata = PdfReader.getStreamBytesRaw((PRStream)xmpo);
+            PdfReader.killIndirect(catalog.get(PdfName.METADATA));
+          }
+        }
+        if (xmpMetadata != null)
+          pdfWriter.setXmpMetadata(xmpMetadata);
+      
         // Merge the metadata
         mergeMetadata(infos, pdfWriter, context);
         
