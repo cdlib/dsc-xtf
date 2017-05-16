@@ -727,6 +727,17 @@ else (param[@name='relation']/@value)"/>
 	</xsl:element>
 </xsl:template>
 
+<xsl:template match="*[@tmpl:insert='result-collection-number']" mode="searchResultsItemEAD searchResultsItemMARC searchResultsItemMETS">
+	<xsl:param name="docHit"/>
+	<xsl:element name="{name()}">
+		<xsl:for-each select="@*[not(namespace-uri(.)='xslt://template')]"><xsl:copy copy-namespaces="no"/></xsl:for-each>
+                <xsl:variable name="colnum" select="if ($docHit/meta/identifier[@call])
+                        then $docHit/meta/identifier[@call]
+                        else $docHit/meta/identifier[not(starts-with(.,'http://'))][1]"/>
+                <xsl:value-of select="replace($colnum, 'Collection number:','','i')"/>
+	</xsl:element>
+</xsl:template>
+
 <xsl:template match="*[@tmpl:insert='result-author']" mode="searchResultsItemMARC">
 	<xsl:param name="docHit"/>
 	<xsl:element name="{name()}">
