@@ -357,7 +357,10 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
   <xsl:element name="{name()}">
     	<xsl:for-each select="@*[not(namespace-uri()='xslt://template')]"><xsl:copy copy-namespaces="no"/></xsl:for-each>
 <xsl:choose>
-<xsl:when test="count($page/ead/archdesc/did/repository) = 1">
+<xsl:when test="count($page/ead/archdesc/did/repository) > 1">
+	<xsl:text>Various; consult contributing institutions</xsl:text>
+</xsl:when>
+<xsl:otherwise>
 	<xsl:choose>
 	<xsl:when test="$page/ead/archdesc/did/unitid">
 	<xsl:apply-templates select="$page/ead/archdesc/did/unitid[1]" mode="collectionId"/>
@@ -366,9 +369,6 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 		<xsl:text>Consult repository</xsl:text>
 	</xsl:otherwise>
 	</xsl:choose>
-</xsl:when>
-<xsl:otherwise>
-	<xsl:text>Various; consult contributing institutions</xsl:text>
 </xsl:otherwise>
 </xsl:choose>
 &#160;
