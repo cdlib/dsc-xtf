@@ -23,10 +23,10 @@
 			<xsl:text>Abstract</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'container'">
-			<xsl:text>Storage Unit</xsl:text>
+			<xsl:text>Container</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'langmaterial'">
-			<xsl:text>Languge of Material</xsl:text>
+			<xsl:text>Language of the Material</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'materialspec'">
 			<xsl:text>Material Specific Details</xsl:text>
@@ -51,13 +51,13 @@
 			<xsl:text>Access Information</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'accurals'">
-			<xsl:text>Future Additions</xsl:text>
+			<xsl:text>Accruals</xsl:text>
 		</xsl:when>
-		<xsl:when test="$element-name = 'acquinfo'">
+		<xsl:when test="$element-name = 'acqinfo'">
 			<xsl:text>Acquisition Information</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'altformavail'">
-			<xsl:text>Alternative For of Materials Available</xsl:text>
+			<xsl:text>Alternative Forms of Material Available</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'appraisal'">
 			<xsl:text>Appraisal Information</xsl:text>
@@ -95,11 +95,17 @@
 		<xsl:when test="$element-name = 'originalsloc'">
 			<xsl:text>Location of Original Material</xsl:text>
 		</xsl:when>
+		<xsl:when test="$element-name = 'otherfindaid'">
+			<xsl:text>Additional Finding Aids</xsl:text>
+        </xsl:when>
+		<xsl:when test="$element-name = 'physloc'">
+			<xsl:text>Physical Location</xsl:text>
+		</xsl:when>
 		<xsl:when test="$element-name = 'phystech'">
 			<xsl:text>Technical Details</xsl:text>
 		</xsl:when>
-		<xsl:when test="$element-name = 'perfercite'">
-			<xsl:text>How to Cite</xsl:text>
+		<xsl:when test="$element-name = 'prefercite'">
+			<xsl:text>Preferred Citation</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'processinfo'">
 			<xsl:text>Processing/Project Information</xsl:text>
@@ -110,7 +116,7 @@
 		<xsl:when test="$element-name = 'scopecontent'">
 			<xsl:text>Scope and Content Note</xsl:text>
 		</xsl:when>
-		<xsl:when test="$element-name = 'seperatedmaterial'">
+		<xsl:when test="$element-name = 'separatedmaterial'">
 			<xsl:text>Removed or Separated Material</xsl:text>
 		</xsl:when>
 		<xsl:when test="$element-name = 'userestrict'">
