@@ -139,7 +139,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 
 <xsl:template match="container[not(@label)]" mode="ead">
 	<xsl:call-template name="id-me"/>
-	<div class="ead-p"><b>Storage Unit:</b><xsl:text> </xsl:text><xsl:apply-templates mode="ead"/></div>
+	<div class="ead-p"><b>Container:</b><xsl:text> </xsl:text><xsl:apply-templates mode="ead"/></div>
 </xsl:template>
 
 <xsl:template match="langmaterial[not(@label)]" mode="ead">
@@ -169,6 +169,11 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 <xsl:template match="physdesc[not(@label)]" mode="ead">
 	<xsl:call-template name="id-me"/>
 	<div class="ead-p"><b>Physical Description:</b><xsl:text> </xsl:text><xsl:apply-templates mode="ead"/></div>
+</xsl:template>
+
+<xsl:template match="physloc[not(@label)]" mode="ead">
+	<xsl:call-template name="id-me"/>
+	<div class="ead-p"><b>Physical Location:</b><xsl:text> </xsl:text><xsl:apply-templates mode="ead"/></div>
 </xsl:template>
 
 <xsl:template match="location[not(@label)]" mode="ead">
