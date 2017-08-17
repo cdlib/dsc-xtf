@@ -32,6 +32,10 @@
     <setName>Loyola Marymount University, Department of Archives and Special Collections, William H. Hannon Library: EAD Finding Aids</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>css:ead</setSpec>
+    <setName>California State University, Sacramento Library: EAD Finding Aids</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>clloy:objects</setSpec>
     <setName>Loyola Marymount University, Department of Archives and Special Collections, William H. Hannon Library: Digital Objects</setName>
   </set>
@@ -142,6 +146,14 @@
             </and>
         </or>
     </and>
+    </xsl:when>
+    <xsl:when test="$set='css:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+            <term>C::California State University, Sacramento Library*</term>
+        </and>
     </xsl:when>
     <xsl:when test="$set='scu:ead'">
         <and field="oac4-tab">
