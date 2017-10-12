@@ -805,6 +805,11 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
           <xsl:text>ark:/13030/</xsl:text>
           <xsl:value-of select="$docId"/>
         </xsl:when>
+        <xsl:when test="$page/ead/facet-institution == 'Hoover Institution'">
+          <xsl:text>https://voro.cdlib.org/oac-ead/prime2002/</xsl:text>
+          <xsl:value-of select="$page/ead/voroFileNameBase"/>
+          <xsl:text>.xml</xsl:text>
+        </xsl:when>
         <xsl:otherwise>
           <xsl:text>http://voro.cdlib.org/oac-ead/prime2002/</xsl:text>
           <xsl:value-of select="$page/ead/voroFileNameBase"/>
