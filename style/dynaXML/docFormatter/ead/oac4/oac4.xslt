@@ -809,7 +809,6 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
                         or $page/ead/facet-institution = 'UC Davis::University Archives'
                         or $page/ead/facet-institution = 'UC Davis::Special Collections'
         ">
-        <xsl:otherwise>
           <xsl:text>https://voro.cdlib.org/oac-ead/prime2002/</xsl:text>
           <xsl:value-of select="$page/ead/voroFileNameBase"/>
           <xsl:text>.xml</xsl:text>
