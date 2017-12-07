@@ -136,7 +136,8 @@ Brief record only
   <xsl:variable name="aeon_url"     select="$meta/aeon_url"/>
   <xsl:variable name="creator"      select="$meta/mods/name[1]/namePart[1][not(contains(.,'Online Archive of California'))]"/>
   <xsl:variable name="title"        select="$meta/mods/titleInfo[1]/title[1]"/>
-  <xsl:variable name="identifier"   select="$meta/mods/identifier[@type='099'][1]"/>
+  <xsl:variable name="identifier-099-1"   select="$meta/mods/identifier[@type='099'][1]"/>
+  <xsl:variable name="identifier"   select="if ($identifier-099-1) then $identifier-099-1 else $meta/mods/identifier[1]"/>
   <xsl:variable name="restrictions" select="$meta/mods/note[@type='restrictions'][1]"/>
   <xsl:variable name="extent"       select="$meta/mods/physicalDescription[1]/extent[1]"/>
 <!-- https://researchspecial.library.ucsb.edu/aeon/aeon.dll?Action=10&Form=30&Creator=Acheson,%20Alexander%20Wilson&Title=Alexander%20 Wilson%20Acheson%20Letter,%201886&Identifier=Wyles%20SC%201&Restrictions=Use%20of%2Cthe%20collection%20is%20unrestricted&Extent=.01%20linear%20feet --> 
