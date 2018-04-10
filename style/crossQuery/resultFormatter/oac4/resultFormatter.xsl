@@ -634,7 +634,7 @@ else (param[@name='relation']/@value)"/>
 		<xsl:attribute name="href">
 			<xsl:text>/findaid/ark:/13030/</xsl:text>
 			<xsl:value-of select="replace($docHit/meta/identifier[1],'http://ark.cdlib.org/ark:/13030/','')"/>
-			<xsl:text>?query=</xsl:text>
+			<xsl:text>/?query=</xsl:text>
 			<xsl:value-of select="translate($query, ' ', '+')"/>
 		</xsl:attribute>
 		<xsl:value-of select="$docHit/meta/title[1]" />
