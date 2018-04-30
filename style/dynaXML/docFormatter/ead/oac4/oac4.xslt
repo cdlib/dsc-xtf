@@ -684,8 +684,8 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	<xsl:call-template name="copy-attributes">
 		<xsl:with-param name="element" select="."/>
 	</xsl:call-template>
-<a href="http://www.oac.cdlib.org/findaid/ark:/13030/{$docId}">
-<xsl:text>&#8734; http://www.oac.cdlib.org/findaid/ark:/13030/</xsl:text>
+<a href="https://oac.cdlib.org/findaid/ark:/13030/{$docId}">
+<xsl:text>&#8734; https://oac.cdlib.org/findaid/ark:/13030/</xsl:text>
 <xsl:value-of select="$docId"/>
 </a>
 	</xsl:element>
