@@ -57,7 +57,8 @@
 </xsl:key>
 
 
- <xsl:param name="http.URL"/> 
+<xsl:param name="http.URL"/> 
+<xsl:param name="http.rawURL"/> 
 
 <xsl:param name="view"/>
 <xsl:param name="style"/>
@@ -679,15 +680,67 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:element>
 </xsl:template>
 
-<xsl:template match="*[@tmpl:insert='permalink']">
+<xsl:template name="permalink">
+  <xsl:text>https://oac.cdlib.org/findaid/ark:/13030/</xsl:text>
+  <xsl:value-of select="$docId"/>
+  <xsl:text>/</xsl:text>
+</xsl:template>
+
+<xsl:template name="canonical">
+  <xsl:text>https://oac.cdlib.org/</xsl:text><!-- canonical base URL -->
+  <xsl:choose>
+    <!-- some EAD views have fancy URLs (via RewriteRules in apache) -->
+    <xsl:when test="$doc.view = 'entire_text'
+                    or ($view='dsc' and $dsc.position = '1')
+                    or $view='admin'
+                    or (not(boolean($view) and boolean($doc.view)))
+                    ">
+      <xsl:text>findaid/ark:/13030/</xsl:text>
+      <xsl:value-of select="$docId"/>
+      <xsl:text>/</xsl:text>
+      <xsl:call-template name="subpage"/>
+    </xsl:when>
+    <xsl:otherwise><!-- if not a fancy URL, just pass the rest over -->
+      <xsl:value-of select="tokenize($http.rawURL, '/')[5]"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="subpage">
+  <xsl:choose>
+    <xsl:when test="$view='dsc'">
+      <xsl:text>dsc/</xsl:text>
+    </xsl:when>
+    <xsl:when test="$doc.view='entire_text'">
+      <xsl:text>entire_text/</xsl:text>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='canonical']">
 	<xsl:element name="{name()}">
 	<xsl:call-template name="copy-attributes">
 		<xsl:with-param name="element" select="."/>
 	</xsl:call-template>
-<a href="https://oac.cdlib.org/findaid/ark:/13030/{$docId}/">
-<xsl:text>&#8734; https://oac.cdlib.org/findaid/ark:/13030/</xsl:text>
-<xsl:value-of select="$docId"/>
-<xsl:text>/</xsl:text>
+          <xsl:attribute name="rel" select="'canonical'"/>
+          <xsl:attribute name="href">
+            <xsl:call-template name="canonical"/>
+          </xsl:attribute>
+        </xsl:element>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='permalink']">
+  <xsl:variable name="permalink">
+    <xsl:call-template name="permalink"/>
+  </xsl:variable>
+	<xsl:element name="{name()}">
+	<xsl:call-template name="copy-attributes">
+		<xsl:with-param name="element" select="."/>
+	</xsl:call-template>
+<a>
+  <xsl:attribute name="href" select="$permalink"/>
+<xsl:text>&#8734; </xsl:text>
+<xsl:value-of select="$permalink"/>
 </a>
 	</xsl:element>
 </xsl:template>

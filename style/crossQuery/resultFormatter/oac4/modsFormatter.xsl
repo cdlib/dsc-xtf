@@ -32,6 +32,8 @@
 <xsl:variable name="afterGroup" select="if (substring-before($group,'::')) 
 		then substring-after($group,'::') else $group"/>
 
+<xsl:param name="http.rawURL"/>
+
 <xsl:variable name="page" select="/"/>
 
 <xsl:variable name="layoutFile">
@@ -113,6 +115,19 @@
 </xsl:template>
 
 <xsl:template match="div[@class='collection-contents-container']"/>
+
+<xsl:template match="link[@tmpl:insert='canonical']">
+        <xsl:element name="{name()}">
+        <xsl:call-template name="copy-attributes">
+                <xsl:with-param name="element" select="."/>
+        </xsl:call-template>
+          <xsl:attribute name="rel" select="'canonical'"/>
+          <xsl:attribute name="href">
+            <xsl:text>https://oac.cdlib.org/</xsl:text>
+            <xsl:value-of select="tokenize($http.rawURL, '/')[5]"/>
+          </xsl:attribute>
+	</xsl:element>
+</xsl:template>
 
 <xsl:template match="div[@tmpl:insert='permalink']">
         <xsl:element name="{name()}">
