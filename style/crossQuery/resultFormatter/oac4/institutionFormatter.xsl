@@ -37,7 +37,8 @@
 <xsl:param name="limit"/>
 
 <!-- filter untrusted input -->
-<xsl:variable name="Institution.filtered" select="replace($Institution,'[^\i\s\.\(\)/,-].*','')"/>
+<!-- xsl:variable name="Institution.filtered" select="replace($Institution,'[^\i\s\.\(\)/,-].*','')"/ -->
+<xsl:variable name="Institution.filtered" select="$Institution"/>
 
 <xsl:variable name="Institution.filtered.parts" select="tokenize($Institution.filtered,'::')"/>
 
