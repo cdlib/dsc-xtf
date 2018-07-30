@@ -482,16 +482,7 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 </xsl:template>
 
 <xsl:template match="img[@class='map1']">
-<xsl:variable name="mapURL" >
-<xsl:text>http://maps.googleapis.com/maps/api/staticmap?size=313x200&amp;key=</xsl:text>
-<xsl:text>AIzaSyBo7gwbbkwMa1rhPmrsiIXlc-YJ6vhBuJw</xsl:text>
-<xsl:text>&amp;markers=color:blue|</xsl:text>
-<xsl:apply-templates select="$repodata" mode="repo-marker"/>
-<xsl:text>&amp;zoom=9</xsl:text>
-</xsl:variable>
-	<a href="/map/?ark={$ark}">
-	<img class="map1" height="200" width="313" border="0" src="{$mapURL}"/>
-	</a>
+	<a href="/map/?ark={$ark}"> </a>
 </xsl:template>
 
 <xsl:template match="*[@class='institution-name']">
