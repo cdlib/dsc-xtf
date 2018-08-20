@@ -117,6 +117,7 @@
 <!-- ====================================================================== -->
 
 <xsl:template match="dsc" mode="dsc-headers">
+    <xsl:if test="dsc != ''">
 	<div cid="{@id}" class="dsc">
 		<xsl:value-of select="
 			if (head) then normalize-space(head) 
@@ -124,6 +125,7 @@
 			else 'Collection Contents'
 		"/></div>
 	<xsl:apply-templates select="c01" mode="dsc-headers"/>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template 
