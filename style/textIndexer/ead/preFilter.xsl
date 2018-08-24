@@ -117,7 +117,7 @@
 <!-- ====================================================================== -->
 
 <xsl:template match="dsc" mode="dsc-headers">
-    <xsl:if test="dsc != ''">
+    <xsl:if test="node()">
 	<div cid="{@id}" class="dsc">
 		<xsl:value-of select="
 			if (head) then normalize-space(head) 
