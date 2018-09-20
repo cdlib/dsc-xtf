@@ -32,8 +32,16 @@
     <setName>Loyola Marymount University, Department of Archives and Special Collections, William H. Hannon Library: EAD Finding Aids</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec></setSpec>
+    <setName>California Polytechnic State University - San Luis Obispo: EAD Finding Aids</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>css:ead</setSpec>
     <setName>California State University, Sacramento Library: EAD Finding Aids</setName>
+  </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>cslusp:ead</setSpec>
+    <setName>California Polytechnic State University - San Luis Obispo: EAD Finding Aids</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>clloy:objects</setSpec>
@@ -48,12 +56,8 @@
     <setName>Santa Clara University: Digital Objects</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
-    <setSpec>css:ead</setSpec>
-    <setName>California State University, Sacramento Library</setName>
-  </set>
-  <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>css:objects</setSpec>
-    <setName>California State University, Sacramento Library</setName>
+    <setName>California State University, Sacramento Library: Objects</setName>
   </set>
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>calavc:ead</setSpec>
@@ -147,6 +151,14 @@
         </or>
     </and>
     </xsl:when>
+    <xsl:when test="$set='cslusp:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+            <term>C::California Polytechnic State University - San Luis Obispo*</term>
+        </and>
+    </xsl:when>
     <xsl:when test="$set='css:ead'">
         <and field="oac4-tab">
           <term>Collections::ead</term>
@@ -178,14 +190,6 @@
             </and>
         </or>
     </and>
-    </xsl:when>
-    <xsl:when test="$set='css:ead'">
-        <and field="oac4-tab">
-          <term>Collections::ead</term>
-        </and>
-        <and field="institution-doublelist">
-            <term>C::California State University, Sacramento Library</term>
-        </and>
     </xsl:when>
     <xsl:when test="$set='css:objects'">
 	<and field="relation">
