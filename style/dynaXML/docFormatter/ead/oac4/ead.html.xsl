@@ -562,7 +562,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 
 
 <xsl:template match="head" mode="ead">
-  <xsl:if test="not(name(..)='dsc') and ../*[not(name()='head')][//text()]">
+  <xsl:if test="not(name(..)='dsc') and ../*[not(name()='head')][text()]">
 	<p><b><a name="{../@id}" id="{../@id}"/><xsl:apply-templates mode="ead"/></b></p>
   </xsl:if>
 </xsl:template>
