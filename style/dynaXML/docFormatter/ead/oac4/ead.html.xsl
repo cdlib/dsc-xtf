@@ -604,9 +604,10 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 				<xsl:text>/?brand=oac4</xsl:text>
 			</xsl:when>
 			<xsl:when test="@href
-                        		and ( not ( contains(@href,'/ark:/') ) 
-                                            or
-                                              matches(@href,'cdlib.org/items?/ark:/')
+                        		and (
+                                              not ( contains(@href,'/ark:/') ) 
+                                              or matches(@href,'cdlib.org/items?/ark:/')
+                                              or matches(@href, 'n2t.net')
                                             )
 			">
 				<xsl:value-of select="@href"/>
