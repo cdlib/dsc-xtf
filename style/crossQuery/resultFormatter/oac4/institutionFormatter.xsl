@@ -482,7 +482,18 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 </xsl:template>
 
 <xsl:template match="img[@class='map1']">
-	<a href="/map/?ark={$ark}"> </a>
+<xsl:variable name="mapURL" >
+<!-- https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/pin-s+003366(-76.9,38.9)/-76.9,38.9,15/313x200?access_token=pk.eyJ1IjoiYW15d2llbGljemthIiwiYSI6ImNqb3lwaW5qcjBhaTMzcHF3Zzdid294NGcifQ.oRLbtTHvoFmpFe3itR5Q5w -->
+<xsl:text>https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/pin-s+003366(</xsl:text>
+<xsl:apply-templates select="$repodata" mode="mapbox-repo-marker"/>
+<xsl:text>)/</xsl:text>
+<xsl:apply-templates select="$repodata" mode="mapbox-repo-marker"/>
+<xsl:text>,9/313x200?access_token=</xsl:text>
+<xsl:text>pk.eyJ1IjoiYW15d2llbGljemthIiwiYSI6ImNqb3lwaW5qcjBhaTMzcHF3Zzdid294NGcifQ.oRLbtTHvoFmpFe3itR5Q5w</xsl:text>
+</xsl:variable>
+       <a href="/map/?ark={$ark}">
+       <img class="map1" height="200" width="313" border="0" src="{$mapURL}"/>
+       </a>
 </xsl:template>
 
 <xsl:template match="*[@class='institution-name']">
@@ -515,6 +526,12 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 <xsl:value-of select="@latitude"/>
 <xsl:text>,</xsl:text>
 <xsl:value-of select="@longitude"/>
+</xsl:template>
+
+<xsl:template match="div" mode="mapbox-repo-marker">
+<xsl:value-of select="@longitude"/>
+<xsl:text>,</xsl:text>
+<xsl:value-of select="@latitude"/>
 </xsl:template>
 
 <xsl:template match="*[@class='institution-right']">
