@@ -587,7 +587,9 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 	</xsl:if>
 </xsl:template> 
 
-<xsl:template match="dao" mode="ead-dsc ead">
+<xsl:template match="dao" mode="ead" />
+
+<xsl:template match="dao" mode="ead-dsc">
 <xsl:param name="img_src" select="'/images/icons/sq-eye_icon.gif'"/>
 <xsl:variable name="hackedLink" select="
         replace(replace(replace(@href,'http://.*/ark:/', concat('/' , 'ark:/') ) ,'/$',''), '\s$','')" />
