@@ -807,7 +807,9 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 
 <xsl:variable name="link">
         <xsl:choose>
-          <xsl:when test="$page/ead/archdesc//dao or $page/ead//dao[starts-with(@role,'http://oac.cdlib.org/arcrole/link/search')]">
+          <xsl:when test="$page/ead/archdesc/did/dao
+                       or $page/ead/archdesc/dao
+                       or $page/ead//dao[starts-with(@role,'http://oac.cdlib.org/arcrole/link/search')]">
 		<!-- inner choose -->
 		<!-- 	need to check this value; if it is a relation= type 
 			link; rewrite it - other wise use encoded link -->
