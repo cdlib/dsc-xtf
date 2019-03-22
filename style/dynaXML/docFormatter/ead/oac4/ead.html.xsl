@@ -70,7 +70,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 			<!-- xsl:if test="text()"><xsl:value-of select="text()"/></xsl:if -->
 <xsl:apply-templates select="did/unitid | did/unitdate | did/unittitle | did/unititle" mode="ead-dsc"/>
 
-			<xsl:apply-templates select="did/dao | did/daogrp | dao | daogrp" mode="ead-dsc"/>
+			<xsl:apply-templates select="did/dao | did/daogrp | dao | daogrp | scopecontent/dao" mode="ead-dsc"/>
 		</p>
 	<xsl:if test="$hasNotes">
 	<div class="c0x-notes"> 
