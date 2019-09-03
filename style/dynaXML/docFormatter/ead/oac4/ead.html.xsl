@@ -610,6 +610,7 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
                                               not ( contains(@href,'/ark:/') ) 
                                               or matches(@href,'cdlib.org/items?/ark:/')
                                               or matches(@href, 'n2t.net')
+                                              or matches(@href, 'alexandria.ucsb.edu')
                                             )
 			">
 				<xsl:value-of select="@href"/>
