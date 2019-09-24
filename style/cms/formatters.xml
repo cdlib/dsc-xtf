@@ -69,10 +69,7 @@
     <formatter name="pacific-text-results" url="http://iisstage.uop.edu/library/cdl/text-results.xslt"/>
     <formatter name="pacific-text-single" url="http://iisstage.uop.edu/library/cdl/text-single.xslt"/>
 
-    <formatter name="seaadoc-image-single-test" url="http://seaadoc.lib.uci.edu/xslt/image-single-test.xslt"/>
-    <formatter name="seaadoc-image-results-test" url="http://seaadoc.lib.uci.edu/xslt/image-results-test.xslt"/>
-    <formatter name="seaadoc-image-single" url="http://seaadoc.lib.uci.edu/xslt/image-single.xslt"/>
-    <formatter name="seaadoc-image-results" url="http://seaadoc.lib.uci.edu/xslt/image-results.xslt"/>
-    <formatter name="seaadoc-image-only-test" url="http://seaadoc.lib.uci.edu/xslt/image-only-test.xslt"/>
-    <formatter name="seaadoc-image-only" url="http://seaadoc.lib.uci.edu/xslt/image-only.xslt"/>
+    <formatter name="seaadoc-image-single-test" url="style/cms/seaadoc/image-single-test.xslt"/>
+    <formatter name="seaadoc-image-results-test" url="style/cms/seaadoc/image-results-test.xslt"/>
+    <formatter name="seaadoc-image-only-test" url="style/cms/seaadoc/image-only-test.xslt"/>
 </formatters>

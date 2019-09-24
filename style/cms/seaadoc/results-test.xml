@@ -1,0 +1,351 @@
+<?xml version="1.0" standalone="yes"?>
+
+<html>
+
+<head>
+
+<title>SEAAdoc/Search Results</title>
+
+<!-- base href="http://seaadoc.lib.uci.edu/" / -->
+
+<link rel="stylesheet" href="http://seaadoc.lib.uci.edu/styles/global.css" type="text/css"/>
+
+<meta name="robots" content="noindex"/>
+
+
+
+<script language="JavaScript" type="text/JavaScript">
+
+<!--
+
+function MM_preloadImages() {
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+
+
+function MM_openBrWindow(theURL,winName,features) {
+
+  window.open(theURL,winName,features);
+
+}
+
+
+
+function MM_swapImgRestore() {
+
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+
+}
+
+
+
+function MM_findObj(n, d) {
+
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+
+}
+
+
+
+function MM_swapImage() {
+
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+
+}
+
+-->
+
+</script>
+
+
+
+
+
+</head>
+
+
+
+ <body leftmargin="3" topmargin="3">
+
+<table width="95%" border="0" cellpadding="0" cellspacing="1" bgcolor="#276A78">
+
+
+
+<!-- BEGIN HEADER -->
+
+   <tr align="right">
+
+    <td id="header-banner" width="172" height="92" rowspan="2" bgcolor="#70C0D0">
+
+      <a href="http://seaadoc.lib.uci.edu/index.html"><img src="http://seaadoc.lib.uci.edu/images/seaadoc_logo.gif" width="172" height="92" border="0" />
+
+      </a>
+
+    </td>
+
+
+
+	
+
+  <td id="global-nav" width="51" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu" class="topnavlink">HOME</a></td></tr></table>
+
+
+    </td>
+
+    <td width="49" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/read.html" class="topnavlink">READ</a></td></tr></table>
+
+    </td>
+
+    <td width="59" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#D2E7EC'" onMouseout="style.backgroundColor='#FFF3D9'" bgcolor="#FFF3D9">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/find.html" class="topnavlinkon">FIND</a></td></tr></table>
+
+    </td>
+
+	<td width="59" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/about.html" class="topnavlink">about</a></td></tr></table>
+
+    </td>
+
+    <td width="49" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/teach.html" class="topnavlink">teach</a></td></tr></table>
+
+    </td>
+
+    <td width="34" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/help.html" class="topnavlink">help</a></td></tr></table>
+
+    </td>
+
+    <td width="65" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/repro.html" class="topnavlink">reproduction</a></td></tr></table>
+
+    </td>
+
+    
+
+    <td width="72" height="25" align="center" valign="middle" onMouseover="style.backgroundColor='#FFF3D9'" onMouseout="style.backgroundColor='#D2E7EC'" bgcolor="#D2E7EC">
+
+      <table cellpadding="1" border="0"><tr><td><a href="http://seaadoc.lib.uci.edu/http://www.lib.uci.edu/about/contact/web-feedback-form.html?loc=seaadoc" class="topnavlink">contact<nbsp />us</a></td></tr></table>
+
+    </td>
+
+   
+
+   <td width="100%" height="25" align="left" valign="top" bgcolor="#D2E7EC"><nbsp/></td>
+
+  </tr>
+
+
+
+  <!-- Begin page title box -->
+
+  <tr align="right" valign="top">
+
+    <td height="65" colspan="9" align="left" valign="bottom" bgcolor="#FFF3D9">
+
+      <table width="100%" border="0" cellpadding="1" cellspacing="0" bgcolor="#FFF3D9">
+
+        <tr><td align="left" valign="bottom"><a href="http://seaadoc.lib.uci.edu/find.html" class="pageheaderlink">Search Results </a></td></tr>
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <!-- Begin page title box -->
+
+  <!-- END HEADER -->
+
+
+
+
+
+<!-- BEGIN SEARCH SET INFO -->
+
+<!--table border="0" width="80%" class="search-set"><tr><td>
+
+<p><insert-Query/></p>
+
+<insert-suggest/>
+
+<p><insert-SummaryShort/></p>
+
+<p><insert-SearchSummary/></p>
+
+</td>
+
+<td align="right"><br /><insert-previous/><nbsp/><nbsp/><nbsp/><insert-next/>
+
+<p><insert-Fisheye/></p></td></tr></table-->
+
+<!--END SEARCH SET INFO -->
+
+
+
+
+
+  <!-- BEGIN SEARCH SET INFO -->
+
+  <tr id="global-search" valign="top" bgcolor="#FFFFFF">
+
+    <td height="16" colspan="10" align="right" valign="top">
+
+      <table width="100%" border="0" align="left" cellpadding="3" cellspacing="0">
+
+        <tr bgcolor="#FFFFFF" rowspan="1">
+
+          <td width="40%" height="16" align="left" valign="center" class="bodytext">
+
+            <insert-SummaryShort/>
+
+          </td>
+
+          <td width="20%" height="16" rowspan="1" align="left" valign="center">
+
+            <a class="resultslink" href="http://seaadoc.lib.uci.edu/find.html">Another Search</a>
+
+          </td>
+
+          <td align="right" valign="center">
+
+            <font size="2" face="Arial">
+
+              <insert-previous/><nbsp/><nbsp/><nbsp/><insert-Fisheye/><nbsp/><nbsp/><nbsp/><insert-next/>
+
+            </font>
+
+          </td>
+
+        </tr>
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <!--END SEARCH SET INFO -->
+
+
+
+
+
+  <!-- Begin BODY -->
+
+  <tr>
+
+    <td id="page-content" colspan="10">
+
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#276A78">
+
+
+
+
+
+        <!-- BEGIN SEARCH RESULTS -->
+
+        <tr height="100%" valign="top">
+
+          <td colspan="3" align="center" valign="top" bgcolor="#FFFFFF">
+
+            <p><insert-SearchResults/></p>
+
+          </td>
+
+        </tr>
+
+        <!-- END SEARCH RESULTS -->
+
+
+
+
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <!-- End BODY -->
+
+
+
+
+
+  <!-- BEGIN FOOTER -->
+
+  <tr id="footer" align="center">
+
+    <td height="57" colspan="10" valign="top" bgcolor="#AED3DD">
+
+      <table width="100%" border="0" align="right" cellpadding="4" cellspacing="0">
+
+        <tr>
+
+          <td width="26%" height="57" align="left" valign="top" class="footertext">
+
+            <a href="http://www.lib.uci.edu" onMouseOver="MM_swapImage('Image20','','http://seaadoc.lib.uci.edu/images/ucilibfooter_over.gif',20)" onMouseOut="MM_swapImgRestore()">
+
+              <img src="http://seaadoc.lib.uci.edu/images/ucilibfooter.gif" name="Image20" width="167" height="23" border="0" id="Image20"/>
+
+            </a>
+
+            <br /><nbsp /><nbsp /><nbsp /><nbsp /><nbsp /><nbsp /><a class="footerlink" href="http://www.lib.uci.edu/about/contact/web-feedback-form.html?loc=seaadoc" title="E-maiL the Web Manager for the U.C. Irvine Libraries.">Comments ? Questions ?</a>
+
+          </td>
+
+          <td width="74%" align="right" valign="top" class="footertext">
+
+            A service of the <a href="http://libraries.universityofcalifornia.edu/">UC Libraries</a>, powered by the <a href="http://www.cdlib.org/">CDL</a>.
+
+            <br /><copy /> 2004-2014 The Regents of the University of California
+
+            <br />All Rights Reserved
+
+          </td>
+
+        </tr>
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <!-- END FOOTER -->
+
+
+
+</table>
+
+</body>
+
+</html>
+

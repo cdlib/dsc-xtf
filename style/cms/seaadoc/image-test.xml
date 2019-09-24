@@ -1,0 +1,159 @@
+<?xml version="1.0" standalone="yes"?>
+<html>
+<head>
+<title>SEAAdoc/Search Result Details</title>
+<link rel="stylesheet" href="http://seaadoc.lib.uci.edu/styles/global.css" type="text/css"/>
+<meta name="robots" content="noindex"/>
+</head>
+
+<body leftmargin="3" topmargin="3">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#276A78">
+
+<!-- BEGIN HEADER -->
+  <tr id="header-banner" align="right">
+    <td height="20" bgcolor="#D3E6EC">
+      <table width="100%" border="0" align="left" cellpadding="3" cellspacing="0">
+        <tr bgcolor="#FFFFFF" rowspan="1">
+          <td height="16" align="center" valign="bottom" bgcolor="#D2E7EC">
+            <a href="javascript: window.close()">
+              <img border="0" src="http://seaadoc.lib.uci.edu/images/closewindow.gif"/>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+<!-- 050214 cc - not for the image only template
+  <tr align="right">
+    <td rowspan="2" bgcolor="#70C0D0"><a href="http://seaadoc.lib.uci.edu/index.html"><img src="http://seaadoc.lib.uci.edu/images/seaadoc_logo.gif" width="172" height="92" border="0"/></a></td>
+    <td width="100%" height="25" align="left" valign="top" bgcolor="#D2E7EC">
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_about.gif" name="Image1" width="61" height="25" border="0" id="Image1"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_search_station.gif" name="Image2" width="67" height="25" border="0" id="Image2"/>
+      </a>
+      <a href="http://seaadoc.lib.uci.edu/learn.html">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_learn.gif" name="Image3" width="57" height="25" border="0" id="Image3"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_teach.gif" name="Image4" width="59" height="25" border="0" id="Image4"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_help.gif" name="Image5" width="42" height="25" border="0" id="Image5"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_copyright.gif" name="Image6" width="70" height="25" border="0" id="Image6"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_reproductions.gif" name="Image7" width="93" height="25" border="0" id="Image7"/>
+      </a>
+      <a href="">
+        <img src="http://seaadoc.lib.uci.edu/images/nav_contactus.gif" name="Image8" width="70" height="25" border="0" id="Image8"/>
+        </a>
+      </td >
+  </tr>
+  <tr align="right" valign="top">
+    <td  width="100%" height="65" align="left" valign="bottom" bgcolor="#F9EEDD">
+    <table width="100%" border="0" cellspacing="0" cellpadding="1">
+      <tr>
+        <td align="left" valign="bottom">
+          <img src="http://seaadoc.lib.uci.edu/images/pagehead_searchdetail.gif" align="bottom"/>
+        </td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+-->
+<!-- END HEADER -->
+
+
+<!-- BEGIN SEARCH SET INFO -->
+
+<!-- 050214 cc - not for the image only template
+  <tr valign="top" bgcolor="#FFFFFF">
+    <td height="16" colspan="4" align="right" valign="top">
+      <table width="100%" border="0" align="left" cellpadding="3" cellspacing="0">
+        <tr bgcolor="#FFFFFF" rowspan="1">
+          <td class="bodytextsmall" height="16" align="left" valign="bottom">
+            To cite this item use: Creator, Title, Date, Collection ID.
+          </td >
+          <td align="right" valign="center">
+            <p>
+              <jsBACKopen/>
+              &lt;&lt;<nbsp/><nbsp/>Back to Search Results
+              <jsBACKclose/>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+-->
+<!--END SEARCH SET INFO -->
+
+
+<!-- BEGIN SEARCH RESULTS -->
+  <tr id="page-content" height="100%">
+    <td colspan="2" align="center" valign="center" bgcolor="#FFFFFF">
+      <p><insert-SearchResults/></p>
+    </td>
+  </tr>
+<!-- END SEARCH RESULTS -->
+
+
+<!-- BEGIN SEARCH SET INFO -->
+<!--<table border="0" width="80%" class="search-set"><tr><td>
+<p><insert-Query/></p>
+<insert-suggest/>
+<p><insert-SummaryShort/></p>
+<p><insert-SearchSummary/></p>
+</td>
+<td align="right"><br /><insert-previous/><nbsp/><nbsp/><nbsp/><insert-next/>
+<p><insert-Fisheye/></p></td></tr></table>-->
+<!--END SEARCH SET INFO -->
+
+
+<!-- BEGIN FOOTER -->
+  <tr id="footer" align="right">
+    <td height="20" bgcolor="#D3E6EC">
+      <table width="100%" border="0" align="left" cellpadding="3" cellspacing="0">
+        <tr bgcolor="#FFFFFF" rowspan="1">
+          <td height="16" align="center" valign="bottom" bgcolor="#D2E7EC">
+            <a href="javascript: window.close()">
+              <img border="0" src="http://seaadoc.lib.uci.edu/images/closewindow.gif"/>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+<!-- 050214 cc - not for the image only template
+  <tr align="">
+    <td height="57" colspan="2" valign="top" bgcolor="#AED3DD">
+      <table width="100%" border="0" align="right" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="26%" height="57" align="left" valign="top" class="footertext">
+            <a href="http://www.lib.uci.edu">
+              <img src="http://seaadoc.lib.uci.edu/images/ucilibfooter.gif" name="Image20" width="167" height="23" border="0" id="Image20"/>
+            </a>
+            <br /><nbsp /><nbsp /><nbsp /><nbsp /><nbsp /><nbsp /><a class="footerlink" href="http://www.lib.uci.edu/about/contact/web-feedback-form.html?loc=seaadoc" title="E-mail the Web Manager for the U.C. Irvine Libraries.">Comments ? Questions ?</a>
+          </td >
+          <td width="74%" align="right" valign="top" class="footertext">
+            A service of the <a href="http://libraries.universityofcalifornia.edu/">UC Libraries</a>, powered by the <a href="http://www.cdlib.org/">CDL</a>.
+            <br /><copy /> 2004 The Regents of the University of California
+            <br />All Rights Reserved
+          </td >
+        </tr>
+      </table>
+    </td >
+  </tr>
+-->
+<!-- END FOOTER -->
+
+
+</table>
+</body>
+</html>
