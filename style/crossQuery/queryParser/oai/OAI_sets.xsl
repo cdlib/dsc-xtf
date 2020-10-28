@@ -67,6 +67,10 @@
     <setSpec>bancroft:objects</setSpec>
     <setName>Bancroft Library Digital Objects</setName>
   </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>huntington:ead</setSpec>
+    <setName>Huntington Library: EAD Finding Aids</setName>
+  </set>
   <!--
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>calavc:objects</setSpec>
@@ -229,6 +233,14 @@
             </and>
         </or>
     </and>
+    </xsl:when>
+    <xsl:when test="$set='huntington:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+            <term>H::Huntington Library</term>
+        </and>
     </xsl:when>
     <!--
     <xsl:when test="$set='calavc:objects'">
