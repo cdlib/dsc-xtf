@@ -239,7 +239,7 @@
           <term>Collections::ead</term>
         </and>
         <and field="institution-doublelist">
-            <term>H::Huntington Library</term>
+          <term>H::Huntington Library*</term>
         </and>
     </xsl:when>
     <!--
