@@ -71,6 +71,10 @@
     <setSpec>huntington:ead</setSpec>
     <setName>Huntington Library: EAD Finding Aids</setName>
   </set>
+  <set xmlns="http://www.openarchives.org/OAI/2.0/">
+    <setSpec>uci_spcoll:ead</setSpec>
+    <setName>UC Irvine: Special Collections: EAD Finding Aids</setName>
+  </set>
   <!--
   <set xmlns="http://www.openarchives.org/OAI/2.0/">
     <setSpec>calavc:objects</setSpec>
@@ -240,6 +244,14 @@
         </and>
         <and field="institution-doublelist">
           <term>H::Huntington Library*</term>
+        </and>
+    </xsl:when>
+    <xsl:when test="$set='uci_spcoll:ead'">
+        <and field="oac4-tab">
+          <term>Collections::ead</term>
+        </and>
+        <and field="institution-doublelist">
+          <term>U::UC Irvine::Special Collections*</term>
         </and>
     </xsl:when>
     <!--
