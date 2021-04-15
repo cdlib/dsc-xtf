@@ -257,9 +257,6 @@
          <!-- verb: ListRecords -->
          <xsl:when test="$verb='ListRecords'">
             <xsl:choose>
-               <xsl:when test="($from and not($until)) or ($until and not($from))">
-                  <error message="OAI::{$verb}::badArgument::{$badArgumentMessage}"/>
-               </xsl:when>
                <xsl:when test="$resumptionToken and not(matches($resumptionToken,'[0-9]+'))">
                   <error message="OAI::{$verb}::badResumptionToken::{$badResumptionTokenMessage}"/>
                </xsl:when>
