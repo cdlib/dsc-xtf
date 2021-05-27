@@ -672,11 +672,6 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:otherwise>
 </xsl:choose>
 </div>
-<a class="a2a_dd" href="http://www.addtoany.com/share_save">
-<img src="/default/images/share_save_120_16.gif" width="120" height="16" border="0"
-        alt="Share/Save/Bookmark"/></a>
-<script type="text/javascript">a2a_onclick = 1;</script>
-<script type="text/javascript" src="/default/js/a2a.js"></script>
 	</xsl:element>
 </xsl:template>
 

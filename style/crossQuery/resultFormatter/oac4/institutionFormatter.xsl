@@ -466,10 +466,6 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 	<span><a href="/institutions/{replace($parts[1],'\s','+')}">> <xsl:value-of select="$parts[1]"/></a></span>
 </xsl:if>
 </div>
-<a class="a2a_dd" href="http://www.addtoany.com/share_save">
-<img src="/default/images/share_save_120_16.gif" width="120" height="16" border="0"
-        alt="Share/Save/Bookmark"/></a>
-<script type="text/javascript" src="/default/js/a2a.js"></script>
 	</xsl:element>
 </xsl:template>
 
