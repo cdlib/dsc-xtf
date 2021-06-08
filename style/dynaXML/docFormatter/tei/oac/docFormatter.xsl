@@ -114,7 +114,7 @@
 <!-- Local params 	                                                    -->
 <!-- ====================================================================== -->
   
-<xsl:param name="brand" select="'calisphere'"/>
+<xsl:param name="brand" select="'oac4'"/>
 <xsl:param name="queryURL" select="session:getData('queryURL')"/>
 <xsl:param name="http.Referer"/>
 <xsl:variable name="theHost" select="replace($root.path , ':[0-9]+.+' , '')"/>
