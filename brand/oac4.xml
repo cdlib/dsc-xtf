@@ -78,14 +78,12 @@
                   
                   <div class="topnav-inner">
 
+                   
                      <span class="topnav-item">
-                        <a class="topnav-off" href="/" target="_top">Home</a>
+                        <a class="topnav-off" href="/institutions/" target="_top">Contributing Institutions</a>
                      </span>
                      <span class="topnav-item">
-                        <a class="topnav-off" href="/institutions/" target="_top">Browse Institutions</a>
-                     </span>
-                     <span class="topnav-item">
-                        <a class="topnav-off" href="/titles/" target="_top">Browse Collections</a>
+                        <a class="topnav-off" href="/titles/" target="_top">Collection Guides</a>
                      </span>
                       <span class="topnav-item">
                         <a class="topnav-off" href="/map/" target="_top">Browse Map</a>
@@ -93,15 +91,14 @@
 					 <span class="topnav-item">
                         <a class="topnav-off" href="/about/" target="_top">About OAC</a>
                      </span>
-                     <span class="topnav-item">
-                        <a class="topnav-off" href="/help/" target="_top">Help</a>
-                     </span>
-                     <span class="topnav-item">
-
-                        <a class="topnav-off" href="/contact/" target="_top">Contact Us</a>
-                     </span>
+                   
                   </div>
                   
+	<div class="help-movie">
+		<div class="help-movie-inner">
+            <a class="help-movie-off" href="/help/">What are Collection Guides?</a>
+		</div>     
+	</div>
                </div>
                
                <!-- END TOP NAVIGATION -->
