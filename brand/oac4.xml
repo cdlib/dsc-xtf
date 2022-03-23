@@ -43,7 +43,6 @@
                                           
                      <div class="site-search">
                         
-                        <div class="search-oac">Search OAC</div>                        
                         <form xmlns:mets="http://www.loc.gov/METS/" action="/search" target="_top" method="GET"
                               class="search-form"
                               name="search-form">
