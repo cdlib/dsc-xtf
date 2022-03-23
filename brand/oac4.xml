@@ -51,7 +51,7 @@
                            <table>
                               <tr>
                                  <td>
-                                    <input name="query" type="text" class="text-field" size="30" maxlength="80"></input>
+                                    <input name="query" type="text" class="text-field" size="35" maxlength="80" placeholder="Search over 55,000 collection guides"></input>
                                  </td>
                                  <td>
                                     <input type="image" src="/images/buttons/go.gif" class="search-button" value="Search"
@@ -87,18 +87,19 @@
                      </span>
                       <span class="topnav-item">
                         <a class="topnav-off" href="/map/" target="_top">Browse Map</a>
-                     </span>                    
-					 <span class="topnav-item">
+                     </span>
+                      <span class="topnav-item">
                         <a class="topnav-off" href="/about/" target="_top">About OAC</a>
                      </span>
                    
                   </div>
                   
-	<div class="help-movie">
-		<div class="help-movie-inner">
-            <a class="help-movie-off" href="/overview/">What are Collection Guides?</a>
-		</div>
-	</div>
+                  <div class="help-movie">
+                     <div class="help-movie-inner">
+                        <a class="help-movie-off" href="/overview/">What are Collection Guides?</a>
+                     </div>
+                  </div>
+
                </div>
                
                <!-- END TOP NAVIGATION -->
