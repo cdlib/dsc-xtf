@@ -95,7 +95,7 @@
                   
                   <div class="help-movie">
                      <div class="help-movie-inner">
-                        <a class="help-movie-off" href="/overview/">What are Collection Guides?</a>
+                        <a class="help-movie-off" href="/overview/" target="_top">What are Collection Guides?</a>
                      </div>
                   </div>
 
@@ -188,7 +188,7 @@
                 
                   <div class="help-movie">
                      <div class="help-movie-inner">
-                        <a class="help-movie-off" href="/overview/">What are Collection Guides?</a>
+                        <a class="help-movie-off" href="/overview/" target="_top">What are Collection Guides?</a>
                      </div>     
                   </div>
 			  
@@ -264,7 +264,7 @@
                            <a class="footer-link" target="_top" href="https://cdlib.org/about/policies-and-guidelines/accessibility/">Accessibility</a>
                         </span>
 			     
-                     <div class="footer-copyright">The Online Archive of California is a service of the <a href="https://libraries.universityofcalifornia.edu/">UC Libraries</a>, powered by the <a href="https://www.cdlib.org/">California Digital Library</a>.</div>                     
+                     <div class="footer-copyright">The Online Archive of California is a service of the <a target="_top" href="https://libraries.universityofcalifornia.edu/">UC Libraries</a>, powered by the <a target="_top" href="https://www.cdlib.org/">California Digital Library</a>.</div>                     
 					 </div>
                      
                      
