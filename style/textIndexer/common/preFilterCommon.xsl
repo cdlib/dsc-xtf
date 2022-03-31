@@ -179,8 +179,8 @@
     <facet-subject>
       <xsl:attribute name="xtf:meta" select="'true'"/>
       <xsl:attribute name="xtf:tokenize" select="'no'"/>
-      <xsl:value-of select="replace(replace(normalize-space($subject),'&amp;','﹠'),
-			'--.*','')"/>
+      <xsl:value-of select="replace(replace(replace(normalize-space($subject),'&amp;','﹠'),
+      '--.*',''),'AIDS \(disease\)','AIDS (Disease)')" />
     </facet-subject>
   </xsl:template>
   
