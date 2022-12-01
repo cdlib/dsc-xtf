@@ -163,7 +163,15 @@
                         <xsl:apply-templates select="$page/ead/archdesc/*[not(dsc)]" mode="ead"/>
        </div -->
        <div class="collection-contents">
+			<xsl:apply-templates select="$page/ead/eadheader/filedesc" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/frontmatter" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/archdesc" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/archdesc/dsc" mode="eadStart"/>
 
+<!--
 <xsl:variable name="max-c-order" select="$page/key('dscPositions','1')/@MAX-C-ORDER"/>
 <xsl:variable name="pageme">
         <xsl:if test="$max-c-order &gt; number(5000)">
@@ -205,6 +213,7 @@
 	</xsl:choose>
 
 <xsl:copy-of select="$pageme"/>
+-->
 
        </div>
 
