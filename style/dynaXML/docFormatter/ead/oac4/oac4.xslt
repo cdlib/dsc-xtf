@@ -163,7 +163,15 @@
                         <xsl:apply-templates select="$page/ead/archdesc/*[not(dsc)]" mode="ead"/>
        </div -->
        <div class="collection-contents">
+			<xsl:apply-templates select="$page/ead/eadheader/filedesc" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/frontmatter" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/archdesc" mode="ead"/>
+			<hr/>
+			<xsl:apply-templates select="$page/ead/archdesc/dsc" mode="eadStart"/>
 
+<!--
 <xsl:variable name="max-c-order" select="$page/key('dscPositions','1')/@MAX-C-ORDER"/>
 <xsl:variable name="pageme">
         <xsl:if test="$max-c-order &gt; number(5000)">
@@ -205,6 +213,7 @@
 	</xsl:choose>
 
 <xsl:copy-of select="$pageme"/>
+-->
 
        </div>
 
@@ -277,6 +286,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 
 <xsl:template match="*[@class='guide-entire']"><!-- PDF / HTML link -->
   <xsl:element name="{name()}">
+  <!--
     	<xsl:for-each select="@*"><xsl:copy copy-namespaces="no"/></xsl:for-each>
 	<img height="15" width="15" src="/images/icons/pdf-icon.gif" class="bullet-icon"/>
 	<span class="guide-download">
@@ -290,6 +300,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 	</xsl:otherwise>
 </xsl:choose>
 </span>
+-->
 
 	<img height="15" width="15" src="/images/icons/web-page-icon.gif" class="bullet-icon"/>
 	<xsl:variable name="link">
@@ -297,7 +308,7 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
           <xsl:value-of select="$docId"/>
           <xsl:text>/entire_text/</xsl:text>
 	</xsl:variable>
-	<a href="{$link}{if ($query) then concat('?query=', $query) else ''}">HTML</a>
+	<a href="{$link}{if ($query) then concat('?query=', $query) else ''}">Printable Guide [HTML]</a>
 	<xsl:if test="($page)/ead/archdesc/@xtf:hitCount | ($page)/ead/frontmatter/@xtf:hitCount "><!-- need to check the correct sections to add up hits; find first hit/ -->
 		<span class="subhit"><a href="{$link}{if ($query) then concat('?query=', $query) else ''}#hitNum{
 							if (($page)/ead/frontmatter/@xtf:firstHit)
