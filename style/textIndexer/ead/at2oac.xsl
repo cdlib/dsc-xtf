@@ -101,6 +101,13 @@
 
 <!-- copy overloaded container labels to sibling physdesc -->
 <!-- TODO: specifically target AT @label values? -->
+<!-- 
+  I'm not sure why this code was added but it removes any label tags from container elements
+  This is not helpful because by default ArchiveSpace adds barcode information that is
+  needed to locate items in the label element.  For now just leave the label tag
+  alone and let display decide how best to show it. EV 4/3/2023
+-->
+<!--
 <xsl:template match="ead:container[@label]" mode="at2oac">
   <xsl:element name="{name()}" namespace="{$namespace}">
     <xsl:apply-templates select="@*[name()!='label'] | node() " mode="at2oac"/>
@@ -111,6 +118,7 @@
     </xsl:element>
   </xsl:if>
 </xsl:template>
+-->
 
 <!-- dao from AT style to MOAC style -->
 
