@@ -571,9 +571,11 @@ phystech | prefercite | processinfo | relatedmaterial | scopecontent | separated
 
 <xsl:template match="container" mode="container">
 <xsl:choose>
+<!--
 <xsl:when test="@label">
 <xsl:value-of select="@label"/><xsl:text> </xsl:text>
 </xsl:when>
+-->
 <xsl:when test="@type">
 <xsl:value-of select="@type"/>
 <xsl:text>&#160;</xsl:text>
