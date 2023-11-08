@@ -208,9 +208,6 @@
     <institution-url xtf:meta="true" xtf:tokenize="false">
       <xsl:value-of select="($daoinfo)/daoinfo/inst/@href"/>
     </institution-url>
-    <google_analytics_tracking_code xtf:meta="true" xtf:tokenize="false">
-      <xsl:value-of select="($daoinfo)/daoinfo/google_analytics_tracking_code"/>
-    </google_analytics_tracking_code>
 
         <xsl:choose> <!-- main choice is 2 listings or 1 listing -->
                 <xsl:when test="($daoinfo)/daoinfo/inst_parent != ''"> <!-- there are 2 -->

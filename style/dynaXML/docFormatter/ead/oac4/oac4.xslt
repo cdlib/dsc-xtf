@@ -10,7 +10,6 @@
   exclude-result-prefixes="#all"
   version="2.0">
   
-  <xsl:import  href="../../../../common/google-tracking.xsl"/>
   <xsl:strip-space elements="*"/>
   <xsl:include href="table.html.xsl"/>
   <xsl:include href="ead.html.xsl"/>
@@ -1193,14 +1192,6 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 		</xsl:otherwise>
 	</xsl:choose>
    </xsl:element>
-</xsl:template>
-
-<xsl:template match="*[@tmpl:insert='google-tracking-code']">
-            <xsl:call-template name="insert-google-tracking">
-             <xsl:with-param name="brand" select="'oac4'"/>
-             <xsl:with-param name="google_analytics_tracking_code" select="$page/ead/google_analytics_tracking_code"/>
-             <xsl:with-param name="google_analytics_institution" select="$page/ead/facet-institution"/>
-           </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="unitid" mode="collectionId">
