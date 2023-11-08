@@ -13,3 +13,6 @@ regress/**/*.log
 *.swp
 *.orig
 .ruby-version
+jp2shadow
+mets-support
+style/common
