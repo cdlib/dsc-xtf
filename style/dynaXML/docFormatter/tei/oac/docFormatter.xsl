@@ -46,7 +46,6 @@
 <!-- ====================================================================== -->
 
 <xsl:import href="../../common/cdlDocFormatterCommon.xsl"/>
-<xsl:import href="../../../../common/google-tracking.xsl"/>
 
 <!-- ====================================================================== -->
 <!-- Output Format                                                          -->
@@ -601,7 +600,7 @@ cause the queryURL to be set to the referer -->
                   </div>
                 </div>
               </div>
-              <!-- Removinbg Temporarily at Rosalie's Request -->
+              <!-- Removing Temporarily at Rosalie's Request -->
               <!--<div id="content-secondary">
                 <div id="permission-box">
                   <div class="nifty2">
@@ -613,12 +612,6 @@ cause the queryURL to be set to the referer -->
                   </div>
                 </div>
               </div>-->
-              <xsl:call-template name="insert-google-tracking">
-                <xsl:with-param name="onContent" select="'onContent'"/>
-                <xsl:with-param name="brand" select="$brand"/>
-                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
-                <xsl:with-param name="google_analytics_institution" select="/TEI.2/xtf:meta/facet-institution"/>
-              </xsl:call-template>
               <xsl:copy-of select="$brand.footer"/>
             </xsl:when>
             <xsl:otherwise>
@@ -644,11 +637,6 @@ cause the queryURL to be set to the referer -->
                       </xsl:otherwise>
                     </xsl:choose>
                     <xsl:copy-of select="$brand.footer"/>
-              <xsl:call-template name="insert-google-tracking">
-                <xsl:with-param name="onContent" select="'onContent'"/>
-                <xsl:with-param name="brand" select="$brand"/>
-                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
-              </xsl:call-template>
                   </td>
                 </tr>
               </table>
@@ -777,11 +765,6 @@ Copyright status unknown. Some materials in these collections may be
                 </xsl:choose>
               </div>
               <xsl:copy-of select="$brand.footer"/>
-              <xsl:call-template name="insert-google-tracking">
-                <xsl:with-param name="onContent" select="'onContent'"/>
-                <xsl:with-param name="brand" select="$brand"/>
-                <xsl:with-param name="google_analytics_tracking_code" select="/TEI.2/xtf:meta/google_analytics_tracking_code"/>
-              </xsl:call-template>
             </div>
           </div>
         </div>

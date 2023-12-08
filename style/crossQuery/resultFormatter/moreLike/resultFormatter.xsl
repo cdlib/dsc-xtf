@@ -49,7 +49,7 @@
     <xsl:variable name="width" select="$xy/xy/@width"/>
 
     <div>
-      <a href="{replace(meta/identifier[1],'http://ark.cdlib.org','')}" onclick="_gaq.push(['cst._trackEvent', 'moreLike', 'click', window.title]);">
+      <a href="{replace(meta/identifier[1],'http://ark.cdlib.org','')}" >
       <img src="{replace($fullark,'http://ark.cdlib.org','')}/thumbnail" height="{$height}" width="{$width}"/>
          <xsl:value-of select="meta/title[1]"/>
       </a>

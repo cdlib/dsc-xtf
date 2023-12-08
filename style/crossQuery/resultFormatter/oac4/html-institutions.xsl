@@ -9,7 +9,6 @@
 	xmlns:tmpl="xslt://template"
 	exclude-result-prefixes="#all">
 
-<xsl:import href="../../../common/google-tracking.xsl"/>
 <xsl:import href="institutions.xsl"/>
 
   <xsl:output method="xhtml"
@@ -35,14 +34,6 @@
     <xsl:apply-templates/>
   </xsl:copy>
 </xsl:template>
-
-
-<xsl:template match="*[@tmpl:insert='google-tracking-code']">
-  <xsl:call-template name="insert-google-tracking">
-    <xsl:with-param name="brand" select="'oac4'"/>
-  </xsl:call-template>
-</xsl:template>
-
 
 
 </xsl:stylesheet>

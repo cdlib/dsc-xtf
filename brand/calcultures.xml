@@ -72,22 +72,6 @@ z</a>
 
 <div class="footer-sentence2">Copyright &#169; 2011 The Regents of The University of California.</div>
 <script type="text/javascript" src="http://cdn.calisphere.org/json4lib/slideshow/slideshowLink-combo.js"></script>
-<script type="text/javascript">
-$("a#zoomMe").click(function () {
-  _gaq = _gaq || [];
-  _gaq.push(['cst._trackEvent', 'Image', 'Larger Image View', window.title ]);
-});
-(function() {
-  var href = window.location.href;
-  var onclick = "_gaq.push(['cst._trackEvent', 'slideshow', 'click', window.title ]); return(CDL.DSC.SlideshowLink(this));";
-  $("#slideshowHook").html('<a href="' + href + '" onclick="' + onclick + '">view as slideshow</a>');
-  if (typeof objid != 'undefined') {
-    if ($('#moreLike') ){
-      $('#moreLike').load('/search?identifier=' +  objid + ';style=moreLike');
-    }
-  }
-})();
-</script>
 
 </div>
   </footer>
