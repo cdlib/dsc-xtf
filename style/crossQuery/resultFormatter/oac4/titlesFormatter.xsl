@@ -12,6 +12,7 @@
 
 <!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" -->
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import href="../../../common/tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="azBrowseResults.xsl"/>
 <xsl:include href="autocomplete-js.xsl"/>
@@ -188,6 +189,12 @@
 	(<xsl:value-of select="if ($titlesAZ = '0') then '0-9' else (upper-case($titlesAZ))"/>), 
 	<xsl:apply-templates/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='tracking-code']">
+  <xsl:call-template name="insert-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>
