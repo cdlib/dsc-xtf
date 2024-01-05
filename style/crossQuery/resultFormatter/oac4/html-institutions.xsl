@@ -9,6 +9,7 @@
 	xmlns:tmpl="xslt://template"
 	exclude-result-prefixes="#all">
 
+<xsl:import href="../../../common/tracking.xsl"/>
 <xsl:import href="institutions.xsl"/>
 
   <xsl:output method="xhtml"
@@ -35,6 +36,11 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="*[@tmpl:insert='tracking-code']">
+  <xsl:call-template name="insert-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+  </xsl:call-template>
+</xsl:template>
 
 </xsl:stylesheet>
 

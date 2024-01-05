@@ -15,6 +15,7 @@
 
 
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import href="../../../common/tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="azBrowseResults.xsl"/>
 
@@ -567,6 +568,14 @@ select="$page/crossQueryResult/facet[@field='institution-doublelist']//group[sta
 	<xsl:text>, </xsl:text>
 	<xsl:apply-templates/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='tracking-code']">
+  <xsl:call-template name="insert-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+    <xsl:with-param name="tracking_institution"
+      select="$page/crossQueryResult/parameters/param[@name='Institution'][1]/@value"/>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

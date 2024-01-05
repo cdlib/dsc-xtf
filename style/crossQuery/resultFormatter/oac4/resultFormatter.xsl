@@ -12,6 +12,7 @@
 
 <!-- DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" -->
 <xsl:import href="../common/editURL.xsl"/>
+<xsl:import href="../../../common/tracking.xsl"/>
 <xsl:include href="../../../common/SSI.xsl"/>
 <xsl:include href="../../../common/online-items-graphic-element.xsl"/>
 
@@ -1151,6 +1152,12 @@ encodeURI('/js/facet-iframe.html?<xsl:value-of select="replace(replace($queryStr
       </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
+
+<xsl:template match="*[@tmpl:insert='tracking-code']">
+  <xsl:call-template name="insert-tracking">
+    <xsl:with-param name="brand" select="'oac4'"/>
+  </xsl:call-template>
+</xsl:template>
 
   <xsl:function name="editURL:spellingFix">
 	<xsl:param name="query"/>

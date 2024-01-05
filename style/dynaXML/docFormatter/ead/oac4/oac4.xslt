@@ -9,7 +9,8 @@
   xmlns:tmpl="xslt://template"
   exclude-result-prefixes="#all"
   version="2.0">
-  
+
+  <xsl:import href="../../../../common/tracking.xsl"/>
   <xsl:strip-space elements="*"/>
   <xsl:include href="table.html.xsl"/>
   <xsl:include href="ead.html.xsl"/>
@@ -1192,6 +1193,13 @@ accessrestrict| accruals| acqinfo| altformavail| appraisal| arrangement| bibliog
 		</xsl:otherwise>
 	</xsl:choose>
    </xsl:element>
+</xsl:template>
+
+<xsl:template match="*[@tmpl:insert='tracking-code']">
+	<xsl:call-template name="insert-tracking">
+		<xsl:with-param name="brand" select="'oac4'"/>
+        <xsl:with-param name="tracking_institution" select="$page/ead/facet-institution"/>
+    </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="unitid" mode="collectionId">
