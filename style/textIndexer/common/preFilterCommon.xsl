@@ -520,10 +520,10 @@
 		<xsl:value-of select="($parentRepodata)/parent/div[5]"/>
 	</institution-url>	
 	<aeon_url xtf:meta="true" xtf:tokenize="false">
-		<xsl:value-of select="($parentRepodata)/parent/div[7]"/>
+		<xsl:value-of select="($parentRepodata)/parent/div[6]"/>
 	</aeon_url>
 	<aeon_data_parameter xtf:meta="true" xtf:tokenize="false">
-		<xsl:value-of select="($parentRepodata)/parent/div[8]"/>
+		<xsl:value-of select="($parentRepodata)/parent/div[7]"/>
 	</aeon_data_parameter>
 	<xsl:choose> <!-- main choice is 2 listings or 1 listing -->
 		<xsl:when test="($grandparentARK)/g/a != ''"> <!-- there are 2 -->

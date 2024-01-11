@@ -200,10 +200,10 @@ source: http://www.loc.gov/standards/marcxml/xslt/MARC21slim2SRWDC.xsl
 </facet-institution>
 
        <institution-url xtf:meta="true" xtf:tokenize="false">
-               <xsl:value-of select="$cdlpath_query/r/c[4]"/>
+               <xsl:value-of select="$cdlpath_query/r/c[3]"/>
        </institution-url>
        <aeon_url xtf:meta="true" xtf:tokenize="false">
-               <xsl:value-of select="$cdlpath_query/r/c[5]"/>
+               <xsl:value-of select="$cdlpath_query/r/c[4]"/>
        </aeon_url>
 
         <identifier q="call" xtf:meta="true">
